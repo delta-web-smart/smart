@@ -13,6 +13,7 @@
         $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/css/jquery.formstyler.css");
         $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/fonts/fonts.css");
         $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/css/jquery-ui-1.10.4.custom.css");
+        $APPLICATION->AddHeadString('<link rel="shortcut icon" type="image/x-icon" href="'.SITE_DIR.'favicon.ico" />');
         //$APPLICATION->AddHeadString('<link rel="stylesheet" href="'. SITE_TEMPLATE_PATH .'/css/global.css">');
     ?>
     <?$APPLICATION->AddHeadString('<!--[if IE 7]><link rel="stylesheet" href="'. SITE_TEMPLATE_PATH .'/css/ie7.css" /><![endif]-->')?>
@@ -39,136 +40,152 @@
         </div>
       </div>
       <div class="main-part clearfix">
-        <a href="#" class="logo-wrap">
-          <img src="<?=SITE_TEMPLATE_PATH?>/img/logo-main.png" alt="">
-          <div class="slogan">
-            <span>Смарт Тайер</span>
-            Виртуальный гипермаркет<br>автотоваров в Москве
-          </div>
-        </a>
-        <div class="phone-wrap">
-          <div class="phone">
-            (495)
-             <span>551-52-51</span>
-            <a href="#">Обратный звонок</a>
-          </div>
-          <span class='address'>г. Москва ул. Южнопортовая, 7<br>Пн – Пт: с 9 до 21. <i>Сб с 9 до 17</i></span>
-        </div>
-        <div class="corf">
-          <a href="#" class="corf-ico"></a>
-          <span class="title">Корзина:</span>
-          <div class="goods"><span class="count">Товаров: <b>21</b></span><span class="price">21 232 <b>c</b></span></div>
-        </div>
+        <?
+            $APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/logo.php"), false);
+        ?>
+        <?
+            $APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/phones.php"), false);
+        ?>
+        <?
+            $APPLICATION->IncludeComponent("bitrix:sale.basket.basket.line", "top_basket", array(
+                    "PATH_TO_BASKET" => SITE_DIR."personal/cart/",
+                    "PATH_TO_PERSONAL" => SITE_DIR."personal/",
+                    "SHOW_PERSONAL_LINK" => "N",
+                    "SHOW_NUM_PRODUCTS" => "Y",
+                    "SHOW_TOTAL_PRICE" => "Y",
+                    "SHOW_PRODUCTS" => "N",
+                    "POSITION_FIXED" =>"N",
+                    "SHOW_AUTHOR" => "Y",
+                    "PATH_TO_REGISTER" => SITE_DIR."login/",
+                    "PATH_TO_PROFILE" => SITE_DIR."personal/"
+                ),
+                false,
+                array()
+            );
+        ?>
       </div>
       <div class="bottom-part clearfix">
-        <span class="about-catalog">В нашем каталоге <b>более 10 000</b> товаров!</span>
-        <div class="clear"></div>
-        <div class="search-wrap">
-          <input type="text" class="search">
-          <button class="search-btn orange-btn">Найти</button>
-        </div>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="#">ГЛАВНАЯ</a></li>
-            <li><a href="#">О КОМПАНИИ</a></li>
-            <li><a href="#">ДОСТАВКА</a></li>
-            <li><a href="#">ПОКУПАТЕЛЮ</a></li>
-            <li class="last"><a href="#">КОНТАКТЫ</a></li>
-          </ul>
-        </nav>
+        <?
+            $APPLICATION->IncludeComponent(
+                "bitrix:news.list", 
+                "count_offers", 
+                array(
+                    "IBLOCK_TYPE" => "1c_catalog",
+                    "IBLOCK_ID" => "5",
+                    "NEWS_COUNT" => PHP_INT_MAX,
+                    "SORT_BY1" => "SORT",
+                    "SORT_ORDER1" => "ASC",
+                    "SORT_BY2" => "ID",
+                    "SORT_ORDER2" => "DESC",
+                    "FILTER_NAME" => "",
+                    "FIELD_CODE" => array(
+                        0 => "ID",
+                        1 => "NAME",
+                        2 => "DETAIL_PICTURE",
+                        3 => "",
+                    ),
+                    "PROPERTY_CODE" => array(
+                        0 => "LINK",
+                        1 => "IMAGE",
+                        2 => "",
+                    ),
+                    "CHECK_DATES" => "Y",
+                    "DETAIL_URL" => "",
+                    "AJAX_MODE" => "N",
+                    "AJAX_OPTION_JUMP" => "N",
+                    "AJAX_OPTION_STYLE" => "Y",
+                    "AJAX_OPTION_HISTORY" => "N",
+                    "CACHE_TYPE" => "A",
+                    "CACHE_TIME" => "36000000",
+                    "CACHE_FILTER" => "N",
+                    "CACHE_GROUPS" => "Y",
+                    "PREVIEW_TRUNCATE_LEN" => "",
+                    "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                    "SET_TITLE" => "N",
+                    "SET_BROWSER_TITLE" => "N",
+                    "SET_META_KEYWORDS" => "N",
+                    "SET_META_DESCRIPTION" => "N",
+                    "SET_STATUS_404" => "N",
+                    "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                    "ADD_SECTIONS_CHAIN" => "N",
+                    "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                    "PARENT_SECTION" => "",
+                    "PARENT_SECTION_CODE" => "",
+                    "INCLUDE_SUBSECTIONS" => "Y",
+                    "PAGER_TEMPLATE" => ".default",
+                    "DISPLAY_TOP_PAGER" => "N",
+                    "DISPLAY_BOTTOM_PAGER" => "N",
+                    "PAGER_TITLE" => "Новости",
+                    "PAGER_SHOW_ALWAYS" => "N",
+                    "PAGER_DESC_NUMBERING" => "N",
+                    "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                    "PAGER_SHOW_ALL" => "Y",
+                    "DISPLAY_DATE" => "Y",
+                    "DISPLAY_NAME" => "Y",
+                    "DISPLAY_PICTURE" => "Y",
+                    "DISPLAY_PREVIEW_TEXT" => "Y",
+                    "AJAX_OPTION_ADDITIONAL" => "",
+                    "COMPONENT_TEMPLATE" => "banner_2",
+                    "SET_LAST_MODIFIED" => "N",
+                    "PAGER_BASE_LINK_ENABLE" => "N",
+                    "SHOW_404" => "N",
+                    "MESSAGE_404" => ""
+                ),
+                false
+            );
+        ?>
+        <?
+            $APPLICATION->IncludeComponent("bitrix:search.form","top_search_form",Array(
+                    "USE_SUGGEST" => "N",
+                    "PAGE" => "#SITE_DIR#search/index.php"
+                )
+            );
+        ?>
+        <?
+            $APPLICATION->IncludeComponent('bitrix:menu', "top_menu", array(
+                    "ROOT_MENU_TYPE" => "top",
+                    "CHILD_MENU_TYPE" => "top_child", 
+                    "MENU_CACHE_TYPE" => "A",
+                    "MENU_CACHE_TIME" => "36000000",
+                    "MENU_CACHE_USE_GROUPS" => "Y",
+                    "MENU_CACHE_GET_VARS" => array(),
+                    "MAX_LEVEL" => "2",
+                    "USE_EXT" => "Y",
+                    "ALLOW_MULTI_SELECT" => "N"
+                )
+            );
+        ?>
       </div>
       <div class="header-shadow"></div>
     </header>
     
     <section class="content-wrap">
-       <a href="#" class="ask-question">Задать вопрос</a>
+      <a href="#" class="ask-question">Задать вопрос</a>
       <a href="#" class="to-up"><i>Наверх</i></a>
-      <nav class="product-nav">
-        <ul class="clearfix">
-          <li class="product1">
-            <span class="item-name">
-              Шины<i class="dropdown"></i>
-              <div class="sub-nav">
-                <div class="list">
-                  <a href="#">Автошины</a>
-                  <a href="#">Мотошины</a>
-                  <a href="#">Грузовые шины</a>
-                  <a href="#">Спецшины</a>
-                </div>
-                <img src="<?=SITE_TEMPLATE_PATH?>/img/sub-nav-img.png" alt="">
-              </div>
-            </span>
-            <div class="product-img"></div>
-          </li>          
-          <li class="product2">
-            <span class="item-name">
-              Диски<i class="dropdown"></i>
-              <div class="sub-nav">
-                <div class="list">
-                  <a href="#">Автодиски</a>
-                  <a href="#">Груз. диски</a>
-                </div>
-                <img src="<?=SITE_TEMPLATE_PATH?>/img/sub-nav-img.png" alt="">
-              </div>
-            </span>
-            <div class="product-img"></div>
-          </li>
-          <li class="no-sub product3">
-            <a href="#" class="no-sub-link">
-              <span class="item-name">Автокресла</span>
-              <div class="product-img"></div>
-            </a>
-          </li>
-          <li class="no-sub product4">
-            <a href="#" class="no-sub-link">
-              <span class="item-name">Аккумуляторы</span>
-              <div class="product-img"></div>
-            </a>
-          </li>
-          <li class="product5">
-            <span class="item-name">
-              Масла<i class="dropdown"></i>
-              <div class="sub-nav">
-                <div class="list">
-                  <a href="#">Моторное</a>
-                  <a href="#">Трансмиссионное</a>
-                </div>
-                <img src="<?=SITE_TEMPLATE_PATH?>/img/sub-nav-img.png" alt="">
-              </div>
-            </span>
-            <div class="product-img"></div>
-          </li>
-          <li class="no-sub product6">
-            <a href="#" class="no-sub-link">
-              <span class="item-name">Крепеж и секретки</span>
-              <div class="product-img"></div>
-            </a>
-          </li>
-          <li class="no-sub product7">
-            <a href="#" class="no-sub-link">
-              <span class="item-name">Выхлопная система</span>
-              <div class="product-img"></div>
-            </a>
-          </li>
-          <li class="last product8">
-            <span class="item-name">
-              Всё для авто<i class="dropdown"></i>
-              <div class="sub-nav">
-                <div class="list">
-                  <a href="#">Фильтры</a>
-                  <a href="#">Колодки</a>
-                  <a href="#">Противоугонные системы</a>
-                  <a href="#">Камера и ободные ленты</a>
-                  <a href="#">Автолампы</a>
-                  <a href="#">Автоинструмент</a>
-                </div>
-                <img src="<?=SITE_TEMPLATE_PATH?>/img/sub-nav-img.png" alt="">
-              </div>
-            </span>
-            <div class="product-img"></div>
-          </li>
-        </ul>
-      </nav>
+      <?
+        $arFilterSectionMenu = array("UF_SHOW_TOP_MENU"=>1);
+        $APPLICATION->IncludeComponent("delta_web:catalog.section.list","top_sections_menu",
+        Array(
+                "FILTER_NAME" => "arFilterSectionMenu",
+                "VIEW_MODE" => "TEXT",
+                "SHOW_PARENT_NAME" => "Y",
+                "IBLOCK_TYPE" => "1c_catalog",
+                "IBLOCK_ID" => "4",
+                "SECTION_ID" => "",
+                "SECTION_CODE" => "",
+                "SECTION_URL" => "",
+                "COUNT_ELEMENTS" => "Y",
+                "TOP_DEPTH" => "2",
+                "SECTION_FIELDS" => "",
+                "SECTION_USER_FIELDS" => "",
+                "ADD_SECTIONS_CHAIN" => "N",
+                "CACHE_TYPE" => "A",
+                "CACHE_TIME" => "36000000",
+                "CACHE_NOTES" => "",
+                "CACHE_GROUPS" => "Y"
+            )		
+        );
+      ?>
       <div class="sort-main clearfix">
         <form class="sort-item left">
           <div class="title">
