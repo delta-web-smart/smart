@@ -9,7 +9,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
         array(
             "IBLOCK_TYPE" => "content",
             "IBLOCK_ID" => "6",
-            "NEWS_COUNT" => PHP_INT_MAX,
+            "NEWS_COUNT" => "100000",
             "SORT_BY1" => "SORT",
             "SORT_ORDER1" => "ASC",
             "SORT_BY2" => "ID",

@@ -72,7 +72,7 @@
                 array(
                     "IBLOCK_TYPE" => "1c_catalog",
                     "IBLOCK_ID" => "5",
-                    "NEWS_COUNT" => PHP_INT_MAX,
+                    "NEWS_COUNT" => "100000",
                     "SORT_BY1" => "SORT",
                     "SORT_ORDER1" => "ASC",
                     "SORT_BY2" => "ID",
