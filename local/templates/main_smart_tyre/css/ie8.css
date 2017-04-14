@@ -1,0 +1,66 @@
+.content ul.catalog li {
+  width: 157px;
+  height: 216px;
+  padding: 0;
+  border: 1px solid #CCC;
+}
+
+.content ul.catalog li:hover {
+  padding: 0;
+  width: 157px;
+  height: 216px;
+}
+
+.border-wrap ul.all-for-auto li {
+  width: 209px;
+  height: 255px;
+  border: 1px solid #CCC;
+  padding: 0;
+}
+
+.border-wrap ul.all-for-auto li:hover {
+  padding: 0;
+  width: 209px;
+  height: 255px;
+}
+
+.content .search-results li.mini-card {
+  width: 328px;
+  height: 293px;
+  padding: 0;
+  border: 1px solid #CCC;
+}
+
+.content .search-results li.mini-card:hover {
+  width: 328px;
+  height: 293px;
+  padding: 0;
+}
+
+.content .search-results li.mini-card:hover .controls {
+  bottom: 14px;
+  right: 12px;
+}
+
+.border-wrap ul.in-brands li {
+  width: 213px;
+  height: 211px;
+  padding: 0;
+  border: 1px solid #CCC;
+}
+
+.border-wrap ul.in-brands li:hover {
+  width: 213px;
+  height: 211px;
+  padding: 0;
+}
+
+.border-wrap ul.in-brands li:hover .action-label {
+  left: 10px;
+  top: 11px;
+}
+
+.border-wrap ul.in-brands li:hover i.season-ico {
+  right: 11px;
+  top: 12px;
+}

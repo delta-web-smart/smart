@@ -1,0 +1,79 @@
+
+
+@font-face {
+    font-family: 'calibriregular';
+    src: url('calibri-webfont.eot');
+    src: url('calibri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('calibri-webfont.woff') format('woff'),
+         url('calibri-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'calibribold';
+    src: url('calibri-bold-webfont.eot');
+    src: url('calibri-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('calibri-bold-webfont.woff') format('woff'),
+         url('calibri-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'calibriitalic';
+    src: url('calibrii-webfont.eot');
+    src: url('calibrii-webfont.eot?#iefix') format('embedded-opentype'),
+         url('calibrii-webfont.woff') format('woff'),
+         url('calibrii-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'arialnarrow';
+    src: url('ArialNarrow.eot');
+    src: url('ArialNarrow.eot?#iefix') format('embedded-opentype'),
+         url('ArialNarrow.woff') format('woff'),
+         url('ArialNarrow.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'arialnarrow_bold';
+    src: url('ArialNarrowBold.eot');
+    src: url('ArialNarrowBold.eot?#iefix') format('embedded-opentype'),
+         url('ArialNarrowBold.woff') format('woff'),
+         url('ArialNarrowBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+@font-face {
+    font-family: 'als_rublregular';
+    src: url('rouble-webfont.eot');
+    src: url('rouble-webfont.eot?#iefix') format('embedded-opentype'),
+         url('rouble-webfont.woff') format('woff'),
+         url('rouble-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
