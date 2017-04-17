@@ -15,16 +15,18 @@ $this->setFrameMode(true);
 <?php if (!empty($arResult["SECTIONS"])):?>
     <nav class="product-nav">
         <ul class="clearfix">
+          <? $count = 1;?>
           <? foreach($arResult["SECTIONS"] as $i=>$arSection):?>
             <? if ($arSection['DEPTH_LEVEL'] == 1):?>
-                <li class="<?if($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] == 1 || empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])):?>no-sub<? endif;?> product<?=$i+1?>">
-                    <? if ($prevDepthLevel > 2):?>
-                        </li>
-                    <? endif;?>
-                    <? if($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] == 1 || empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])):?>
-                        <a href="<?=$arSection["SECTION_PAGE_URL"]?>" class="no-sub-link">
-                    <? endif;?>
+                <li class="<?if($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] == 1 || empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])):?>no-sub<? endif;?> product<?=$count?>">
+                <? if ($prevDepthLevel > 2):?>
+                    </li>
                 <? endif;?>
+                <? if($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] == 1 || empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])):?>
+                    <a href="<?=$arSection["SECTION_PAGE_URL"]?>" class="no-sub-link">
+                <? endif;?>
+               <? $count++; ?>
+            <? endif;?>
                 <? if ($arSection['DEPTH_LEVEL'] == 1):?>
                     <span class="item-name">
                         <?=$arSection["NAME"]?>
@@ -40,12 +42,12 @@ $this->setFrameMode(true);
                         <? if (empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])) {
                             $arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] = 1;
                         } ?>
-                        <?=str_repeat('</div><img src="'.SITE_TEMPLATE_PATH.'/img/sub-nav-img.png" alt=""></div>', $arSection["DEPTH_LEVEL"] - $arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"]);?>
+                        <?=str_repeat('</div><img src="'. $arResult["SECTIONS"][$i-1]["IMAGE_2"]["src"] .'" alt=""></div>', $arSection["DEPTH_LEVEL"] - $arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"]);?>
                     <? endif;?>     
                 <? endif;?>
                 <? if ($arSection['DEPTH_LEVEL'] == 1):?>
                     </span>
-                    <div class="product-img"></div>
+                    <div class="product-img" style="background-image: url('<?=$arSection["IMAGE_1"]["src"]?>');"></div>
                      <? if($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] == 1 || empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])):?>
                         </a>
                     <? endif;?>

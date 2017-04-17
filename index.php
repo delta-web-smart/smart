@@ -8,7 +8,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
         "main_slider", 
         array(
             "IBLOCK_TYPE" => "content",
-            "IBLOCK_ID" => "6",
+            "IBLOCK_ID" => IBLOCK_ID_SLIDER_MAIN_PAGE,
             "NEWS_COUNT" => "100000",
             "SORT_BY1" => "SORT",
             "SORT_ORDER1" => "ASC",
