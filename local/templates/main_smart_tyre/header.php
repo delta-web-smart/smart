@@ -26,6 +26,7 @@
         $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/bootstrap.touchspin.js");
         $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/jquery-ui-1.10.4.custom.min.js");
         $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/custom.js");
+        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/common.js");
     ?>
     <?$APPLICATION->ShowHead();?>
 </head>

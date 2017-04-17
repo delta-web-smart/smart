@@ -71,64 +71,326 @@ $APPLICATION->SetTitle("Смарт Тайер");
         false
     );
 ?>
+<?
+    $labelsForSale = array(
+        "new",
+        "sale",
+        "hit"
+    );
+?>
 <ul class="top-category">
-  <li class="new">
-    <a href="#">НОВИНКИ</a>
-  </li>
-  <li class="sale">
-    <a href="#">РАСПРОДАЖА</a>
-  </li>
-  <li class="hit">
-    <a href="#">ХИТ СЕЗОНА!</a>
-  </li>
+  <? $APPLICATION->ShowViewContent($labelsForSale[0].'_main_page'); ?>
+  <? $APPLICATION->ShowViewContent($labelsForSale[1].'_main_page'); ?>
+  <? $APPLICATION->ShowViewContent($labelsForSale[2].'_main_page'); ?>
 </ul>
-<ul class="catalog">
-  <li>
-    <a href="#" class="img-wrap"><div class="action-label"></div><img src="<?=SITE_TEMPLATE_PATH?>/img/catalog-item-photo.jpg" alt=""><div class="loupe"></div></a>
-    <a href="#" class="name">Глушитель CBD Chevrolet Lacetti</a>
-    <span class="article">Артикул: 00964</span>
-    <input type="text" class="spinner" value="0">
-    <button class="price-btn">99 999<i>i</i></button>
-  </li>
-  <li>
-    <a href="#" class="img-wrap"><div class="action-label new"></div><img src="<?=SITE_TEMPLATE_PATH?>/img/catalog-item-photo.jpg" alt=""><div class="loupe"></div></a>
-    <a href="#" class="name">Глушитель CBD Chevrolet Lacetti</a>
-    <span class="article">Артикул: 00964</span>
-    <input type="text" class="spinner" value="0">
-    <button class="price-btn">99 999<i>i</i></button>
-  </li>
-  <li>
-    <a href="#" class="img-wrap"><div class="action-label hit"></div><img src="<?=SITE_TEMPLATE_PATH?>/img/catalog-item-photo.jpg" alt=""><div class="loupe"></div></a>
-    <a href="#" class="name">Глушитель CBD Chevrolet Lacetti</a>
-    <span class="article">Артикул: 00964</span>
-    <input type="text" class="spinner" value="0">
-    <button class="price-btn">99 999<i>i</i></button>
-  </li>
-  <li>
-    <a href="#" class="img-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/catalog-item-photo.jpg" alt=""><div class="loupe"></div></a>
-    <a href="#" class="name">Глушитель CBD Chevrolet Lacetti</a>
-    <span class="article">Артикул: 00964</span>
-    <input type="text" class="spinner" value="0">
-    <button class="price-btn">99 999<i>i</i></button>
-  </li>
-  <li>
-    <a href="#" class="img-wrap"><div class="action-label new"></div><img src="<?=SITE_TEMPLATE_PATH?>/img/catalog-item-photo.jpg" alt=""><div class="loupe"></div></a>
-    <a href="#" class="name">Глушитель CBD Chevrolet Lacetti</a>
-    <span class="article">Артикул: 00964</span>
-    <input type="text" class="spinner" value="0">
-    <button class="price-btn">99 999<i>i</i></button>
-  </li>
-  <li>
-    <a href="#" class="img-wrap"><div class="action-label hit"></div><img src="<?=SITE_TEMPLATE_PATH?>/img/catalog-item-photo.jpg" alt=""><div class="loupe"></div></a>
-    <a href="#" class="name">Глушитель CBD Chevrolet Lacetti</a>
-    <span class="article">Артикул: 00964</span>
-    <input type="text" class="spinner" value="0">
-    <button class="price-btn">99 999<i>i</i></button>
-  </li>
-</ul>
+<?$APPLICATION->IncludeComponent(
+    "delta_web:catalog.section",
+    "products_main_page",
+    Array(
+        "LABEL_FOR_SALE" => "new",
+        "ACTION_VARIABLE" => "action",
+        "ADD_PICT_PROP" => "MORE_PHOTO",
+        "ADD_PROPERTIES_TO_BASKET" => "Y",
+        "ADD_SECTIONS_CHAIN" => "N",
+        "ADD_TO_BASKET_ACTION" => "ADD",
+        "AJAX_MODE" => "N",
+        "AJAX_OPTION_ADDITIONAL" => "",
+        "AJAX_OPTION_HISTORY" => "N",
+        "AJAX_OPTION_JUMP" => "N",
+        "AJAX_OPTION_STYLE" => "Y",
+        "BACKGROUND_IMAGE" => "UF_BACKGROUND_IMAGE",
+        "BASKET_URL" => "/personal/cart/",
+        "BRAND_PROPERTY" => "BRAND_REF",
+        "BROWSER_TITLE" => "-",
+        "CACHE_FILTER" => "N",
+        "CACHE_GROUPS" => "Y",
+        "CACHE_TIME" => "36000000",
+        "CACHE_TYPE" => "A",
+        "COMPATIBLE_MODE" => "Y",
+        "CONVERT_CURRENCY" => "Y",
+        "CURRENCY_ID" => "RUB",
+        "CUSTOM_FILTER" => "",
+        "DATA_LAYER_NAME" => "",
+        "DETAIL_URL" => "",
+        "DISABLE_INIT_JS_IN_COMPONENT" => "N",
+        "DISCOUNT_PERCENT_POSITION" => "bottom-right",
+        "DISPLAY_BOTTOM_PAGER" => "Y",
+        "DISPLAY_TOP_PAGER" => "N",
+        "ELEMENT_SORT_FIELD" => "created",
+        "ELEMENT_SORT_FIELD2" => "id",
+        "ELEMENT_SORT_ORDER" => "desc",
+        "ELEMENT_SORT_ORDER2" => "desc",
+        "ENLARGE_PRODUCT" => "PROP",
+        "ENLARGE_PROP" => "NEWPRODUCT",
+        "FILTER_NAME" => "",
+        "HIDE_NOT_AVAILABLE" => "N",
+        "HIDE_NOT_AVAILABLE_OFFERS" => "N",
+        "IBLOCK_ID" => IBLOCK_ID_CATALOG,
+        "IBLOCK_TYPE" => "1c_catalog",
+        "INCLUDE_SUBSECTIONS" => "Y",
+        "LABEL_PROP" => array(""),
+        "LABEL_PROP_MOBILE" => array(),
+        "LABEL_PROP_POSITION" => "top-left",
+        "LAZY_LOAD" => "Y",
+        "LINE_ELEMENT_COUNT" => "3",
+        "LOAD_ON_SCROLL" => "N",
+        "MESSAGE_404" => "",
+        "MESS_BTN_ADD_TO_BASKET" => "В корзину",
+        "MESS_BTN_BUY" => "Купить",
+        "MESS_BTN_DETAIL" => "Подробнее",
+        "MESS_BTN_LAZY_LOAD" => "Показать ещё",
+        "MESS_BTN_SUBSCRIBE" => "Подписаться",
+        "MESS_NOT_AVAILABLE" => "Нет в наличии",
+        "META_DESCRIPTION" => "-",
+        "META_KEYWORDS" => "-",
+        "OFFERS_CART_PROPERTIES" => array(""),
+        "OFFERS_FIELD_CODE" => array(""),
+        "OFFERS_LIMIT" => "0",
+        "OFFERS_PROPERTY_CODE" => array(""),
+        "OFFERS_SORT_FIELD" => "sort",
+        "OFFERS_SORT_FIELD2" => "id",
+        "OFFERS_SORT_ORDER" => "asc",
+        "OFFERS_SORT_ORDER2" => "desc",
+        "OFFER_ADD_PICT_PROP" => "MORE_PHOTO",
+        "OFFER_TREE_PROPS" => array(""),
+        "PAGER_BASE_LINK_ENABLE" => "N",
+        "PAGER_DESC_NUMBERING" => "N",
+        "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+        "PAGER_SHOW_ALL" => "N",
+        "PAGER_SHOW_ALWAYS" => "N",
+        "PAGER_TEMPLATE" => ".default",
+        "PAGER_TITLE" => "Товары",
+        "PAGE_ELEMENT_COUNT" => "12",
+        "PARTIAL_PRODUCT_PROPERTIES" => "N",
+        "PRICE_CODE" => array("BASE"),
+        "PRICE_VAT_INCLUDE" => "Y",
+        "PRODUCT_BLOCKS_ORDER" => "",
+        "PRODUCT_DISPLAY_MODE" => "Y",
+        "PRODUCT_ID_VARIABLE" => "id",
+        "PRODUCT_PROPERTIES" => array(""),
+        "PRODUCT_PROPS_VARIABLE" => "prop",
+        "PRODUCT_QUANTITY_VARIABLE" => "",
+        "PRODUCT_ROW_VARIANTS" => "",
+        "PRODUCT_SUBSCRIPTION" => "Y",
+        "PROPERTY_CODE" => array(""),
+        "PROPERTY_CODE_MOBILE" => array(),
+        "RCM_PROD_ID" => "",
+        "RCM_TYPE" => "",
+        "SECTION_CODE" => "",
+        "SECTION_ID" => "",
+        "SECTION_ID_VARIABLE" => "SECTION_ID",
+        "SECTION_URL" => "",
+        "SECTION_USER_FIELDS" => array(""),
+        "SEF_MODE" => "N",
+        "SET_BROWSER_TITLE" => "Y",
+        "SET_LAST_MODIFIED" => "N",
+        "SET_META_DESCRIPTION" => "Y",
+        "SET_META_KEYWORDS" => "Y",
+        "SET_STATUS_404" => "N",
+        "SET_TITLE" => "N",
+        "SHOW_404" => "N",
+        "SHOW_ALL_WO_SECTION" => "Y",
+        "SHOW_CLOSE_POPUP" => "N",
+        "SHOW_DISCOUNT_PERCENT" => "Y",
+        "SHOW_FROM_SECTION" => "N",
+        "SHOW_MAX_QUANTITY" => "N",
+        "SHOW_OLD_PRICE" => "N",
+        "SHOW_PRICE_COUNT" => "1",
+        "SHOW_SLIDER" => "N",
+        "SLIDER_INTERVAL" => "3000",
+        "SLIDER_PROGRESS" => "N",
+        "TEMPLATE_THEME" => "blue",
+        "USE_ENHANCED_ECOMMERCE" => "Y",
+        "USE_MAIN_ELEMENT_SECTION" => "N",
+        "USE_PRICE_COUNT" => "N",
+        "USE_PRODUCT_QUANTITY" => "N"
+    )
+);?>
+<?
+    $arDiscountElementID = $APPLICATION->IncludeComponent(
+        "delta_web:get_discount_elements_ids", "", array()
+    );
+    global $arrFilterSale;
+    $arrFilterSale = array("ID" => $arDiscountElementID);
+?>
+<? if (!empty($arDiscountElementID)):?>
+    <?$APPLICATION->IncludeComponent(
+        "delta_web:catalog.section",
+        "products_main_page",
+        Array(
+            "LABEL_FOR_SALE" => "sale",
+            "ACTION_VARIABLE" => "action",
+            "ADD_PICT_PROP" => "MORE_PHOTO",
+            "ADD_PROPERTIES_TO_BASKET" => "Y",
+            "ADD_SECTIONS_CHAIN" => "N",
+            "ADD_TO_BASKET_ACTION" => "ADD",
+            "AJAX_MODE" => "N",
+            "AJAX_OPTION_ADDITIONAL" => "",
+            "AJAX_OPTION_HISTORY" => "N",
+            "AJAX_OPTION_JUMP" => "N",
+            "AJAX_OPTION_STYLE" => "Y",
+            "BACKGROUND_IMAGE" => "UF_BACKGROUND_IMAGE",
+            "BASKET_URL" => "/personal/cart/",
+            "BRAND_PROPERTY" => "BRAND_REF",
+            "BROWSER_TITLE" => "-",
+            "CACHE_FILTER" => "N",
+            "CACHE_GROUPS" => "Y",
+            "CACHE_TIME" => "36000000",
+            "CACHE_TYPE" => "A",
+            "COMPATIBLE_MODE" => "Y",
+            "CONVERT_CURRENCY" => "Y",
+            "CURRENCY_ID" => "RUB",
+            "CUSTOM_FILTER" => "",
+            "DATA_LAYER_NAME" => "",
+            "DETAIL_URL" => "",
+            "DISABLE_INIT_JS_IN_COMPONENT" => "N",
+            "DISCOUNT_PERCENT_POSITION" => "bottom-right",
+            "DISPLAY_BOTTOM_PAGER" => "Y",
+            "DISPLAY_TOP_PAGER" => "N",
+            "ELEMENT_SORT_FIELD" => "created",
+            "ELEMENT_SORT_FIELD2" => "id",
+            "ELEMENT_SORT_ORDER" => "desc",
+            "ELEMENT_SORT_ORDER2" => "desc",
+            "ENLARGE_PRODUCT" => "PROP",
+            "ENLARGE_PROP" => "NEWPRODUCT",
+            "FILTER_NAME" => "arrFilterSale",
+            "HIDE_NOT_AVAILABLE" => "N",
+            "HIDE_NOT_AVAILABLE_OFFERS" => "N",
+            "IBLOCK_ID" => IBLOCK_ID_CATALOG,
+            "IBLOCK_TYPE" => "1c_catalog",
+            "INCLUDE_SUBSECTIONS" => "Y",
+            "LABEL_PROP" => array(""),
+            "LABEL_PROP_MOBILE" => array(),
+            "LABEL_PROP_POSITION" => "top-left",
+            "LAZY_LOAD" => "Y",
+            "LINE_ELEMENT_COUNT" => "3",
+            "LOAD_ON_SCROLL" => "N",
+            "MESSAGE_404" => "",
+            "MESS_BTN_ADD_TO_BASKET" => "В корзину",
+            "MESS_BTN_BUY" => "Купить",
+            "MESS_BTN_DETAIL" => "Подробнее",
+            "MESS_BTN_LAZY_LOAD" => "Показать ещё",
+            "MESS_BTN_SUBSCRIBE" => "Подписаться",
+            "MESS_NOT_AVAILABLE" => "Нет в наличии",
+            "META_DESCRIPTION" => "-",
+            "META_KEYWORDS" => "-",
+            "OFFERS_CART_PROPERTIES" => array(""),
+            "OFFERS_FIELD_CODE" => array(""),
+            "OFFERS_LIMIT" => "0",
+            "OFFERS_PROPERTY_CODE" => array(""),
+            "OFFERS_SORT_FIELD" => "sort",
+            "OFFERS_SORT_FIELD2" => "id",
+            "OFFERS_SORT_ORDER" => "asc",
+            "OFFERS_SORT_ORDER2" => "desc",
+            "OFFER_ADD_PICT_PROP" => "MORE_PHOTO",
+            "OFFER_TREE_PROPS" => array(""),
+            "PAGER_BASE_LINK_ENABLE" => "N",
+            "PAGER_DESC_NUMBERING" => "N",
+            "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+            "PAGER_SHOW_ALL" => "N",
+            "PAGER_SHOW_ALWAYS" => "N",
+            "PAGER_TEMPLATE" => ".default",
+            "PAGER_TITLE" => "Товары",
+            "PAGE_ELEMENT_COUNT" => "12",
+            "PARTIAL_PRODUCT_PROPERTIES" => "N",
+            "PRICE_CODE" => array("BASE"),
+            "PRICE_VAT_INCLUDE" => "Y",
+            "PRODUCT_BLOCKS_ORDER" => "",
+            "PRODUCT_DISPLAY_MODE" => "Y",
+            "PRODUCT_ID_VARIABLE" => "id",
+            "PRODUCT_PROPERTIES" => array(""),
+            "PRODUCT_PROPS_VARIABLE" => "prop",
+            "PRODUCT_QUANTITY_VARIABLE" => "",
+            "PRODUCT_ROW_VARIANTS" => "",
+            "PRODUCT_SUBSCRIPTION" => "Y",
+            "PROPERTY_CODE" => array(""),
+            "PROPERTY_CODE_MOBILE" => array(),
+            "RCM_PROD_ID" => "",
+            "RCM_TYPE" => "",
+            "SECTION_CODE" => "",
+            "SECTION_ID" => "",
+            "SECTION_ID_VARIABLE" => "SECTION_ID",
+            "SECTION_URL" => "",
+            "SECTION_USER_FIELDS" => array(""),
+            "SEF_MODE" => "N",
+            "SET_BROWSER_TITLE" => "Y",
+            "SET_LAST_MODIFIED" => "N",
+            "SET_META_DESCRIPTION" => "Y",
+            "SET_META_KEYWORDS" => "Y",
+            "SET_STATUS_404" => "N",
+            "SET_TITLE" => "N",
+            "SHOW_404" => "N",
+            "SHOW_ALL_WO_SECTION" => "Y",
+            "SHOW_CLOSE_POPUP" => "N",
+            "SHOW_DISCOUNT_PERCENT" => "Y",
+            "SHOW_FROM_SECTION" => "N",
+            "SHOW_MAX_QUANTITY" => "N",
+            "SHOW_OLD_PRICE" => "N",
+            "SHOW_PRICE_COUNT" => "1",
+            "SHOW_SLIDER" => "N",
+            "SLIDER_INTERVAL" => "3000",
+            "SLIDER_PROGRESS" => "N",
+            "TEMPLATE_THEME" => "blue",
+            "USE_ENHANCED_ECOMMERCE" => "Y",
+            "USE_MAIN_ELEMENT_SECTION" => "N",
+            "USE_PRICE_COUNT" => "N",
+            "USE_PRODUCT_QUANTITY" => "N"
+        )
+    );?>
+<? endif;?>
+<?$APPLICATION->IncludeComponent("bitrix:sale.bestsellers","bestseller_main_page",
+    Array(
+        "LINE_ELEMENT_COUNT" => "3",
+        "TEMPLATE_THEME" => "blue",
+        "BY" => "AMOUNT",
+        "PERIOD" => "0",
+        "FILTER" => array("N", "P", "F"),
+        "CACHE_TYPE" => "A",
+        "CACHE_TIME" => "86400",
+        "AJAX_MODE" => "N",
+        "DETAIL_URL" => "",
+        "BASKET_URL" => "/personal/basket.php",
+        "ACTION_VARIABLE" => "action",
+        "PRODUCT_ID_VARIABLE" => "id",
+        "PRODUCT_QUANTITY_VARIABLE" => "quantity",
+        "ADD_PROPERTIES_TO_BASKET" => "Y",
+        "PRODUCT_PROPS_VARIABLE" => "prop",
+        "PARTIAL_PRODUCT_PROPERTIES" => "N",
+        "DISPLAY_COMPARE" => "N",
+        "SHOW_OLD_PRICE" => "N",
+        "SHOW_DISCOUNT_PERCENT" => "N",
+        "PRICE_CODE" => array("BASE"),
+        "SHOW_PRICE_COUNT" => "1",
+        "PRODUCT_SUBSCRIPTION" => "N",
+        "PRICE_VAT_INCLUDE" => "Y",
+        "USE_PRODUCT_QUANTITY" => "N",
+        "SHOW_NAME" => "Y",
+        "SHOW_IMAGE" => "Y",
+        "MESS_BTN_BUY" => "Купить",
+        "MESS_BTN_DETAIL" => "Подробнее",
+        "MESS_NOT_AVAILABLE" => "Нет в наличии",
+        "MESS_BTN_SUBSCRIBE" => "Подписаться",
+        "PAGE_ELEMENT_COUNT" => "30",
+        "SHOW_PRODUCTS_".IBLOCK_ID_CATALOG => "Y",
+        "PROPERTY_CODE_3" => array("MANUFACTURER", "MATERIAL"),
+        "CART_PROPERTIES_3" => array("CORNER"),
+        "ADDITIONAL_PICT_PROP_3" => "MORE_PHOTO",
+        "LABEL_PROP_3" => "SPECIALOFFER",
+        "PROPERTY_CODE_4" => array("COLOR"),
+        "CART_PROPERTIES_4" => array(),
+        "OFFER_TREE_PROPS_4" => array("-"),
+        "HIDE_NOT_AVAILABLE" => "N",
+        "CONVERT_CURRENCY" => "Y",
+        "CURRENCY_ID" => "RUB",
+        "AJAX_OPTION_JUMP" => "N",
+        "AJAX_OPTION_STYLE" => "Y",
+        "AJAX_OPTION_HISTORY" => "N"
+    )
+);?>
 <article class="bottom-article">
-  <p>Вы можете подумать, что Смарт Тайер – это просто очередной интернет-магазин автозапчастей в Москве и будете не правы. Мы действительно шины, диски, масла детские автомобильные кресла, а также различные автозапчасти для отечественных автомобилей и иномарок, но будете не правы. Так как здесь наше сходство с другими магазинами заканчивается. Мы – принципиально другие!</p>
-  <p>Работая на рынке автозапчастей более десяти лет менеджеры нашей компании накопили огромный багаж знаний для того, чтобы предложить Вам действительно качественный, актуальный и превосходный по цене товар в Москве! И поверьте, это не пустые слова. Сотни часов на выставках и семинарах и многолетнее сотрудничество с лучшими дистрибьюторскими компаниями позволяет нам презентовать действительно выдающийся ассортимент. Нас выбрали тысячи автовладельцев, так как мы не обманываем ожиданий!</p>
+    <?
+        $APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/description.php"), false);
+    ?>
 </article>
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");

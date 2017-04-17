@@ -1026,8 +1026,16 @@ nav.product-nav ul li .sub-nav img {
 	background: url(../img/top-category-bg.png) repeat-x;
 }
 
-.content ul.top-category li.new {
+.content ul.top-category li.new.active, .content ul.top-category li.sale.active, .content ul.top-category li.hit.active {
 	background: url(../img/top-category-bg-current.png) repeat-x;
+}
+
+.content ul.top-category li.new.active a, .content ul.top-category li.sale.active a, .content ul.top-category li.hit.active a {
+    color: #FFF;
+}
+
+.catalog.main_page.sale, .catalog.main_page.hit {
+    display: none;
 }
 
 .content ul.top-category li.viewed a {
@@ -1051,7 +1059,6 @@ nav.product-nav ul li .sub-nav img {
 
 .content ul.top-category li.new a {
 	width: 177px;
-	color: #FFF;
 	background: url(../img/category-new-img.png) no-repeat 112px -12px;
 }
 
