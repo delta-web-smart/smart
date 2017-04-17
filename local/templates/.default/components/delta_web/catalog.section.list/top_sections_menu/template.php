@@ -42,12 +42,17 @@ $this->setFrameMode(true);
                         <? if (empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])) {
                             $arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] = 1;
                         } ?>
-                        <?=str_repeat('</div><img src="'. $arResult["SECTIONS"][$i-1]["IMAGE_2"]["src"] .'" alt=""></div>', $arSection["DEPTH_LEVEL"] - $arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"]);?>
+                        <? 
+                            if (!empty($arResult["SECTIONS"][$i-1]["IMAGE_2"]["src"])) {
+                                $image = '<img src="'. $arResult["SECTIONS"][$i-1]["IMAGE_2"]["src"] .'" alt="">';
+                            }
+                        ?>
+                        <?=str_repeat('</div>'.$image.'</div>', $arSection["DEPTH_LEVEL"] - $arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"]);?>
                     <? endif;?>     
                 <? endif;?>
                 <? if ($arSection['DEPTH_LEVEL'] == 1):?>
                     </span>
-                    <div class="product-img" style="background-image: url('<?=$arSection["IMAGE_1"]["src"]?>');"></div>
+                    <div class="product-img" <?if(!empty($arSection["IMAGE_1"]["src"])):?>style="background-image: url('<?=$arSection["IMAGE_1"]["src"]?>');"<?endif;?>></div>
                      <? if($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"] == 1 || empty($arResult["SECTIONS"][$i+1]["DEPTH_LEVEL"])):?>
                         </a>
                     <? endif;?>
