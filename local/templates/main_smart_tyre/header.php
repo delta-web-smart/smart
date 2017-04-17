@@ -188,6 +188,43 @@
             <button class="orange-btn">Подобрать</button>
           </div>
         </form>
+        <?
+            // $APPLICATION->IncludeComponent(
+                // "bitrix:catalog.smart.filter", 
+                // "", 
+                // array(
+                    // "IBLOCK_TYPE" => "1c_catalog",
+                    // "IBLOCK_ID" => "4",
+                    // "SECTION_ID" => "16",
+                    // "SECTION_CODE" => "",
+                    // "FILTER_NAME" => "",
+                    // "HIDE_NOT_AVAILABLE" => "N",
+                    // "TEMPLATE_THEME" => "blue",
+                    // "FILTER_VIEW_MODE" => "horizontal",
+                    // "DISPLAY_ELEMENT_COUNT" => "Y",
+                    // "SEF_MODE" => "Y",
+                    // "CACHE_TYPE" => "A",
+                    // "CACHE_TIME" => "36000000",
+                    // "CACHE_GROUPS" => "Y",
+                    // "SAVE_IN_SESSION" => "N",
+                    // "INSTANT_RELOAD" => "Y",
+                    // "PAGER_PARAMS_NAME" => "arrPager",
+                    // "PRICE_CODE" => array(
+                        // 0 => "BASE",
+                    // ),
+                    // "CONVERT_CURRENCY" => "Y",
+                    // "XML_EXPORT" => "N",
+                    // "SECTION_TITLE" => "-",
+                    // "SECTION_DESCRIPTION" => "-",
+                    // "POPUP_POSITION" => "left",
+                    // "SEF_RULE" => "/catalog/#SECTION_CODE#/filter/#SMART_FILTER_PATH#/apply/",
+                    // "SECTION_CODE_PATH" => "",
+                    // "SMART_FILTER_PATH" => $_REQUEST["SMART_FILTER_PATH"],
+                    // "CURRENCY_ID" => "RUB"
+                // ),
+                // false
+            // );
+        ?>
         <form class="sort-item right">
           <h3>ПОДБОР ПО РАЗМЕРУ и ПАРАМЕТРАМ</h3>
           <ul class="category">
@@ -242,43 +279,18 @@
       </div>
       <div class="clear"></div>
       <aside class="sidebar">
-        <ul class="promo-nav">
-          <li><a href="#"><img src="<?=SITE_TEMPLATE_PATH?>/img/sidebar-promo-img.png" alt=""><span>ГАРАНТИЯ КАЧЕСТВА</span></a></li>
-          <li><a href="#"><img src="<?=SITE_TEMPLATE_PATH?>/img/sidebar-promo-img1.png" alt=""><span>СПРАВЕДЛИВЫЕ ЦЕНЫ</span></a></li>
-          <li><a href="#"><img src="<?=SITE_TEMPLATE_PATH?>/img/sidebar-promo-img2.png" alt=""><span>ШИРОЧАЙШИЙ АССОРТИМЕНТ</span></a></li>
-          <li><a href="#"><img src="<?=SITE_TEMPLATE_PATH?>/img/sidebar-promo-img3.png" alt=""><span>ПРОФЕССИОНАЛЬНАЯ<br>КОНСУЛЬТАЦИЯ</span></a></li>
-        </ul>
-        <div class="yandex-widget-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/temp-yandex-widget.png" alt=""></div>
-        <div class="news-widget">
-          <h3>НОВОСТИ КОМПАНИИ</h3>
-          <ul>
-            <li>
-              <span class="date">25 ноября 2013</span>
-              <a class="news-title" href="#">Объявляем предновогоднюю распродажу зимних шин KUMHO R17</a>
-              <div class="news">
-                <div class="img-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/news-widget-img.jpg" alt=""></div>
-                <p>В ассортименте в наличии радиусы от R15 до R18 шипы и липучка. Торопитесь, количество ограничено!</p>
-              </div>
-            </li>
-            <li>
-              <span class="date">25 ноября 2013</span>
-              <a class="news-title" href="#">Объявляем предновогоднюю распродажу зимних шин KUMHO R17</a>
-              <div class="news">
-                <div class="img-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/news-widget-img.jpg" alt=""></div>
-                <p>В ассортименте в наличии радиусы от R15 до R18 шипы и липучка. Торопитесь, количество ограничено!</p>
-              </div>
-            </li>
-            <li class="last">
-              <span class="date">25 ноября 2013</span>
-              <a class="news-title" href="#">Объявляем предновогоднюю распродажу зимних шин KUMHO R17</a>
-              <div class="news">
-                <div class="img-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/news-widget-img.jpg" alt=""></div>
-                <p>В ассортименте в наличии радиусы от R15 до R18 шипы и липучка. Торопитесь,<br><a href="#">Подробнее в каталоге</a></p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="vk-widget-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/temp-vk-widget.png" alt=""></div>
+        <?$APPLICATION->IncludeComponent(
+            "bitrix:main.include",
+            "",
+            Array(
+                "AREA_FILE_SHOW" => "sect",
+                "AREA_FILE_SUFFIX" => "sidebar",
+                "AREA_FILE_RECURSIVE" => "N",
+                "EDIT_MODE" => "html",
+            ),
+            false,
+            Array('HIDE_ICONS' => 'Y')
+        );?>
       </aside>
       <div class="content">
 		
