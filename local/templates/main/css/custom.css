@@ -1034,7 +1034,7 @@ nav.product-nav ul li .sub-nav img {
     color: #FFF;
 }
 
-.catalog.main_page.sale, .catalog.main_page.hit {
+.catalog.tabs.sale, .catalog.tabs.hit {
     display: none;
 }
 

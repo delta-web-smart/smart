@@ -8,25 +8,25 @@
 	<title><?$APPLICATION->ShowTitle()?></title>
 	<meta charset="<?=LANG_CHARSET?>">
     <? 
-        $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/css/reset.css");
-        $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/css/custom.css");
-        $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/css/jquery.formstyler.css");
-        $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/fonts/fonts.css");
-        $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH. "/css/jquery-ui-1.10.4.custom.css");
+        $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "css/reset.css");
+        $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "css/custom.css");
+        $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "css/jquery.formstyler.css");
+        $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "fonts/fonts.css");
+        $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "css/jquery-ui-1.10.4.custom.css");
         $APPLICATION->AddHeadString('<link rel="shortcut icon" type="image/x-icon" href="'.SITE_DIR.'favicon.ico" />');
         //$APPLICATION->AddHeadString('<link rel="stylesheet" href="'. SITE_TEMPLATE_PATH .'/css/global.css">');
     ?>
-    <?$APPLICATION->AddHeadString('<!--[if IE 7]><link rel="stylesheet" href="'. SITE_TEMPLATE_PATH .'/css/ie7.css" /><![endif]-->')?>
-	<?$APPLICATION->AddHeadString('<!--[if IE 8]><link rel="stylesheet" href="'. SITE_TEMPLATE_PATH .'/css/ie8.css" /><![endif]-->')?>
+    <?$APPLICATION->AddHeadString('<!--[if IE 7]><link rel="stylesheet" href="'. MAIN_TEMPLATE_PATH .'main/css/ie7.css" /><![endif]-->')?>
+	<?$APPLICATION->AddHeadString('<!--[if IE 8]><link rel="stylesheet" href="'. MAIN_TEMPLATE_PATH .'css/ie8.css" /><![endif]-->')?>
     <?
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/jquery-1.9.1.min.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/jquery.formstyler.min.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/jquery.easing.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/simpslider.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/bootstrap.touchspin.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/jquery-ui-1.10.4.custom.min.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/custom.js");
-        $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH. "/js/common.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/jquery-1.9.1.min.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/jquery.formstyler.min.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/jquery.easing.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/simpslider.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/bootstrap.touchspin.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/jquery-ui-1.10.4.custom.min.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/custom.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/common.js");
     ?>
     <?$APPLICATION->ShowHead();?>
 </head>
@@ -118,6 +118,7 @@
       <a href="#" class="ask-question">Задать вопрос</a>
       <a href="#" class="to-up"><i>Наверх</i></a>
       <?
+				global $arFilterSectionMenu;
         $arFilterSectionMenu = array("UF_SHOW_TOP_MENU"=>1);
         $APPLICATION->IncludeComponent("delta_web:catalog.section.list","top_sections_menu",
         Array(
@@ -286,7 +287,7 @@
             Array(
                 "AREA_FILE_SHOW" => "sect",
                 "AREA_FILE_SUFFIX" => "sidebar",
-                "AREA_FILE_RECURSIVE" => "N",
+                "AREA_FILE_RECURSIVE" => "Y",
                 "EDIT_MODE" => "html",
             ),
             false,

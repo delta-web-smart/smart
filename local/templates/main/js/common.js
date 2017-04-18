@@ -4,7 +4,7 @@ $(function() {
         $currentClass = $(this).attr("class");
         $(".top-category li").removeClass("active");
         $(this).addClass("active");
-        $(".catalog.main_page").hide();
-        $(".catalog.main_page."+$currentClass).show();
+        $(".catalog.tabs").hide();
+        $(".catalog.tabs."+$currentClass).show();
     });
 });
