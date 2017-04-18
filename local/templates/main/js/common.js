@@ -1,13 +1,9 @@
 $(function() {
 
     //Работа с табами: Новинки, Распродажа, Хит сезона, Просмотренные
-    $(".top-category li").on("click", function(e) {
-        e.preventDefault();
-        $currentClass = $(this).attr("class");
-        $(".top-category li").removeClass("active");
-        $(this).addClass("active");
-        $(".catalog.tabs").hide();
-        $(".catalog.tabs."+$currentClass).show();
+    $(".top-category").customTabs({
+        "parent" : ".top-category",
+        "child" : ".catalog.tabs"
     });
         
     var $customBasket = new CustomBasket();
@@ -240,4 +236,25 @@ $(function() {
 
 function PopupMessage(message) {
 	alert(message);
+}
+
+jQuery.fn.customTabs = function(options){
+    $(options.child).each(function(i) {
+         $(this).attr("data-index", i);   
+    });
+    $(options.parent+" li").on("click", function(e) {
+        e.preventDefault();
+        $(options.parent+" li").removeClass("active");
+        $(this).addClass("active");
+        $(options.child).hide();
+        index = 0;
+        $(options.parent+" li").each(function(i){
+            if ($(this).hasClass("active")) {
+                index = i;
+                return false;
+            }
+        });
+        $(options.child+"[data-index="+index+"]").show();
+    });
+    
 }
