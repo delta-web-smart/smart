@@ -357,6 +357,10 @@ a:hover {
 	background-color: #F8A722;
 }
 
+.header .bottom-part nav.main-nav ul li.active {
+    background-color: #F8A722;
+}
+
 .header .bottom-part nav.main-nav ul li:hover a {
 	padding-right: 19px;
 }
