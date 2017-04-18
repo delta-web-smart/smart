@@ -48,21 +48,7 @@
             $APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/phones.php"), false);
         ?>
         <?
-            $APPLICATION->IncludeComponent("bitrix:sale.basket.basket.line", "top_basket", array(
-                    "PATH_TO_BASKET" => SITE_DIR."personal/cart/",
-                    "PATH_TO_PERSONAL" => SITE_DIR."personal/",
-                    "SHOW_PERSONAL_LINK" => "N",
-                    "SHOW_NUM_PRODUCTS" => "Y",
-                    "SHOW_TOTAL_PRICE" => "Y",
-                    "SHOW_PRODUCTS" => "N",
-                    "POSITION_FIXED" =>"N",
-                    "SHOW_AUTHOR" => "Y",
-                    "PATH_TO_REGISTER" => SITE_DIR."login/",
-                    "PATH_TO_PROFILE" => SITE_DIR."personal/"
-                ),
-                false,
-                array()
-            );
+            $APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/small_basket.php"), false);
         ?>
       </div>
       <div class="bottom-part clearfix">
@@ -118,7 +104,7 @@
       <a href="#" class="ask-question">Задать вопрос</a>
       <a href="#" class="to-up"><i>Наверх</i></a>
       <?
-				global $arFilterSectionMenu;
+		global $arFilterSectionMenu;
         $arFilterSectionMenu = array("UF_SHOW_TOP_MENU"=>1);
         $APPLICATION->IncludeComponent("delta_web:catalog.section.list","top_sections_menu",
         Array(
