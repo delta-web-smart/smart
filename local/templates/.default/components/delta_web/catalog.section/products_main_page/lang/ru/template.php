@@ -1,5 +1,5 @@
 <?
-    $MESS["NEW_MAIN_PAGE_TITLE"] = "НОВИНКИ";
-    $MESS["SALE_MAIN_PAGE_TITLE"] = "РАСПРОДАЖА";
+    $MESS["NEW_TABS_PRODUCTS_TITLE"] = "НОВИНКИ";
+    $MESS["SALE_TABS_PRODUCTS_TITLE"] = "РАСПРОДАЖА";
     $MESS["CML2_ARTICLE_TITLE"] = "Артикул:";
 ?>

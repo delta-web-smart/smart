@@ -1,3 +1,3 @@
 <?
-    $MESS["HIT_MAIN_PAGE_TITLE"] = "ХИТ СЕЗОНА!";
+    $MESS["HIT_TABS_PRODUCTS_TITLE"] = "ХИТ СЕЗОНА!";
 ?>

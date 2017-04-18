@@ -2,10 +2,10 @@
 <?
     global $APPLICATION;
     if (count($arResult["ITEMS"]) > 0): 
-        $this->__template->SetViewTarget("hit_main_page");
+        $this->__template->SetViewTarget("hit_tabs_products");
 ?>  
     <li class="hit">
-        <a href="#"><?=GetMessage("HIT_MAIN_PAGE_TITLE")?></a>
+        <a href="#"><?=GetMessage("HIT_TABS_PRODUCTS_TITLE")?></a>
     </li>
 <?  
         $this->__template->EndViewTarget();

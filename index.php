@@ -79,9 +79,9 @@ $APPLICATION->SetTitle("Смарт Тайер");
     );
 ?>
 <ul class="top-category">
-  <? $APPLICATION->ShowViewContent($labelsForSale[0].'_main_page'); ?>
-  <? $APPLICATION->ShowViewContent($labelsForSale[1].'_main_page'); ?>
-  <? $APPLICATION->ShowViewContent($labelsForSale[2].'_main_page'); ?>
+  <? foreach($labelsForSale as $label):?>
+    <? $APPLICATION->ShowViewContent($label.'_tabs_products'); ?>
+  <? endforeach;?>
 </ul>
 <?$APPLICATION->IncludeComponent(
     "delta_web:catalog.section",
