@@ -352,13 +352,9 @@ a:hover {
 	color: #000;
 }
 
-.header .bottom-part nav.main-nav ul li:hover {
+.header .bottom-part nav.main-nav ul li:hover, .header .bottom-part nav.main-nav ul li.active {
 	margin-right: -4px;
 	background-color: #F8A722;
-}
-
-.header .bottom-part nav.main-nav ul li.active {
-    background-color: #F8A722;
 }
 
 .header .bottom-part nav.main-nav ul li:hover a {
