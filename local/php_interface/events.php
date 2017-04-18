@@ -68,3 +68,17 @@ function AfterUpdateCatalogSections($arFields) {
         }
     }
 }
+
+//Событие при добавлении, обновлении, удалении товаров в корзине для записи количества товаров в корзине в сессию
+AddEventHandler("sale", "OnBasketAdd", "SaveQuantityInSession");
+AddEventHandler("sale", "OnBasketUpdate", "SaveQuantityInSession");
+AddEventHandler("sale", "OnBasketDelete", "SaveQuantityInSession");
+function SaveQuantityInSession() {
+    global $USER;
+    $currentBasket = GetCurrentBasket();
+    $quantity = 0;
+    foreach ($currentBasket as $arItem) {
+        $quantity += $arItem["QUANTITY"];
+    }
+    $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$USER->GetID()] = $quantity;
+}

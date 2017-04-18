@@ -1,12 +1,13 @@
 <? foreach($arResult['ITEMS'] as $productId=>$arItem):?>
     <? 
-        if ($LABEL_FOR_SALE == "hit" || $LABEL_FOR_SALE == "viewed") {
+        $differentTags = array("hit", "viewed");
+        if (in_array($LABEL_FOR_SALE, $differentTags)) {
             $addBasketId = $productId;
         } else {
             $addBasketId = $arItem["ID"];
         }
     ?>
-    <li>
+    <li id="product">
         <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="img-wrap">
             <img src="<?=$arItem["PICTURE"]["src"]?>" alt="<?=$arItem["NAME"]?>" title="<?=$arItem["NAME"]?>">
             <?if($LABEL_FOR_SALE != "viewed"):?>
@@ -19,12 +20,22 @@
         <? endif;?>
         <? if (!isset($arItem['OFFERS']) || empty($arItem['OFFERS'])):?>
             <? if ($arItem["CAN_BUY"]):?>
-                <input type="text" class="spinner" value="<? if ($arParams['USE_PRODUCT_QUANTITY'] == "Y"):?><? echo $arItem['CATALOG_MEASURE_RATIO']; ?><?else:?>0<?endif;?>">
-                <button class="price-btn"><?=$arItem["PRICE_DISCOUNT_VALUE"]?><i>i</i></button>
+                <?
+                    $APPLICATION->IncludeFile(SITE_DIR. "include/catalog/block_with_buy_button.php", array(
+                        "addBasketId" => $addBasketId,
+                        "PARAMS" => $PARAMS,
+                        "arItem" => $arItem
+                    ));
+                ?>
             <? endif;?>
          <? else:?>
-            <input type="text" class="spinner" value="<? if ($arParams['USE_PRODUCT_QUANTITY'] == "Y"):?><? echo $arItem['CATALOG_MEASURE_RATIO']; ?><?else:?>0<?endif;?>">
-            <button class="price-btn"><?=$arItem["PRICE_DISCOUNT_VALUE"]?><i>i</i></button>
+            <?
+                $APPLICATION->IncludeFile(SITE_DIR. "include/catalog/block_with_buy_button.php", array(
+                    "addBasketId" => $addBasketId,
+                    "PARAMS" => $PARAMS,
+                    "arItem" => $arItem
+                ));
+            ?>
          <? endif;?>
     </li>
 <? endforeach;?>
