@@ -2,8 +2,8 @@ $(function() {
 
     //Работа с табами: Новинки, Распродажа, Хит сезона, Просмотренные
     $(".top-category").customTabs({
-        "parent" : ".top-category",
-        "child" : ".catalog.tabs"
+        parent : ".top-category",
+        child : ".catalog.tabs"
     });
         
     var $customBasket = new CustomBasket();
@@ -239,7 +239,11 @@ function PopupMessage(message) {
 }
 
 jQuery.fn.customTabs = function(options){
+    $(options.child).hide();
     $(options.child).each(function(i) {
+         if (i == 0) {
+            $(this).show();
+         }
          $(this).attr("data-index", i);   
     });
     $(options.parent+" li").on("click", function(e) {
