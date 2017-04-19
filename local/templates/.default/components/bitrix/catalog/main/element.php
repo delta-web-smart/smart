@@ -1,21 +1,88 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-/** @var array $arParams */
-/** @var array $arResult */
-/** @global CMain $APPLICATION */
-/** @global CUser $USER */
-/** @global CDatabase $DB */
-/** @var CBitrixComponentTemplate $this */
-/** @var string $templateName */
-/** @var string $templateFile */
-/** @var string $templateFolder */
-/** @var string $componentPath */
-/** @var CBitrixComponent $component */
-use Bitrix\Main\Loader;
-use Bitrix\Main\ModuleManager;
+    /** @var array $arParams */
+    /** @var array $arResult */
+    /** @global CMain $APPLICATION */
+    /** @global CUser $USER */
+    /** @global CDatabase $DB */
+    /** @var CBitrixComponentTemplate $this */
+    /** @var string $templateName */
+    /** @var string $templateFile */
+    /** @var string $templateFolder */
+    /** @var string $componentPath */
+    /** @var CBitrixComponent $component */
+    use Bitrix\Main\Loader;
+    use Bitrix\Main\ModuleManager;
 
-$this->setFrameMode(true);
-global $isCatalogDetail;
-$isCatalogDetail = true;?>
+    $this->setFrameMode(true);
+    global $isCatalogDetail;
+    $isCatalogDetail = true;
+?>
+<?
+    $arRecomData = array();
+    $recomCacheID = array('IBLOCK_ID' => $arParams['IBLOCK_ID']);
+    $obCache = new CPHPCache();
+    if ($obCache->InitCache(36000, serialize($recomCacheID), "/catalog/recommended"))
+    {
+        $arRecomData = $obCache->GetVars();
+    }
+    elseif ($obCache->StartDataCache())
+    {
+        if (Loader::includeModule("catalog"))
+        {
+            $arSKU = CCatalogSKU::GetInfoByProductIBlock($arParams['IBLOCK_ID']);
+            $arRecomData['OFFER_IBLOCK_ID'] = (!empty($arSKU) ? $arSKU['IBLOCK_ID'] : 0);
+            $arRecomData['IBLOCK_LINK'] = '';
+            $arRecomData['ALL_LINK'] = '';
+            $rsProps = CIBlockProperty::GetList(
+                array('SORT' => 'ASC', 'ID' => 'ASC'),
+                array('IBLOCK_ID' => $arParams['IBLOCK_ID'], 'PROPERTY_TYPE' => 'E', 'ACTIVE' => 'Y')
+            );
+            $found = false;
+            while ($arProp = $rsProps->Fetch())
+            {
+                if ($found)
+                {
+                    break;
+                }
+                if ($arProp['CODE'] == '')
+                {
+                    $arProp['CODE'] = $arProp['ID'];
+                }
+                $arProp['LINK_IBLOCK_ID'] = intval($arProp['LINK_IBLOCK_ID']);
+                if ($arProp['LINK_IBLOCK_ID'] != 0 && $arProp['LINK_IBLOCK_ID'] != $arParams['IBLOCK_ID'])
+                {
+                    continue;
+                }
+                if ($arProp['LINK_IBLOCK_ID'] > 0)
+                {
+                    if ($arRecomData['IBLOCK_LINK'] == '')
+                    {
+                        $arRecomData['IBLOCK_LINK'] = $arProp['CODE'];
+                        $found = true;
+                    }
+                }
+                else
+                {
+                    if ($arRecomData['ALL_LINK'] == '')
+                    {
+                        $arRecomData['ALL_LINK'] = $arProp['CODE'];
+                    }
+                }
+            }
+            if ($found)
+            {
+                if(defined("BX_COMP_MANAGED_CACHE"))
+                {
+                    global $CACHE_MANAGER;
+                    $CACHE_MANAGER->StartTagCache("/catalog/recommended");
+                    $CACHE_MANAGER->RegisterTag("iblock_id_".$arParams["IBLOCK_ID"]);
+                    $CACHE_MANAGER->EndTagCache();
+                }
+            }
+        }
+        $obCache->EndDataCache($arRecomData);
+    }
+?>
 <?$ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:catalog.element",
 	"",
@@ -136,3 +203,40 @@ $isCatalogDetail = true;?>
 	),
 	$component
 );?>
+<? $this->SetViewTarget('RECOMMENDED_BLOCK');?>
+    <? if($arParams["USE_ALSO_BUY"] == "Y" && ModuleManager::isModuleInstalled("sale") && !empty($arRecomData)):?>
+        <?
+            $APPLICATION->IncludeComponent("bitrix:sale.recommended.products", ".default", array(
+                "ID" => $ElementID,
+                "TEMPLATE_THEME" => (isset($arParams['TEMPLATE_THEME']) ? $arParams['TEMPLATE_THEME'] : ''),
+                "MIN_BUYES" => $arParams["ALSO_BUY_MIN_BUYES"],
+                "ELEMENT_COUNT" => $arParams["ALSO_BUY_ELEMENT_COUNT"],
+                "LINE_ELEMENT_COUNT" => $arParams["ALSO_BUY_ELEMENT_COUNT"],
+                "DETAIL_URL" => $arParams["DETAIL_URL"],
+                "BASKET_URL" => $arParams["BASKET_URL"],
+                "ACTION_VARIABLE" => (!empty($arParams["ACTION_VARIABLE"]) ? $arParams["ACTION_VARIABLE"] : "action")."_srp",
+                "PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
+                "SECTION_ID_VARIABLE" => $arParams["SECTION_ID_VARIABLE"],
+                "PAGE_ELEMENT_COUNT" => $arParams["ALSO_BUY_ELEMENT_COUNT"],
+                "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+                "CACHE_TIME" => $arParams["CACHE_TIME"],
+                "PRICE_CODE" => $arParams["PRICE_CODE"],
+                "USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
+                "SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
+                "PRICE_VAT_INCLUDE" => $arParams["PRICE_VAT_INCLUDE"],
+                'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
+                'CURRENCY_ID' => $arParams['CURRENCY_ID'],
+                'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
+                "SHOW_PRODUCTS_".$arParams["IBLOCK_ID"] => "Y",
+                "PROPERTY_CODE_".$arRecomData['OFFER_IBLOCK_ID'] => array(    ),
+                "OFFER_TREE_PROPS_".$arRecomData['OFFER_IBLOCK_ID'] => $arParams["OFFER_TREE_PROPS"],
+                "OFFER_TREE_PROPS_".$arRecomData['OFFER_IBLOCK_ID'] => $arParams["OFFER_TREE_PROPS"],
+                "ADDITIONAL_PICT_PROP_".$arParams['IBLOCK_ID'] => $arParams['ADD_PICT_PROP'],
+                "ADDITIONAL_PICT_PROP_".$arRecomData['OFFER_IBLOCK_ID'] => $arParams['OFFER_ADD_PICT_PROP']
+                ),
+                $component,
+                array("HIDE_ICONS" => "Y")
+            );
+        ?>
+    <? endif;?>
+<? $this->EndViewTarget();?>

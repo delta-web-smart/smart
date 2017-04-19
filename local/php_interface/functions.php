@@ -72,3 +72,9 @@
         }
         return $res;
     }
+    
+    //Формирование URL для детальной страницы торговых предложений
+    function PathForOffer($parent, $child) {
+        $res = $parent["DETAIL_PAGE_URL"]."?OFFER_ID=".$child["ID"];
+        return $res;
+    }

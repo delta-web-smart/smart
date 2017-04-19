@@ -10,6 +10,11 @@ $(function() {
         parent : ".top-category",
         child : ".catalog.tabs"
     });
+    
+    $(".markers").customTabs({
+        parent: ".markers",
+        child : ".sizes-info"
+    });
         
     var $customBasket = new CustomBasket();
     $customBasket.Init();
@@ -251,6 +256,7 @@ jQuery.fn.customTabs = function(options){
          }
          $(this).attr("data-index", i);   
     });
+    
     $(options.parent+" li").on("click", function(e) {
         e.preventDefault();
         $(options.parent+" li").removeClass("active");

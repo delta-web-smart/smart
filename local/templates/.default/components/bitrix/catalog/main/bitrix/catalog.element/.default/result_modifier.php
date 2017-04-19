@@ -395,6 +395,7 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 			}
 		}
 	}
+    
 	$arResult['OFFERS_PROP'] = $arUsedFields;
 	$arResult['OFFERS_PROP_CODES'] = (!empty($arUsedFields) ? base64_encode(serialize(array_keys($arUsedFields))) : '');
 
@@ -612,6 +613,42 @@ if ($arResult['MODULES']['currency'])
 	}
 }
 
-//Кастомизация
+/***
+    Начало блока "Кастомизация"
+***/
 $arResult["PICTURE"] = CFile::GetPath($arResult["DETAIL_PICTURE"]["ID"]);
 $arResult["RESIZE_PICTURE"] = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"]["ID"], array('width'=>210, 'height'=>260), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+
+$arDiscountElementID = $APPLICATION->IncludeComponent(
+"delta_web:get_discount_elements_ids", 
+"", 
+    array(
+        "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+        "CACHE_TIME" => $arParams["CACHE_TIME"]
+    ),
+    false
+);
+$arResult["DISCOUNT_IDS"] = $arDiscountElementID;
+
+//Получить количество просмотров элемента
+$arFilter = array("ID"=>$arResult["ID"], "IBLOCK_ID"=>$arResult["IBLOCK_ID"]);
+$res = CIBlockElement::GetList(Array("SORT"=>"ASC"), $arFilter, false, false, Array("ID","NAME", "SHOW_COUNTER"))->Fetch();
+$arResult["SHOW_COUNTER"] = $res["SHOW_COUNTER"];
+
+//Группировка торговых предложений по диаметру DIAMETR
+$offers = $arResult['OFFERS'];
+function sortByDiameter($a, $b) {
+    if($a["PROPERTIES"]["DIAMETR"]["VALUE"] < $b["PROPERTIES"]["DIAMETR"]["VALUE"]) return -1;
+    elseif($a["PROPERTIES"]["DIAMETR"]["VALUE"] > $b["PROPERTIES"]["DIAMETR"]["VALUE"]) return 1;
+    else return 0;
+}
+uasort($offers, 'sortByDiameter');
+$arResult["CUSTOM_OFFERS"] = array();
+foreach($offers as $arOffer) {
+    $arOffer["DETAIL_PAGE_URL"] = PathForOffer($arResult, $arOffer);
+    $arOffer["PRICE"] = FormatNumber($arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]);
+    $arResult["CUSTOM_OFFERS"][$arOffer["PROPERTIES"]["DIAMETR"]["VALUE"]][] = $arOffer;
+}
+/***
+    Конец блока "Кастомизация"
+***/

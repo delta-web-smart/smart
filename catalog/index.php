@@ -8,7 +8,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 		"IBLOCK_TYPE" => "1c_catalog",
 		"IBLOCK_ID" => IBLOCK_ID_CATALOG,
 		"TEMPLATE_THEME" => "site",
-		"HIDE_NOT_AVAILABLE" => "Y",
+		"HIDE_NOT_AVAILABLE" => "N",
 		"BASKET_URL" => "/personal/cart/",
 		"ACTION_VARIABLE" => "action",
 		"PRODUCT_ID_VARIABLE" => "id",
@@ -334,7 +334,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 		"LIST_OFFERS_LIMIT" => "0",
 		"SECTION_BACKGROUND_IMAGE" => "-",
 		"DETAIL_PROPERTY_CODE" => array(
-			0 => "",
+			0 => "TIP_AVTO",
 			1 => "NEWPRODUCT",
 			2 => "MANUFACTURER",
 			3 => "MATERIAL",
