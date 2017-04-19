@@ -8,7 +8,14 @@ $arComponentParameters = array(
             "TYPE" => "STRING",
             "MULTIPLE" => "N",
             "DEFAULT" => 3600,
-        )
+        ),
+        "COUNT_PURCHASE" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Количество покупок",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "DEFAULT" => 20,
+        ),
     ),
 );
 ?>

@@ -1,16 +1,9 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
     CModule::IncludeModule("iblock");
-    global $DB, ${$arParams["FILTER_NAME"]};
-    $arrFilter = ${$arParams["FILTER_NAME"]};
+    global $DB;
     $obCache = new CPHPCache;
     $life_time = $arParams['CACHE_TIME'];
-
-    $cache_id = "discount-elements-ids-".$arParams["IBLOCK_ID"];
-
-    if (!empty($arrFilter)) {
-        $cache_id .= "-".serialize($arrFilter);
-    }
-
+    $cache_id = "discount-elements-ids";
     $cacheData = $obCache->InitCache($life_time, $cache_id, "/");
     if ($arParams['CACHE_TYPE'] == 'N') {
         $cacheData = false;
@@ -34,13 +27,19 @@
                 "ID", "PRODUCT_ID", "SECTION_ID"
             )
         );
+        $parentProductId = 0;
         while ($arProductDiscounts = $dbProductDiscounts->Fetch()) {
-            $arDiscountElementID[] = $arProductDiscounts["PRODUCT_ID"];
+            $parentProduct = CCatalogSKU::GetProductInfo($arProductDiscounts["PRODUCT_ID"]);
+            if (!$parentProduct) {
+                $parentProductId = $arProductDiscounts["PRODUCT_ID"];
+            } else {
+                $parentProductId = $parentProduct["ID"];
+            }
+            $arDiscountElementID[] = $parentProductId;
             if($arProductDiscounts["SECTION_ID"] && !in_array($arProductDiscounts["SECTION_ID"], $arDiscountSectionID)) {
                 $arDiscountSectionID[] = $arProductDiscounts["SECTION_ID"];
             }
         }
-        
         if ($arDiscountSectionID) {
             $arFilter = Array("SECTION_ID" => $arDiscountSectionID, "IBLOCK_ID" => $arParams["IBLOCK_ID"], "INCLUDE_SUBSECTIONS" => "Y", "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
             $arSelectFields = Array("IBLOCK_ID", "ID");

@@ -1,5 +1,6 @@
 </div>
 <?
+    global $isCatalogDetail;
     if (!$isCatalogDetail) {
         $APPLICATION->IncludeComponent(
             "bitrix:main.include",
