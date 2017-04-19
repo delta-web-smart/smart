@@ -13,6 +13,7 @@
         $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "css/jquery.formstyler.css");
         $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "fonts/fonts.css");
         $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "css/jquery-ui-1.10.4.custom.css");
+        $APPLICATION->SetAdditionalCSS(MAIN_TEMPLATE_PATH. "js/colorbox/css/colorbox.css");
         $APPLICATION->AddHeadString('<link rel="shortcut icon" type="image/x-icon" href="'.SITE_DIR.'favicon.ico" />');
         //$APPLICATION->AddHeadString('<link rel="stylesheet" href="'. SITE_TEMPLATE_PATH .'/css/global.css">');
     ?>
@@ -26,6 +27,7 @@
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/bootstrap.touchspin.js");
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/jquery-ui-1.10.4.custom.min.js");
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/custom.js");
+        $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/colorbox/js/jquery.colorbox-min.js");
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/common.js");
     ?>
     <?$APPLICATION->ShowHead();?>

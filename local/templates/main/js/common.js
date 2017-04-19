@@ -1,4 +1,6 @@
 $(function() {
+    $("a.fancybox").colorbox();
+
     if ($('.bottom-article').html().trim() == "") {
         $('.bottom-article').detach();
     }
