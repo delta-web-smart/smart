@@ -6,6 +6,9 @@
     }
     
     function GetCurrentBasket() {
+        if (!class_exists("CSaleBasket")) {
+            CModule::IncludeModule("sale");
+        }
         $arID = array();
         $arBasketItems = array();
         $dbBasketItems = CSaleBasket::GetList(
@@ -59,4 +62,13 @@
             }
         }
         return $arBasketItems;
+    }
+    
+    function TotalQuantityInBasket() {
+        $currentBasket = GetCurrentBasket();
+        $res = 0;
+        foreach ($currentBasket as $arItem) {
+            $res += $arItem["QUANTITY"];
+        }
+        return $res;
     }

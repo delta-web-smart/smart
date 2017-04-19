@@ -3,10 +3,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	".default_old", 
+	"main", 
 	array(
 		"IBLOCK_TYPE" => "1c_catalog",
-		"IBLOCK_ID" => "4",
+		"IBLOCK_ID" => IBLOCK_ID_CATALOG,
 		"TEMPLATE_THEME" => "site",
 		"HIDE_NOT_AVAILABLE" => "Y",
 		"BASKET_URL" => "/personal/cart/",

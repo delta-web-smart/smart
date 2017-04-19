@@ -82,3 +82,17 @@ function SaveQuantityInSession() {
     }
     $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$USER->GetID()] = $quantity;
 }
+
+AddEventHandler("main", "OnBeforeProlog", "UpdateQuantityInSession");
+function UpdateQuantityInSession() {
+    global $USER;
+    if (empty($USER)) {
+        $currentUserId = CUser::GetID();
+    } else {
+        $currentUserId = $USER->GetID();
+    }
+    if (empty($_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId])) {
+        $quantity = TotalQuantityInBasket();
+        $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId] = $quantity;
+    }
+}
