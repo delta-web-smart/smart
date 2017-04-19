@@ -414,6 +414,17 @@ if (!empty($arResult['ITEMS']))
 	$arResult['SKU_PROPS'] = $skuPropList;
 	$arResult['DEFAULT_PICTURE'] = $arEmptyPreview;
     
+    
+    $arDiscountElementID = $APPLICATION->IncludeComponent(
+	"delta_web:get_discount_elements_ids", 
+	"", 
+        array(
+            "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+            "CACHE_TIME" => $arParams["CACHE_TIME"]
+        ),
+        false
+    );
+    $arResult["DISCOUNT_IDS"] = $arDiscountElementID;
     $this->__component->SetResultCacheKeys(array("ITEMS"));
 }
 ?>

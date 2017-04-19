@@ -1,6 +1,6 @@
 <? foreach($arResult['ITEMS'] as $productId=>$arItem):?>
     <? 
-        $differentTags = array("hit", "viewed");
+        $differentTags = array("viewed");
         if (in_array($LABEL_FOR_SALE, $differentTags)) {
             $addBasketId = $productId;
         } else {
@@ -10,9 +10,13 @@
     <li id="product">
         <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="img-wrap">
             <img src="<?=$arItem["PICTURE"]["src"]?>" alt="<?=$arItem["NAME"]?>" title="<?=$arItem["NAME"]?>">
-            <?if($LABEL_FOR_SALE != "viewed"):?>
+            <?if($LABEL_FOR_SALE == "viewed"):?>
+                <? if (in_array($arItem["ID"], $DISCOUNT_IDS)):?>
+                    <div class="action-label"></div>
+                <? endif;?>
+            <?else:?>
                 <div class="action-label <?=$LABEL_FOR_SALE?>"></div>
-            <?endif;?>
+            <? endif;?>
         </a>
         <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="name"><?=$arItem["NAME"]?></a>
         <? if (!empty($arItem["PROPERTIES"]["CML2_ARTICLE"]["VALUE"])):?>
