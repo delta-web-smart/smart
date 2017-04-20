@@ -406,6 +406,9 @@ if (!empty($arResult['ITEMS']))
         }
         $arItem["PICTURE"] = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>100, 'height'=>100), BX_RESIZE_IMAGE_PROPORTIONAL, true);
         
+        $productStickers = new ProductStickers;
+        $arItem["ALL_STICKERS"] = $productStickers->AllStickers($arItem);
+        
 		$arNewItemsList[$key] = $arItem;
 	}
 
@@ -414,17 +417,6 @@ if (!empty($arResult['ITEMS']))
 	$arResult['SKU_PROPS'] = $skuPropList;
 	$arResult['DEFAULT_PICTURE'] = $arEmptyPreview;
     
-    
-    $arDiscountElementID = $APPLICATION->IncludeComponent(
-	"delta_web:get_discount_elements_ids", 
-	"", 
-        array(
-            "CACHE_TYPE" => $arParams["CACHE_TYPE"],
-            "CACHE_TIME" => $arParams["CACHE_TIME"]
-        ),
-        false
-    );
-    $arResult["DISCOUNT_IDS"] = $arDiscountElementID;
     $this->__component->SetResultCacheKeys(array("ITEMS"));
 }
 ?>

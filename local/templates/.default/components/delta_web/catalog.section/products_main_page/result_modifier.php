@@ -454,6 +454,7 @@ if (!empty($arResult['ITEMS']))
         if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE']))
             $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
         $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice["DISCOUNT_VALUE"]);
+        
 		$arNewItemsList[$key] = $arItem;
 	}
 	$arNewItemsList[$key]['LAST_ELEMENT'] = 'Y';

@@ -6,7 +6,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 /** @global CDatabase $DB */
 if (!isset($arParams['LINE_ELEMENT_COUNT']))
 	$arParams['LINE_ELEMENT_COUNT'] = 3;
-$arParams['LINE_ELEMENT_COUNT'] = (int)$arParams['LINE_ELEMENT_COUNT'];
+$arParams['LINE_ELEMENT_COUNT'] = intval($arParams['LINE_ELEMENT_COUNT']);
 if (2 > $arParams['LINE_ELEMENT_COUNT'] || 5 < $arParams['LINE_ELEMENT_COUNT'])
 	$arParams['LINE_ELEMENT_COUNT'] = 3;
 
@@ -29,7 +29,7 @@ if ('' != $arParams['TEMPLATE_THEME'])
 if ('' == $arParams['TEMPLATE_THEME'])
 	$arParams['TEMPLATE_THEME'] = 'blue';
 
-if (!empty($arResult['ITEMS']))
+if (isset($arResult['ITEMS']) && !empty($arResult['ITEMS']))
 {
 	$arEmptyPreview = false;
 	$strEmptyPreview = $this->GetFolder() . '/images/no_photo.png';
@@ -40,8 +40,8 @@ if (!empty($arResult['ITEMS']))
 		{
 			$arEmptyPreview = array(
 				'SRC' => $strEmptyPreview,
-				'WIDTH' => (int)$arSizes[0],
-				'HEIGHT' => (int)$arSizes[1]
+				'WIDTH' => intval($arSizes[0]),
+				'HEIGHT' => intval($arSizes[1])
 			);
 		}
 		unset($arSizes);
@@ -406,6 +406,12 @@ if (!empty($arResult['ITEMS']))
         }
         $arItem["PICTURE"] = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>100, 'height'=>100), BX_RESIZE_IMAGE_PROPORTIONAL, true);
         
+        $res = CIBlockElement::GetById($arItem["ID"])->Fetch();
+        $arItem["DATE_CREATE"] = $res["DATE_CREATE"];
+        
+        $productStickers = new ProductStickers;
+        $arItem["ALL_STICKERS"] = $productStickers->AllStickers($arItem);
+        
 		$arNewItemsList[$key] = $arItem;
 	}
 
@@ -413,7 +419,5 @@ if (!empty($arResult['ITEMS']))
 	$arResult['ITEMS'] = $arNewItemsList;
 	$arResult['SKU_PROPS'] = $skuPropList;
 	$arResult['DEFAULT_PICTURE'] = $arEmptyPreview;
-    
-    $this->__component->SetResultCacheKeys(array("ITEMS"));
 }
 ?>

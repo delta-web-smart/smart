@@ -619,16 +619,8 @@ if ($arResult['MODULES']['currency'])
 $arResult["PICTURE"] = CFile::GetPath($arResult["DETAIL_PICTURE"]["ID"]);
 $arResult["RESIZE_PICTURE"] = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"]["ID"], array('width'=>210, 'height'=>260), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 
-$arDiscountElementID = $APPLICATION->IncludeComponent(
-"delta_web:get_discount_elements_ids", 
-"", 
-    array(
-        "CACHE_TYPE" => $arParams["CACHE_TYPE"],
-        "CACHE_TIME" => $arParams["CACHE_TIME"]
-    ),
-    false
-);
-$arResult["DISCOUNT_IDS"] = $arDiscountElementID;
+$productStickers = new ProductStickers;
+$arResult["ALL_STICKERS"] = $productStickers->AllStickers($arResult);
 
 //Получить количество просмотров элемента
 $arFilter = array("ID"=>$arResult["ID"], "IBLOCK_ID"=>$arResult["IBLOCK_ID"]);

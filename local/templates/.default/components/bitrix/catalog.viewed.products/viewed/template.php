@@ -11,8 +11,7 @@ $this->setFrameMode(true);?>
             $APPLICATION->IncludeFile(SITE_DIR."include/catalog/products_list_main_page.php", array(
                 "arResult" => $arResult,
                 "LABEL_FOR_SALE" => "viewed",
-                "PARAMS" => $arParams,
-                "DISCOUNT_IDS" => $arResult["DISCOUNT_IDS"]
+                "PARAMS" => $arParams
             ));
         ?>
     </ul>

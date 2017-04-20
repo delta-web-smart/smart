@@ -13,11 +13,15 @@
     <li id="product">
         <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="img-wrap">
             <img src="<?=$arItem["PICTURE"]["src"]?>" alt="<?=$arItem["NAME"]?>" title="<?=$arItem["NAME"]?>">
-            <?if($LABEL_FOR_SALE == "viewed"):?>
-                <? if (in_array($arItem["ID"], $DISCOUNT_IDS)):?>
+            <? if ($LABEL_FOR_SALE == "viewed"):?>
+                <? if ($arItem["ALL_STICKERS"]["IS_DISCOUNT"]):?>
                     <div class="action-label"></div>
+                <? elseif($arItem["ALL_STICKERS"]["IS_NEW"]):?>
+                    <div class="action-label new"></div>
+                <? elseif($arItem["ALL_STICKERS"]["IS_HIT"]):?>
+                    <div class="action-label hit"></div>
                 <? endif;?>
-            <?else:?>
+            <? else:?>
                 <div class="action-label <?=$LABEL_FOR_SALE?>"></div>
             <? endif;?>
         </a>

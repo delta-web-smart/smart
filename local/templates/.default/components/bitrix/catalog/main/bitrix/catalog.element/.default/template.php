@@ -16,11 +16,15 @@ $this->setFrameMode(true);
     <div class="product-card model">
         <div class="left-block">
           <div class="preview">
-            <a class="fancybox" href="<?=$arResult["PICTURE"]?>" class="big-view">
+            <a href="<?=$arResult["PICTURE"]?>" class="big-view fancybox">
               <img src="<?=$arResult["RESIZE_PICTURE"]["src"]?>" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>">
               <div class="loupe"></div>
-              <? if (in_array($arResult["ID"], $arResult["DISCOUNT_IDS"])):?>
-                <div class="action-label"></div>
+              <? if ($arResult["ALL_STICKERS"]["IS_DISCOUNT"]):?>
+                  <div class="action-label"></div>
+              <? elseif($arResult["ALL_STICKERS"]["IS_NEW"]):?>
+                  <div class="action-label new"></div>
+              <? elseif($arResult["ALL_STICKERS"]["IS_HIT"]):?>
+                  <div class="action-label hit"></div>
               <? endif;?>
             </a>
           </div>
