@@ -96,3 +96,5 @@ function UpdateQuantityInSession() {
         $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId] = $quantity;
     }
 }
+
+
