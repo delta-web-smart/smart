@@ -207,7 +207,7 @@
                     // "SECTION_TITLE" => "-",
                     // "SECTION_DESCRIPTION" => "-",
                     // "POPUP_POSITION" => "left",
-                    // "SEF_RULE" => "/catalog/#SECTION_CODE#/filter/#SMART_FILTER_PATH#/apply/",
+                    // "SEF_RULE" => "/catalog/#SECTION_CODE#/filter/#SMART_FILTER_PATH#/",
                     // "SECTION_CODE_PATH" => "",
                     // "SMART_FILTER_PATH" => $_REQUEST["SMART_FILTER_PATH"],
                     // "CURRENCY_ID" => "RUB"

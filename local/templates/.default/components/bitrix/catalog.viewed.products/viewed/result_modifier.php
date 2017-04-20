@@ -29,25 +29,26 @@ if ('' != $arParams['TEMPLATE_THEME'])
 if ('' == $arParams['TEMPLATE_THEME'])
 	$arParams['TEMPLATE_THEME'] = 'blue';
 
+//Кастомизация
+$arEmptyPreview = false;
+$strEmptyPreview = MAIN_TEMPLATE_PATH.'/img/no_photo.png';
+if (file_exists($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview))
+{
+    $arSizes = getimagesize($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview);
+    if (!empty($arSizes))
+    {
+        $arEmptyPreview = array(
+            'src' => $strEmptyPreview,
+            'width' => intval($arSizes[0]),
+            'height' => intval($arSizes[1])
+        );
+    }
+    unset($arSizes);
+}
+unset($strEmptyPreview);    
+    
 if (!empty($arResult['ITEMS']))
 {
-	$arEmptyPreview = false;
-	$strEmptyPreview = $this->GetFolder() . '/images/no_photo.png';
-	if (file_exists($_SERVER['DOCUMENT_ROOT'] . $strEmptyPreview))
-	{
-		$arSizes = getimagesize($_SERVER['DOCUMENT_ROOT'] . $strEmptyPreview);
-		if (!empty($arSizes))
-		{
-			$arEmptyPreview = array(
-				'SRC' => $strEmptyPreview,
-				'WIDTH' => intval($arSizes[0]),
-				'HEIGHT' => intval($arSizes[1])
-			);
-		}
-		unset($arSizes);
-	}
-	unset($strEmptyPreview);
-
 	$arSKUPropList = array();
 	$arSKUPropIDs = array();
 	$arSKUPropKeys = array();
@@ -405,6 +406,10 @@ if (!empty($arResult['ITEMS']))
             }
         }
         $arItem["PICTURE"] = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>100, 'height'=>100), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+        
+        if (empty($arItem["PICTURE"])) {
+            $arItem["PICTURE"] = $arEmptyPreview;
+        }
         
         $productStickers = new ProductStickers;
         $arItem["ALL_STICKERS"] = $productStickers->AllStickers($arItem);

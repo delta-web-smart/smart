@@ -633,11 +633,11 @@ $arFilter = array("ID"=>$arResult["ID"], "IBLOCK_ID"=>$arResult["IBLOCK_ID"]);
 $res = CIBlockElement::GetList(Array("SORT"=>"ASC"), $arFilter, false, false, Array("ID","NAME", "SHOW_COUNTER"))->Fetch();
 $arResult["SHOW_COUNTER"] = $res["SHOW_COUNTER"];
 
-//Группировка торговых предложений по диаметру DIAMETR
+//Группировка торговых предложений по диаметру DIAMETR_1
 $offers = $arResult['OFFERS'];
 function sortByDiameter($a, $b) {
-    if($a["PROPERTIES"]["DIAMETR"]["VALUE"] < $b["PROPERTIES"]["DIAMETR"]["VALUE"]) return -1;
-    elseif($a["PROPERTIES"]["DIAMETR"]["VALUE"] > $b["PROPERTIES"]["DIAMETR"]["VALUE"]) return 1;
+    if($a["PROPERTIES"]["DIAMETR_1"]["VALUE"] < $b["PROPERTIES"]["DIAMETR_1"]["VALUE"]) return -1;
+    elseif($a["PROPERTIES"]["DIAMETR_1"]["VALUE"] > $b["PROPERTIES"]["DIAMETR_1"]["VALUE"]) return 1;
     else return 0;
 }
 uasort($offers, 'sortByDiameter');
@@ -645,7 +645,7 @@ $arResult["CUSTOM_OFFERS"] = array();
 foreach($offers as $arOffer) {
     $arOffer["DETAIL_PAGE_URL"] = PathForOffer($arResult, $arOffer);
     $arOffer["PRICE"] = FormatNumber($arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]);
-    $arResult["CUSTOM_OFFERS"][$arOffer["PROPERTIES"]["DIAMETR"]["VALUE"]][] = $arOffer;
+    $arResult["CUSTOM_OFFERS"][$arOffer["PROPERTIES"]["DIAMETR_1"]["VALUE"]][] = $arOffer;
 }
 /***
     Конец блока "Кастомизация"

@@ -13,7 +13,7 @@ function CustomPage404()
     }
 }
 
-//Äëÿ îáíîâëåíèÿ ïàðàìåòðà UF_SHOW_TOP_MENU äëÿ ðàçäåëîâ êàòàëîãà
+//Ð”Ð»Ñ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° UF_SHOW_TOP_MENU Ð´Ð»Ñ Ñ€Ð°Ð·Ð´ÐµÐ»Ð¾Ð² ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³Ð°
 AddEventHandler("iblock", "OnAfterIBlockSectionUpdate", "AfterUpdateCatalogSections");
 function AfterUpdateCatalogSections($arFields) {
     global $APPLICATION, $DB;
@@ -69,7 +69,7 @@ function AfterUpdateCatalogSections($arFields) {
     }
 }
 
-//Ñîáûòèå ïðè äîáàâëåíèè, îáíîâëåíèè, óäàëåíèè òîâàðîâ â êîðçèíå äëÿ çàïèñè êîëè÷åñòâà òîâàðîâ â êîðçèíå â ñåññèþ
+//Ð¡Ð¾Ð±Ñ‹Ñ‚Ð¸Ðµ Ð¿Ñ€Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸, Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ð¸, ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ð¸ Ñ‚Ð¾Ð²Ð°Ñ€Ð¾Ð² Ð² ÐºÐ¾Ñ€Ð·Ð¸Ð½Ðµ Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð° Ñ‚Ð¾Ð²Ð°Ñ€Ð¾Ð² Ð² ÐºÐ¾Ñ€Ð·Ð¸Ð½Ðµ Ð² ÑÐµÑÑÐ¸ÑŽ
 AddEventHandler("sale", "OnBasketAdd", "SaveQuantityInSession");
 AddEventHandler("sale", "OnBasketUpdate", "SaveQuantityInSession");
 AddEventHandler("sale", "OnBasketDelete", "SaveQuantityInSession");
@@ -85,16 +85,16 @@ function SaveQuantityInSession() {
 
 AddEventHandler("main", "OnBeforeProlog", "UpdateQuantityInSession");
 function UpdateQuantityInSession() {
-    global $USER;
-    if (empty($USER)) {
-        $currentUserId = CUser::GetID();
-    } else {
-        $currentUserId = $USER->GetID();
-    }
-    if (empty($_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId])) {
-        $quantity = TotalQuantityInBasket();
-        $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId] = $quantity;
+    global $USER, $APPLICATION;
+    if (!strpos($APPLICATION->GetCurPage(false), "/bitrix/admin/")) {
+        if (empty($USER)) {
+            $currentUserId = CUser::GetID();
+        } else {
+            $currentUserId = $USER->GetID();
+        }
+        if (empty($_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId])) {
+            $quantity = TotalQuantityInBasket();
+            $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$currentUserId] = $quantity;
+        }
     }
 }
-
-

@@ -16,4 +16,6 @@ $this->setFrameMode(true);
             ));
         ?>
     </ul>
+<? else:?>
+    <p><?=GetMessage("SRP_TPL_EMPTY_RECOMMENDED_PRODUCTS")?></p>
 <? endif;?>

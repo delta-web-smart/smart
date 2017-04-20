@@ -116,25 +116,26 @@ $arParams['MESS_BTN_DETAIL'] = trim($arParams['MESS_BTN_DETAIL']);
 $arParams['MESS_NOT_AVAILABLE'] = trim($arParams['MESS_NOT_AVAILABLE']);
 $arParams['MESS_BTN_COMPARE'] = trim($arParams['MESS_BTN_COMPARE']);
 
+//Кастомизация
+$arEmptyPreview = false;
+$strEmptyPreview = MAIN_TEMPLATE_PATH.'/img/no_photo.png';
+if (file_exists($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview))
+{
+    $arSizes = getimagesize($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview);
+    if (!empty($arSizes))
+    {
+        $arEmptyPreview = array(
+            'src' => $strEmptyPreview,
+            'width' => intval($arSizes[0]),
+            'height' => intval($arSizes[1])
+        );
+    }
+    unset($arSizes);
+}
+unset($strEmptyPreview);
+
 if (!empty($arResult['ITEMS']))
 {
-	$arEmptyPreview = false;
-	$strEmptyPreview = $this->GetFolder().'/images/no_photo.png';
-	if (file_exists($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview))
-	{
-		$arSizes = getimagesize($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview);
-		if (!empty($arSizes))
-		{
-			$arEmptyPreview = array(
-				'SRC' => $strEmptyPreview,
-				'WIDTH' => intval($arSizes[0]),
-				'HEIGHT' => intval($arSizes[1])
-			);
-		}
-		unset($arSizes);
-	}
-	unset($strEmptyPreview);
-
 	$arSKUPropList = array();
 	$arSKUPropIDs = array();
 	$arSKUPropKeys = array();
@@ -455,6 +456,9 @@ if (!empty($arResult['ITEMS']))
             $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
         $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice["DISCOUNT_VALUE"]);
         
+        if (empty($arItem["PICTURE"])) {
+            $arItem["PICTURE"] = $arEmptyPreview;
+        }
 		$arNewItemsList[$key] = $arItem;
 	}
 	$arNewItemsList[$key]['LAST_ELEMENT'] = 'Y';

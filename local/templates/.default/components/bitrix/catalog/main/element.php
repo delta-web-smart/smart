@@ -17,7 +17,7 @@
     global $isCatalogDetail;
     $isCatalogDetail = true;
 ?>
-<?
+<? 
     $arRecomData = array();
     $recomCacheID = array('IBLOCK_ID' => $arParams['IBLOCK_ID']);
     $obCache = new CPHPCache();
@@ -85,7 +85,7 @@
 ?>
 <?$ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:catalog.element",
-	"",
+	$arResult["SECTIONS"]["PARENT"]["UF_TEMPLATE_NAME"]["XML_ID"],
 	array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
