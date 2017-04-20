@@ -49,6 +49,22 @@ function AfterUpdateCatalogSections($arFields) {
                     $result = $DB->Update("b_uts_iblock_". IBLOCK_ID_CATALOG ."_section", $arFieldsUpdate, "WHERE VALUE_ID='".$arSection["ID"]."'", $err_mess.__LINE__);
                 }
             }
+        } elseif($parentSection["DEPTH_LEVEL"] == 2 && $arFields["UF_SHOW_TOP_MENU"] == 1) {
+            $arSection = CIBlockSection::GetNavChain($arFields["IBLOCK_ID"], $arFields["ID"])->Fetch();
+            $strSql = "SELECT * FROM b_uts_iblock_". IBLOCK_ID_CATALOG ."_section WHERE VALUE_ID = '".$arSection["ID"]."'";
+            $issetRow = $DB->Query($strSql, false, $err_mess.__LINE__)->Fetch();
+            if (!$issetRow) {
+                $arFieldsInsert = array(
+                    "VALUE_ID" => $arSection["ID"],
+                    "UF_SHOW_TOP_MENU" => $arFields["UF_SHOW_TOP_MENU"],
+                );
+                $result = $DB->Insert("b_uts_iblock_". IBLOCK_ID_CATALOG ."_section", $arFieldsInsert, $err_mess.__LINE__);
+            } else {
+                $arFieldsUpdate = array(
+                    "UF_SHOW_TOP_MENU" => $arFields["UF_SHOW_TOP_MENU"],
+                );
+                $result = $DB->Update("b_uts_iblock_". IBLOCK_ID_CATALOG ."_section", $arFieldsUpdate, "WHERE VALUE_ID='".$arSection["ID"]."'", $err_mess.__LINE__);
+            }
         }
     }
 }
