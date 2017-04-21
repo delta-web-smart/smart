@@ -84,8 +84,8 @@
     }
 ?>
 <?$ElementID = $APPLICATION->IncludeComponent(
-	"bitrix:catalog.element",
-	$arResult["SECTIONS"]["PARENT"]["UF_TEMPLATE_NAME"]["XML_ID"],
+	"delta_web:catalog.element",
+	$arResult["SECTIONS"]["TEMPLATE_NAME"],
 	array(
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],

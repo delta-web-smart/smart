@@ -57,6 +57,6 @@
         "PROPERTY_CODE_3" => array("", "COLOR_REF", "SIZES_SHOES", "SIZES_CLOTHES", ""),
         "CART_PROPERTIES_3" => array("COLOR_REF", "SIZES_SHOES", "SIZES_CLOTHES", ""),
         "ADDITIONAL_PICT_PROP_3" => "MORE_PHOTO",
-        "OFFER_TREE_PROPS_3" => array("COLOR_REF", "SIZES_SHOES", "SIZES_CLOTHES")
+        "OFFER_TREE_PROPS_".IBLOCK_ID_CATALOG_OFFERS => array("")
     )
 );?>

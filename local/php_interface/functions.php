@@ -73,13 +73,13 @@
         return $res;
     }
     
-    //Ôîðìèðîâàíèå URL äëÿ äåòàëüíîé ñòðàíèöû òîðãîâûõ ïðåäëîæåíèé
+    //Ð¤Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ URL Ð´Ð»Ñ Ð´ÐµÑ‚Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ñ‚Ð¾Ñ€Ð³Ð¾Ð²Ñ‹Ñ… Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¹
     function PathForOffer($parent, $child) {
         $res = $parent["DETAIL_PAGE_URL"]."?OFFER_ID=".$child["ID"];
         return $res;
     }
     
-    //Ñîõðàíÿåì â êýø íàçâàíèå øàáëîíà âûâîäà òîâàðîâ â çàâèñèìîñòè îò ðàçäåëà êàòàëîãà
+    //Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÑÐµÐ¼ Ð² ÐºÑÑˆ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð° Ð²Ñ‹Ð²Ð¾Ð´Ð° Ñ‚Ð¾Ð²Ð°Ñ€Ð¾Ð² Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¾Ñ‚ Ñ€Ð°Ð·Ð´ÐµÐ»Ð° ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³Ð°
     function SaveCacheForParentAndChildSections($iblockId, $sectionCode = "", $sectionId = "") {
         global $USER_FIELD_MANAGER;
         $obCache = new CPHPCache;
@@ -112,20 +112,24 @@
             ), false, array("UF_*"))->Fetch();
             
             $obEnum = new CUserFieldEnum;
-            $arEnum = $obEnum->GetList(array(), array("ID" => $parentSection["UF_TEMPLATE_NAME"]))->Fetch();
-            $parentSection["UF_TEMPLATE_NAME"] = $arEnum;
             
-            $arEnum = $obEnum->GetList(array(), array("ID" => $childSection["UF_TEMPLATE_NAME"]))->Fetch();
-            $childSection["UF_TEMPLATE_NAME"] = $arEnum;
-            
-            $iblock = CIBlock::GetByID($iblockId)->Fetch();
-            
-            if (empty($arResult["SECTIONS"]["CHILD"]["UF_TEMPLATE_NAME"]["XML_ID"])) {
-                $templateName = $arResult["SECTIONS"]["PARENT"]["UF_TEMPLATE_NAME"]["XML_ID"];
-            } else {
-                $templateName = $arResult["SECTIONS"]["CHILD"]["UF_TEMPLATE_NAME"]["XML_ID"];
+            if (!empty($parentSection["UF_TEMPLATE_NAME"])) {
+                $arEnum = $obEnum->GetList(array(), array("ID" => $parentSection["UF_TEMPLATE_NAME"]))->Fetch();
+                $parentSection["UF_TEMPLATE_NAME"] = $arEnum["XML_ID"];
             }
             
+            if (!empty($childSection["UF_TEMPLATE_NAME"])) {
+                $arEnum = $obEnum->GetList(array(), array("ID" => $childSection["UF_TEMPLATE_NAME"]))->Fetch();
+                $childSection["UF_TEMPLATE_NAME"] = $arEnum["XML_ID"];
+            }
+
+            $iblock = CIBlock::GetByID($iblockId)->Fetch();
+            
+            if (!empty($childSection["UF_TEMPLATE_NAME"])) {
+                $templateName = $childSection["UF_TEMPLATE_NAME"];
+            } else {
+                $templateName = $parentSection["UF_TEMPLATE_NAME"];
+            }
             $res = array(
                 "PARENT" => $parentSection,
                 "CHILD" => $childSection,

@@ -3,6 +3,7 @@
     class ProductStickers {
         
         const COUNT_PURCHASE = 20;
+        const CACHE_TIME = 3600;
     
         public function IsNewProductByDate($date) {
             $offsetTime = time() - COUNT_DAYS_FOR_NEW_PRODUCTS;
@@ -19,8 +20,8 @@
             "delta_web:get_discount_elements_ids", 
             "", 
                 array(
-                    "CACHE_TYPE" => $arParams["CACHE_TYPE"],
-                    "CACHE_TIME" => $arParams["CACHE_TIME"]
+                    "CACHE_TYPE" => "A",
+                    "CACHE_TIME" => self::CACHE_TIME
                 ),
                 false
             );
@@ -35,7 +36,7 @@
                 array(
                     "COUNT_PURCHASE" => self::COUNT_PURCHASE,
                     "CACHE_TYPE" => "A",
-                    "CACHE_TIME" => "3600"
+                    "CACHE_TIME" => self::CACHE_TIME
                 ),
                 false
             );

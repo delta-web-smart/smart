@@ -7,15 +7,15 @@
 $this->setFrameMode(true);
 ?>
 <? if (!empty($arResult["ITEMS"])):?>
-    <ul class="catalog">
-        <?
-            $APPLICATION->IncludeFile(SITE_DIR."include/catalog/products_list_main_page.php", array(
-                "arResult" => $arResult,
-                "LABEL_FOR_SALE" => "viewed",
-                "PARAMS" => $arParams
-            ));
-        ?>
-    </ul>
-<? else:?>
-    <p><?=GetMessage("SRP_TPL_EMPTY_RECOMMENDED_PRODUCTS")?></p>
+    <div class="sizes-info">
+        <ul class="catalog">
+            <?
+                $APPLICATION->IncludeFile(SITE_DIR."include/catalog/products_list_main_page.php", array(
+                    "arResult" => $arResult,
+                    "LABEL_FOR_SALE" => "viewed",
+                    "PARAMS" => $arParams
+                ));
+            ?>
+        </ul>
+    </div>
 <? endif;?>

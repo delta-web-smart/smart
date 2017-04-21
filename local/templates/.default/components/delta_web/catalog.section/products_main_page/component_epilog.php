@@ -2,11 +2,13 @@
 <?
     global $APPLICATION;
     if (count($arResult["ITEMS"]) > 0): 
-        $this->__template->SetViewTarget($arParams["LABEL_FOR_SALE"]."_tabs_products");
-?>  
-    <li class="<?=$arParams["LABEL_FOR_SALE"]?> <? if($arParams["LABEL_FOR_SALE"] == "new"):?>active<?endif;?>">
-        <a href="#"><?=GetMessage(ToUpper($arParams["LABEL_FOR_SALE"])."_TABS_PRODUCTS_TITLE")?></a>
-    </li>
-<?  
-        $this->__template->EndViewTarget();
+        ob_start();
+        ?>  
+            <li class="<?=$arParams["LABEL_FOR_SALE"]?> <? if($arParams["LABEL_FOR_SALE"] == "new"):?>active<?endif;?>">
+                <a href="#"><?=GetMessage(ToUpper($arParams["LABEL_FOR_SALE"])."_TABS_PRODUCTS_TITLE")?></a>
+            </li>
+        <?  
+        $html = ob_get_contents();
+        ob_end_clean();
+        $APPLICATION->AddViewContent($arParams["LABEL_FOR_SALE"]."_tabs_products", $html);
     endif;

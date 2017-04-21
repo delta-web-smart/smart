@@ -1292,8 +1292,6 @@ if($this->startResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 		'USE_CATALOG_BUTTONS'
 	));
 
-	$this->includeComponentTemplate();
-
 	if ($bCatalog && $boolNeedCatalogCache)
 	{
 		CCatalogDiscount::ClearDiscountCache(array(
@@ -1303,6 +1301,8 @@ if($this->startResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 		));
 	}
 }
+
+$this->includeComponentTemplate();
 
 $arTitleOptions = null;
 if($USER->IsAuthorized())

@@ -258,6 +258,7 @@ jQuery.fn.customTabs = function(options){
          }
          $(this).attr("data-index", i);   
     });
+    $(options.parent+" li").eq(0).addClass('active');
     
     $(options.parent+" li").on("click", function(e) {
         e.preventDefault();

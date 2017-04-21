@@ -2577,7 +2577,11 @@ i.season-ico.summer {
 .product-support .sizes-info {
 	padding: 0 0 9px 0;
 	background-color: #F9F9F9;
-  border: 1px solid #D0D0D0;
+    border: 1px solid #D0D0D0;
+}
+
+.sizes-info > p {
+    padding: 20px;
 }
 
 .product-support ul.size-list {
