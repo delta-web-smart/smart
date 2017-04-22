@@ -13,6 +13,23 @@
         $vars = $obCache->GetVars();
         $arResult = $vars["RESULT"];
     else:
+        $arEmptyPreview = false;
+        $strEmptyPreview = MAIN_TEMPLATE_PATH.'/img/no_photo.png';
+        if (file_exists($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview))
+        {
+            $arSizes = getimagesize($_SERVER['DOCUMENT_ROOT'].$strEmptyPreview);
+            if (!empty($arSizes))
+            {
+                $arEmptyPreview = array(
+                    'src' => $strEmptyPreview,
+                    'width' => intval($arSizes[0]),
+                    'height' => intval($arSizes[1])
+                );
+            }
+            unset($arSizes);
+        }
+        unset($strEmptyPreview);  
+    
         //Параметр группировки
         $propertyForGroup = $arParams["PROPERTY_FOR_GROUP_OFFERS"];
         if (empty($propertyForGroup)) {
