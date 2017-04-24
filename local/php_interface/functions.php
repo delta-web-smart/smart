@@ -142,3 +142,9 @@
         endif;
         return $res;
     }
+
+    function CustomGetProperty($property_id, $default_value=false) 
+    { 
+        global $APPLICATION; 
+            return $APPLICATION->AddBufferContent(Array(&$APPLICATION, "GetProperty"), $property_id, $default_value);
+    }

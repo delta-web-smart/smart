@@ -9,6 +9,20 @@ $arComponentParameters = array(
             "MULTIPLE" => "N",
             "DEFAULT" => 3600,
         ),
+        "ID" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Идентификатор товара",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "DEFAULT" => "",
+        ),
+        "OFFER_ID" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Идентификатор торгового предложения",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "DEFAULT" => "",
+        ),
         "PROPERTY_FOR_GROUP_OFFERS" => array(
             "PARENT" => "BASE",
             "NAME" => "Наименование свойства для группировки торговых предложений",

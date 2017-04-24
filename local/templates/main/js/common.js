@@ -1,5 +1,9 @@
 $(function() {
-    $("a.fancybox").colorbox();
+    $("a.fancybox").colorbox({
+        maxWidth : "95%",
+        maxHeight: "95%",
+        current: ""
+    });
     
     if ($('.bottom-article').html().trim() == "") {
         $('.bottom-article').detach();

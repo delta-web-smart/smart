@@ -10,4 +10,11 @@
     Array('HIDE_ICONS' => 'Y')
 );?>
 <div class="border-wrap">
-    <h2 class="title"><span><?=$APPLICATION->ShowTitle(false);?></span></h2>
+    <h2 class="title">
+        <? $h1 = CustomGetProperty("h1");?>
+        <? if (empty($h1)):?>
+            <span><?=$APPLICATION->ShowTitle(false);?></span>
+        <? else:?>
+            <?=CustomGetProperty("h1")?>
+        <? endif;?>
+    </h2>

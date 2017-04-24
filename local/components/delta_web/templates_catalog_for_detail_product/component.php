@@ -89,6 +89,22 @@
 
             $arResult["CUSTOM_OFFERS"][$arOffer["PROPERTIES"][$propertyForGroup]["VALUE"]][] = $arOffer;
         }
+        
+        if (empty($arResult["CUSTOM_OFFERS"])) {
+            $arResult["PRICE"] = FormatNumber($arResult["MIN_PRICE"]["DISCOUNT_VALUE"]);
+        }
+        
+        if (!empty($arResult["PROPERTIES"]["MORE_PHOTO"]["VALUE"])) {
+            $arResult["PHOTOS"] = array();
+            foreach($arResult["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $photoId) {
+                $smallPhoto = CFile::ResizeImageGet($photoId, array('width'=>105, 'height'=>105), BX_RESIZE_IMAGE_EXACT, true);
+                $bigPhoto = CFile::GetPath($photoId);
+                $arResult["PHOTOS"][] = array(
+                    "SMALL_PHOTO" => $smallPhoto,
+                    "BIG_PHOTO" => $bigPhoto
+                );
+            }
+        }
     endif;
     if($obCache->StartDataCache()):
       $obCache->EndDataCache(array("RESULT" => $arResult));

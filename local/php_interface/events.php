@@ -98,3 +98,18 @@ function UpdateQuantityInSession() {
         }
     }
 }
+
+AddEventHandler("search", "BeforeIndex", "BeforeIndexHandler");
+function BeforeIndexHandler($arFields)
+{
+    if($arFields["MODULE_ID"] == "iblock" && $arFields["PARAM1"] == "1c_catalog" && substr($arFields["ITEM_ID"], 0, 1) != "S")
+    {
+        $arFields["PARAMS"]["iblock_section"] = array();
+        $rsSections = CIBlockElement::GetElementGroups($arFields["ITEM_ID"], true);
+        while($arSection = $rsSections->Fetch())
+        {
+            $arFields["PARAMS"]["iblock_section"][] = $arSection["ID"];
+        }
+    }
+    return $arFields;
+}

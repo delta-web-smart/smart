@@ -16,6 +16,8 @@ $this->setFrameMode(true);
     <?
         $APPLICATION->IncludeComponent("delta_web:templates_catalog_for_detail_product", "template_1", array(
             "RESULT" => $arResult,
+            "ID" => $arResult["ID"],
+            "OFFER_ID" => $_REQUEST["OFFER_ID"],
             "CACHE_TYPE" => $arParams["CACHE_TYPE"],
             "CACHE_TIME" => $arParams["CACHE_TIME"],
             "PROPERTY_FOR_GROUP_OFFERS" => "DIAMETR_1",
