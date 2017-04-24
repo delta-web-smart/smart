@@ -142,7 +142,7 @@ if($this->startResultCache(false, ($arParams["CACHE_GROUPS"]==="N"? false: $USER
 		"left_margin"=>"asc",
 	);
 	//EXECUTE
-  $arFilter = array_merge($arFilter, $arrFilter);
+    $arFilter = array_merge($arFilter, $arrFilter);
 	$rsSections = CIBlockSection::GetList($arSort, $arFilter, $arParams["COUNT_ELEMENTS"], $arSelect);
 	$rsSections->SetUrlTemplates("", $arParams["SECTION_URL"]);
 	while($arSection = $rsSections->GetNext())
