@@ -3,7 +3,7 @@
 ?>
 <?
     global $arSectionFilter;
-    //$arSectionFilter = array("PARAMS" => array("iblock_section" => 70));
+    $arSectionFilter = array("PARAMS" => array("iblock_section" => 70));
 ?>
 <?$APPLICATION->IncludeComponent(
 	"delta_web:search.page", 

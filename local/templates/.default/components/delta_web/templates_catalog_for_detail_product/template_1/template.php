@@ -57,10 +57,10 @@
                     </tr>
                     <tr class="available">
                       <td><?=GetMessage("AVAILABILITY_TITLE")?></td>
-                      <? if ($arResult["CATALOG_QUANTITY"] >= 12):?>
-                        <td class="avalible">>12</td>
+                      <? if ($arResult["CATALOG_QUANTITY"] >= LIMIT_QUANTITY):?>
+                        <td class="avalible">><?=LIMIT_QUANTITY?></td>
                       <? else:?>
-                        <td class="avalible few"><12</td>
+                        <td class="avalible few"><<?=LIMIT_QUANTITY?></td>
                       <? endif;?>
                     </tr>
                 <? endif;?>
@@ -166,11 +166,11 @@
                                 <?=$arOffer["PROPERTIES"]["INDEKS_NAGRUZKI"]["VALUE"]?>
                             </td>
                             <? if ($arOffer["CAN_BUY"] && $arOffer["CATALOG_QUANTITY"] > 4):?>
-                                <? if ($arOffer["CATALOG_QUANTITY"] >= 12):?>
+                                <? if ($arOffer["CATALOG_QUANTITY"] >= LIMIT_QUANTITY):?>
                                     <td class="avalible">
-                                        >12
+                                        ><?=LIMIT_QUANTITY?>
                                     </td>
-                                <? elseif($arOffer["CATALOG_QUANTITY"] < 12 && $arOffer["CATALOG_QUANTITY"] > 8):?>
+                                <? elseif($arOffer["CATALOG_QUANTITY"] < LIMIT_QUANTITY && $arOffer["CATALOG_QUANTITY"] > 8):?>
                                     <td class="avalible">
                                         <?=$arOffer["CATALOG_QUANTITY"]?>
                                     </td>

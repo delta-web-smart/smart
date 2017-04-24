@@ -1,11 +1,10 @@
 <?php
     if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 ?>
-<? foreach($arResult['ITEMS'] as $productId=>$arItem):?>
+<? foreach($arResult['ITEMS'] as $arItem):?>
     <? 
-        $differentTags = array("viewed");
-        if (in_array($LABEL_FOR_SALE, $differentTags)) {
-            $addBasketId = $productId;
+        if (!empty($arItem["CURRENT_OFFER_ID"])) {
+            $addBasketId = $arItem["CURRENT_OFFER_ID"];
         } else {
             $addBasketId = $arItem["ID"];
         }

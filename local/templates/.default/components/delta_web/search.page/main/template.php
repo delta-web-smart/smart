@@ -79,7 +79,7 @@
                     "OFFERS_CART_PROPERTIES" => array(""),
                     "OFFERS_FIELD_CODE" => array(""),
                     "OFFERS_LIMIT" => "0",
-                    "OFFERS_PROPERTY_CODE" => array(""),
+                    "OFFERS_PROPERTY_CODE" => array("NAME"),
                     "OFFERS_SORT_FIELD" => "sort",
                     "OFFERS_SORT_FIELD2" => "id",
                     "OFFERS_SORT_ORDER" => "asc",
