@@ -1,5 +1,7 @@
 $(function() {
 
+    VK.Widgets.Group("vk_groups", {mode: 3, width: "270"}, 145254067);
+
     setEqualHeight($(".all-for-auto > li"));
 
     $("a.fancybox").colorbox({

@@ -28,6 +28,7 @@
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/jquery-ui-1.10.4.custom.min.js");
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/custom.js");
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/colorbox/js/jquery.colorbox-min.js");
+        $APPLICATION->AddHeadString('<script type="text/javascript" src="//vk.com/js/api/openapi.js?144"></script>');
         $APPLICATION->AddHeadScript(MAIN_TEMPLATE_PATH. "js/common.js");
     ?>
     <?$APPLICATION->ShowHead();?>
