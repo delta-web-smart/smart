@@ -1,5 +1,85 @@
 $(function() {
 
+    //Для ajax-фильтра
+    $(function() {
+        $(document).on("change", ".filter input", function() {
+            smartFilter.keyup(this);
+        });
+    });
+
+    //Исключаем ввод букв в инпуты слайдера регулярным выражением
+    $('input.amount-min, input.amount-max').bind("change keyup input click", function() {
+        if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+    });
+
+    //Инициализация слайдера в фильтре слева
+    $( ".filter-slider-range" ).each(function() {
+        var selectorMin = $(this).closest(".range").find(".amount-min");
+        var selectorMax = $(this).closest(".range").find(".amount-max");
+        var currentSlider = $(this);
+        var min = selectorMin.val()-0;
+        var max = selectorMax.val()-0;
+        $(this).slider({
+            range: true,
+            animate: true,
+            min: min,
+            max: max,
+            values: [ min, max ],
+            slide: function( event, ui ) {
+                selectorMin.val( ui.values[ 0 ] );
+                selectorMax.val( ui.values[ 1 ] );
+            },
+            stop: function() {
+                smartFilter.keyup(this);
+            }
+        });
+        
+        selectorMax.change(function() {
+            currentSlider.slider("values", [ selectorMin.val()-0, selectorMax.val()-0 ]);
+        });
+        
+        selectorMin.change(function() {
+            currentSlider.slider("values", [ selectorMin.val()-0, selectorMax.val()-0 ]);
+        });
+        
+    });
+
+    //Обработчик по клику "Все #название свойства инфоблока#" в левом фильтре
+    $(".filter .select-all").click(function(e) {
+        e.preventDefault();
+        var selectorColumns = $(this).closest(".category").find(".checks-wrap");
+        
+        var checkedValues = [];
+        selectorColumns.each(function(i) {
+            if ($(this).is(":visible")) {
+                $(this).find("input").each(function() {
+                    if ($(this).prop("checked")) {
+                        checkedValues.push($(this).attr("id"));
+                    }
+                });
+            }
+        });
+
+        selectorColumns.each(function(i) {
+            if ($(this).is(":hidden")) {
+                selectorColumns.eq(i-2).html($(this).html());
+                $(this).detach();
+            }
+        });
+        $(this).closest(".category").hide().slideDown();
+        $(this).detach();
+        selectorColumns.each(function(i) {
+            $(this).find("input").each(function() {
+                if (in_array($(this).attr("id"), checkedValues)) {
+                    $(this).prop("checked", true);
+                }
+                $(this).addClass("check-style").styler();
+            });
+        });
+    });
+
     VK.Widgets.Group("vk_groups", {mode: 3, width: "270"}, 145254067);
 
     setEqualHeight($(".all-for-auto > li"));
@@ -330,4 +410,11 @@ function setEqualHeight(columns)
         }
     );
     columns.height(tallestcolumn);
+}
+
+function in_array(value, array) {
+    for(var i=0; i<array.length; i++){
+        if(value == array[i]) return true;
+    }
+    return false;
 }

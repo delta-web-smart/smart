@@ -52,6 +52,7 @@
 	),
 	false
 );?>
+
 <? 
     ob_start();
     $APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/search/description.php"), false);
@@ -59,6 +60,50 @@
     ob_end_clean();
 ?>
 <? $APPLICATION->AddViewContent('BOTTOM_DESCRIPTION', $description);?>
+
+<? 
+    ob_start();
+   $APPLICATION->IncludeComponent(
+            "bitrix:catalog.smart.filter", 
+            "left_side", 
+            array(
+                "IBLOCK_TYPE" => "1c_catalog",
+                "IBLOCK_ID" => IBLOCK_ID_CATALOG,
+                "SECTION_ID" => "",
+                "SECTION_CODE" => "",
+                "FILTER_NAME" => "",
+                "HIDE_NOT_AVAILABLE" => "N",
+                "TEMPLATE_THEME" => "blue",
+                "FILTER_VIEW_MODE" => "horizontal",
+                "DISPLAY_ELEMENT_COUNT" => "Y",
+                "SEF_MODE" => "Y",
+                "CACHE_TYPE" => "A",
+                "CACHE_TIME" => "36000000",
+                "CACHE_GROUPS" => "Y",
+                "SAVE_IN_SESSION" => "N",
+                "INSTANT_RELOAD" => "Y",
+                "PAGER_PARAMS_NAME" => "arrPager",
+                "PRICE_CODE" => array(
+                    0 => "BASE",
+                ),
+                "CONVERT_CURRENCY" => "Y",
+                "XML_EXPORT" => "N",
+                "SECTION_TITLE" => "-",
+                "SECTION_DESCRIPTION" => "-",
+                "POPUP_POSITION" => "right",
+                "SHOW_ALL_WO_SECTION" => "Y",
+                "SEF_RULE" => "/catalog/#SECTION_CODE#/filter/#SMART_FILTER_PATH#/",
+                "SECTION_CODE_PATH" => "",
+                "SMART_FILTER_PATH" => $_REQUEST["SMART_FILTER_PATH"],
+                "CURRENCY_ID" => "RUB"
+            ),
+            false
+        );
+    $leftFilter = ob_get_contents();
+    ob_end_clean();
+?>
+<? $APPLICATION->AddViewContent('LEFT_SIDE_FILTER', $leftFilter);?>
+
 <?  
     require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
 ?>

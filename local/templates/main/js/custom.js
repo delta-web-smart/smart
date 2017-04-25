@@ -93,158 +93,144 @@ function domReady(){
   /*Sidebar filter slider range inicialization*/
 
   /*Инициализация слайдера для фильтра масел*/
-  $( "#slider-range" ).slider({
-    range: true,
-    animate: true,
-    min: 1,
-    max: 5,
-    values: [ 1, 5 ],
-    slide: function( event, ui ) {
-      $( "#amount-min" ).val( ui.values[ 0 ] );
-      $( "#amount-max" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min" ).val($( "#slider-range" ).slider( "values", 0 ));
-  $( "#amount-max" ).val($( "#slider-range" ).slider( "values", 1 ));
+  // $( "#slider-range" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 1,
+    // max: 5,
+    // values: [ 1, 5 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min" ).val( ui.values[ 0 ] );
+      // $( "#amount-max" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min" ).val($( "#slider-range" ).slider( "values", 0 ));
+  // $( "#amount-max" ).val($( "#slider-range" ).slider( "values", 1 ));
 
   /*Инициализация слайдера для фильтра аккумуляторов*/
   /*Длина аккумулятора*/
-  $( "#slider-range-a" ).slider({
-    range: true,
-    animate: true,
-    min: 0,
-    max: 600,
-    values: [ 0, 600 ],
-    slide: function( event, ui ) {
-      $( "#amount-min-a" ).val( ui.values[ 0 ] );
-      $( "#amount-max-a" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min-a" ).val($( "#slider-range-a" ).slider( "values", 0 ));
-  $( "#amount-max-a" ).val($( "#slider-range-a" ).slider( "values", 1 ));
+  // $( "#slider-range-a" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 0,
+    // max: 600,
+    // values: [ 0, 600 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min-a" ).val( ui.values[ 0 ] );
+      // $( "#amount-max-a" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min-a" ).val($( "#slider-range-a" ).slider( "values", 0 ));
+  // $( "#amount-max-a" ).val($( "#slider-range-a" ).slider( "values", 1 ));
 
   /*Ширина аккумулятора*/
-  $( "#slider-range-b" ).slider({
-    range: true,
-    animate: true,
-    min: 0,
-    max: 600,
-    values: [ 0, 600 ],
-    slide: function( event, ui ) {
-      $( "#amount-min-b" ).val( ui.values[ 0 ] );
-      $( "#amount-max-b" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min-b" ).val($( "#slider-range-b" ).slider( "values", 0 ));
-  $( "#amount-max-b" ).val($( "#slider-range-b" ).slider( "values", 1 ));
+  // $( "#slider-range-b" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 0,
+    // max: 600,
+    // values: [ 0, 600 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min-b" ).val( ui.values[ 0 ] );
+      // $( "#amount-max-b" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min-b" ).val($( "#slider-range-b" ).slider( "values", 0 ));
+  // $( "#amount-max-b" ).val($( "#slider-range-b" ).slider( "values", 1 ));
 
   /*Высота аккумулятора*/
-  $( "#slider-range-c" ).slider({
-    range: true,
-    animate: true,
-    min: 0,
-    max: 600,
-    values: [ 0, 600 ],
-    slide: function( event, ui ) {
-      $( "#amount-min-c" ).val( ui.values[ 0 ] );
-      $( "#amount-max-c" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min-c" ).val($( "#slider-range-c" ).slider( "values", 0 ));
-  $( "#amount-max-c" ).val($( "#slider-range-c" ).slider( "values", 1 ));
+  // $( "#slider-range-c" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 0,
+    // max: 600,
+    // values: [ 0, 600 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min-c" ).val( ui.values[ 0 ] );
+      // $( "#amount-max-c" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min-c" ).val($( "#slider-range-c" ).slider( "values", 0 ));
+  // $( "#amount-max-c" ).val($( "#slider-range-c" ).slider( "values", 1 ));
 
   /*Длина резьбы (крепеж)*/
-  $( "#slider-range-d" ).slider({
-    range: true,
-    animate: true,
-    min: 0,
-    max: 35,
-    values: [ 0, 35 ],
-    slide: function( event, ui ) {
-      $( "#amount-min-d" ).val( ui.values[ 0 ] );
-      $( "#amount-max-d" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min-d" ).val($( "#slider-range-d" ).slider( "values", 0 ));
-  $( "#amount-max-d" ).val($( "#slider-range-d" ).slider( "values", 1 ));
+  // $( "#slider-range-d" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 0,
+    // max: 35,
+    // values: [ 0, 35 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min-d" ).val( ui.values[ 0 ] );
+      // $( "#amount-max-d" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min-d" ).val($( "#slider-range-d" ).slider( "values", 0 ));
+  // $( "#amount-max-d" ).val($( "#slider-range-d" ).slider( "values", 1 ));
 
   /*Диаметр камеры*/
-  $( "#slider-range-e" ).slider({
-    range: true,
-    animate: true,
-    min: 0,
-    max: 600,
-    values: [ 0, 600 ],
-    slide: function( event, ui ) {
-      $( "#amount-min-e" ).val( ui.values[ 0 ] );
-      $( "#amount-max-e" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min-e" ).val($( "#slider-range-e" ).slider( "values", 0 ));
-  $( "#amount-max-e" ).val($( "#slider-range-e" ).slider( "values", 1 ));
+  // $( "#slider-range-e" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 0,
+    // max: 600,
+    // values: [ 0, 600 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min-e" ).val( ui.values[ 0 ] );
+      // $( "#amount-max-e" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min-e" ).val($( "#slider-range-e" ).slider( "values", 0 ));
+  // $( "#amount-max-e" ).val($( "#slider-range-e" ).slider( "values", 1 ));
 
   /*Ширина камеры*/
-  $( "#slider-range-f" ).slider({
-    range: true,
-    animate: true,
-    min: 0,
-    max: 600,
-    values: [ 0, 600 ],
-    slide: function( event, ui ) {
-      $( "#amount-min-f" ).val( ui.values[ 0 ] );
-      $( "#amount-max-f" ).val( ui.values[ 1 ] );
-    }
-  });
-  $( "#amount-min-f" ).val($( "#slider-range-f" ).slider( "values", 0 ));
-  $( "#amount-max-f" ).val($( "#slider-range-f" ).slider( "values", 1 ));
+  // $( "#slider-range-f" ).slider({
+    // range: true,
+    // animate: true,
+    // min: 0,
+    // max: 600,
+    // values: [ 0, 600 ],
+    // slide: function( event, ui ) {
+      // $( "#amount-min-f" ).val( ui.values[ 0 ] );
+      // $( "#amount-max-f" ).val( ui.values[ 1 ] );
+    // }
+  // });
+  // $( "#amount-min-f" ).val($( "#slider-range-f" ).slider( "values", 0 ));
+  // $( "#amount-max-f" ).val($( "#slider-range-f" ).slider( "values", 1 ));
 
   /*Дружим инпуты со слайдером 
   (Передача значений от инпутов в слайдер при редактировании инпута.
   Значение передаеться при потере фокуса у инпута.
   В стандартном варианте ui такой функции нет)*/
-  $("form.filter .category .range").each(function(){
-    var amountMin = $(this).find("input.amount-min");
-    var amountMax = $(this).find("input.amount-max");
-    var sliderR = $(this).find(".slider-range");
-    amountMin.change(function(){
-      var value1= amountMin.val();
-      var value2= amountMax.val();
-      if(parseInt(value1) > parseInt(value2)){
-        value1 = value2;
-        amountMin.val(value1);
-      }
-      sliderR.slider("values",0,value1);  
-    });
-  });
-  $("form.filter .category .range").each(function(){
-    var amountMin = $(this).find("input.amount-min");
-    var amountMax = $(this).find("input.amount-max");
-    var sliderR = $(this).find(".slider-range");
-    amountMax.change(function(){
-      var value1 = amountMin.val();
-      var value2 = amountMax.val();
-      if (value2 > 1000) { value2 = 1000; amountMax.val(1000)}
-      if(parseInt(value1) > parseInt(value2)){
-        value2 = value1;
-      amountMax.val(value2);
-      }
-      sliderR.slider("values",1,value2);
-    });
-  });
-  
-  /*Исключаем ввод букв в инпуты слайдера регулярным выражением*/
-  $('input#amount-min, input#amount-max').bind("change keyup input click", function() {
-    if (this.value.match(/[^0-9]/g)) {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    }
-  });
-  /*END sidebar filter slider range inicialization*/
-
-
-
-
-
-
+  // $("form.filter .category .range").each(function(){
+    // var amountMin = $(this).find("input.amount-min");
+    // var amountMax = $(this).find("input.amount-max");
+    // var sliderR = $(this).find(".slider-range");
+    // amountMin.change(function(){
+      // var value1= amountMin.val();
+      // var value2= amountMax.val();
+      // if(parseInt(value1) > parseInt(value2)){
+        // value1 = value2;
+        // amountMin.val(value1);
+      // }
+      // sliderR.slider("values",0,value1);  
+    // });
+  // });
+  // $("form.filter .category .range").each(function(){
+    // var amountMin = $(this).find("input.amount-min");
+    // var amountMax = $(this).find("input.amount-max");
+    // var sliderR = $(this).find(".slider-range");
+    // amountMax.change(function(){
+      // var value1 = amountMin.val();
+      // var value2 = amountMax.val();
+      // if (value2 > 1000) { value2 = 1000; amountMax.val(1000)}
+      // if(parseInt(value1) > parseInt(value2)){
+        // value2 = value1;
+      // amountMax.val(value2);
+      // }
+      // sliderR.slider("values",1,value2);
+    // });
+  // });
 }
 
 function windowOnload(){
