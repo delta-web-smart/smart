@@ -33,17 +33,24 @@
                 </a>
             </div>
             <table>
-                <? foreach($arResult["SHOW_PROPERTIES"] as $arShowProperty):?>
-                    <? if (!empty($arShowProperty["VALUE"])):?>
+                <? foreach($arResult["DISPLAY_PROPERTIES"] as $arProp):?>
+                    <? if (!empty($arProp["DISPLAY_VALUE"])):?>
                         <tr>
-                            <td><?=GetMessage($arShowProperty["CODE"]."_TITLE");?></td>
-                            <td><?=$arShowProperty["VALUE"]?>
-                                <? if ($arShowProperty["IS_SEZON"]):?>
-                                    <? if ($arShowProperty["CUSTOM_ALL_WEATHER"]):?>
+                            <td><? echo $arProp['NAME']; ?>:</td>
+                            <td>
+                                <?
+                                    echo (
+                                        is_array($arProp['DISPLAY_VALUE'])
+                                        ? implode(' / ', $arProp['DISPLAY_VALUE'])
+                                        : $arProp['DISPLAY_VALUE']
+                                    );
+                                ?>
+                                <? if ($arProp["ID"] == 56):?>
+                                    <? if ($arProp["VALUE_ENUM_ID"] == 32):?>
                                         <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_30")?>"></i>
                                         <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_31")?>"></i>
                                     <? else:?>
-                                        <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_".$arShowProperty["VALUE_ENUM_ID"])?>"></i>
+                                        <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_".$arProp["VALUE_ENUM_ID"])?>"></i>
                                     <? endif;?>
                                 <? endif;?>
                             </td>

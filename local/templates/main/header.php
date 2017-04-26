@@ -1,6 +1,7 @@
 <?php
     if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-    CJSCore::Init(array("fx"));
+    CJSCore::Init(array("fx", "window", "popup"));
+    IncludeTemplateLangFile(__DIR__ . "/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="<?=LANGUAGE_ID?>">

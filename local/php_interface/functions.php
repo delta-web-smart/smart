@@ -148,3 +148,11 @@
         global $APPLICATION; 
             return $APPLICATION->AddBufferContent(Array(&$APPLICATION, "GetProperty"), $property_id, $default_value);
     }
+    
+    function xml2array($xmlObject, $out = array())
+    {
+        foreach ( (array) $xmlObject as $index => $node )
+            $out[$index] = ( is_object ( $node ) ||  is_array ( $node ) ) ? xml2array ( $node ) : $node;
+
+        return $out;
+    }

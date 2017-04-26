@@ -80,6 +80,7 @@ function SaveQuantityInSession() {
     foreach ($currentBasket as $arItem) {
         $quantity += $arItem["QUANTITY"];
     }
+    $_SESSION["SALE_BASKET_NUM_PRODUCTS"][LANGUAGE_ID] = 1;
     $_SESSION["TOTAL_QUANTITY_PRODUCTS"][SITE_ID][$USER->GetID()] = $quantity;
 }
 

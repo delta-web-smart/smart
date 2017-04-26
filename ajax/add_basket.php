@@ -2,10 +2,10 @@
     //use Bitrix\Sale\DiscountCouponsManager;
     
     require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+    IncludeTemplateLangFile($_SERVER["DOCUMENT_ROOT"]."/local/templates/".SITE_TEMPLATE_ID."/header.php");
     CModule::IncludeModule('catalog');
     CModule::IncludeModule('sale');
     CModule::IncludeModule('iblock');
-    
     if (!empty($_REQUEST['custom_action'])) {
         $action = htmlspecialchars($_REQUEST['custom_action']);
     }

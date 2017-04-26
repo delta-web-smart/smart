@@ -2,6 +2,19 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Каталог");
 ?>
+<?
+    if (!empty($_REQUEST["by"])) {
+        $by = $_REQUEST["by"];
+    } else {
+        $by = "NAME";
+    }
+    
+    if (!empty($_REQUEST["order"])) {
+        $order = $_REQUEST["order"];
+    } else {
+        $order = "asc";
+    }
+?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
 	"main", 
@@ -33,7 +46,7 @@ $APPLICATION->SetTitle("Каталог");
 		"DETAIL_DISPLAY_NAME" => "N",
 		"USE_ELEMENT_COUNTER" => "Y",
 		"USE_FILTER" => "Y",
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilterCatalog",
 		"FILTER_VIEW_MODE" => "VERTICAL",
 		"FILTER_FIELD_CODE" => array(
 			0 => "ID",
@@ -241,13 +254,13 @@ $APPLICATION->SetTitle("Каталог");
 		),
 		"SHOW_TOP_ELEMENTS" => "N",
 		"SECTION_COUNT_ELEMENTS" => "N",
-		"SECTION_TOP_DEPTH" => "3",
+		"SECTION_TOP_DEPTH" => "2",
 		"SECTIONS_VIEW_MODE" => "LIST",
 		"SECTIONS_SHOW_PARENT_NAME" => "N",
-		"PAGE_ELEMENT_COUNT" => "15",
+		"PAGE_ELEMENT_COUNT" => "4",
 		"LINE_ELEMENT_COUNT" => "3",
-		"ELEMENT_SORT_FIELD" => "desc",
-		"ELEMENT_SORT_ORDER" => "asc",
+		"ELEMENT_SORT_FIELD" => $by,
+		"ELEMENT_SORT_ORDER" => $order,
 		"ELEMENT_SORT_FIELD2" => "shows",
 		"ELEMENT_SORT_ORDER2" => "asc",
 		"LIST_PROPERTY_CODE" => array(
@@ -335,11 +348,41 @@ $APPLICATION->SetTitle("Каталог");
 		"LIST_OFFERS_LIMIT" => "0",
 		"SECTION_BACKGROUND_IMAGE" => "-",
 		"DETAIL_PROPERTY_CODE" => array(
-			0 => "TIP_AVTO",
-			1 => "NEWPRODUCT",
-			2 => "MANUFACTURER",
-			3 => "MATERIAL",
-			4 => "",
+			0 => "ET",
+			1 => "SLOYNOST",
+			2 => "SEZON",
+			3 => "SHIP",
+			4 => "TIP_AVTO",
+			5 => "BLOG_POST_ID",
+			6 => "CML2_ARTICLE",
+			7 => "CML2_BASE_UNIT",
+			8 => "KOD_PROIZVODITELYA",
+			9 => "BLOG_COMMENTS_CNT",
+			10 => "CML2_MANUFACTURER",
+			11 => "CML2_TRAITS",
+			12 => "CML2_TAXES",
+			13 => "CML2_ATTRIBUTES",
+			14 => "SHIRINA",
+			15 => "CML2_BAR_CODE",
+			16 => "VYSOTA",
+			17 => "TIP_DISKA",
+			18 => "DIAMETR",
+			19 => "INDEKS_NAGRUZKI",
+			20 => "INDEKS_SKOROSTI",
+			21 => "RUNFLAT",
+			22 => "SHIRINA_OBODA",
+			23 => "DIAMETR_1",
+			24 => "PCD",
+			25 => "KREPEZH",
+			26 => "ET_1",
+			27 => "DIA",
+			28 => "TSVET",
+			29 => "KOD_PROIZVODITELYA_1",
+			30 => "VNUTRENNIY_NOMER",
+			31 => "NEWPRODUCT",
+			32 => "SALELEADER",
+			33 => "SPECIALOFFER",
+			34 => "",
 		),
 		"DETAIL_META_KEYWORDS" => "-",
 		"DETAIL_META_DESCRIPTION" => "-",
@@ -397,14 +440,14 @@ $APPLICATION->SetTitle("Каталог");
 		"OFFERS_SORT_ORDER" => "asc",
 		"OFFERS_SORT_FIELD2" => "shows",
 		"OFFERS_SORT_ORDER2" => "asc",
-		"PAGER_TEMPLATE" => ".default",
+		"PAGER_TEMPLATE" => "main",
 		"DISPLAY_TOP_PAGER" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"PAGER_TITLE" => "Товары",
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000000",
-		"PAGER_SHOW_ALL" => "N",
+		"PAGER_SHOW_ALL" => "Y",
 		"ADD_PICT_PROP" => "-",
 		"LABEL_PROP" => "-",
 		"PRODUCT_DISPLAY_MODE" => "N",
@@ -531,7 +574,7 @@ $APPLICATION->SetTitle("Каталог");
 			"section" => "#SECTION_CODE#/",
 			"element" => "#SECTION_CODE#/#ELEMENT_CODE#/",
 			"compare" => "compare/",
-			"smart_filter" => "#SECTION_CODE#/filter/#SMART_FILTER_PATH#/apply/",
+			"smart_filter" => "#SECTION_CODE#/filter/#SMART_FILTER_PATH#/",
 		)
 	),
 	false
