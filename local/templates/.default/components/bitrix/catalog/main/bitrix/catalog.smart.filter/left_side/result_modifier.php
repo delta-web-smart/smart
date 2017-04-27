@@ -1,5 +1,5 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-    require_once($templateFolder ."/functions.php");
+    require_once(__DIR__ ."/functions.php");
     
     $arResult["TOTAL_COUNT_WITH_VALUES"] = 0;
     $totalCountInColumns = 14;
