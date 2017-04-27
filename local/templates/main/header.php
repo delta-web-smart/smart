@@ -179,95 +179,32 @@
             </div>
             <button class="orange-btn">Подобрать</button>
           </div>
-        </form>
+        </form>        
         <?
-            // $APPLICATION->IncludeComponent(
-                // "bitrix:catalog.smart.filter", 
-                // "", 
-                // array(
-                    // "IBLOCK_TYPE" => "1c_catalog",
-                    // "IBLOCK_ID" => "4",
-                    // "SECTION_ID" => "16",
-                    // "SECTION_CODE" => "",
-                    // "FILTER_NAME" => "",
-                    // "HIDE_NOT_AVAILABLE" => "N",
-                    // "TEMPLATE_THEME" => "blue",
-                    // "FILTER_VIEW_MODE" => "horizontal",
-                    // "DISPLAY_ELEMENT_COUNT" => "Y",
-                    // "SEF_MODE" => "Y",
-                    // "CACHE_TYPE" => "A",
-                    // "CACHE_TIME" => "36000000",
-                    // "CACHE_GROUPS" => "Y",
-                    // "SAVE_IN_SESSION" => "N",
-                    // "INSTANT_RELOAD" => "Y",
-                    // "PAGER_PARAMS_NAME" => "arrPager",
-                    // "PRICE_CODE" => array(
-                        // 0 => "BASE",
-                    // ),
-                    // "CONVERT_CURRENCY" => "Y",
-                    // "XML_EXPORT" => "N",
-                    // "SECTION_TITLE" => "-",
-                    // "SECTION_DESCRIPTION" => "-",
-                    // "POPUP_POSITION" => "left",
-                    // "SEF_RULE" => "/catalog/#SECTION_CODE#/filter/#SMART_FILTER_PATH#/",
-                    // "SECTION_CODE_PATH" => "",
-                    // "SMART_FILTER_PATH" => $_REQUEST["SMART_FILTER_PATH"],
-                    // "CURRENCY_ID" => "RUB"
-                // ),
-                // false
-            // );
+            global $arFilterPickingSizes;
+            $arFilterPickingSizes = array("UF_SHOW_IN_FILTER"=>1);
+            $APPLICATION->IncludeComponent("delta_web:catalog.section.list", "sections_picking_by_sizes",
+            Array(
+                    "FILTER_NAME" => "arFilterPickingSizes",
+                    "VIEW_MODE" => "TEXT",
+                    "SHOW_PARENT_NAME" => "Y",
+                    "IBLOCK_TYPE" => "1c_catalog",
+                    "IBLOCK_ID" => IBLOCK_ID_CATALOG,
+                    "SECTION_ID" => "",
+                    "SECTION_CODE" => "",
+                    "SECTION_URL" => "",
+                    "COUNT_ELEMENTS" => "Y",
+                    "TOP_DEPTH" => "3",
+                    "SECTION_FIELDS" => "",
+                    "SECTION_USER_FIELDS" => array('UF_*'),
+                    "ADD_SECTIONS_CHAIN" => "N",
+                    "CACHE_TYPE" => "A",
+                    "CACHE_TIME" => "36000000",
+                    "CACHE_NOTES" => "",
+                    "CACHE_GROUPS" => "Y"
+                )		
+            );
         ?>
-        <form class="sort-item right">
-          <h3>ПОДБОР ПО РАЗМЕРУ и ПАРАМЕТРАМ</h3>
-          <ul class="category">
-            <li class="active"><a href="#">Автошины</a></li>
-            <li><a href="#">Автодиски</a></li>
-            <li><a href="#">Мотошины</a></li>
-            <li><a href="#">Груз. шины</a></li>
-            <li><a href="#">Груз. диски</a></li>
-            <li><a href="#">Спецшины</a></li>
-          </ul>
-          <div class="options-wrap clearfix">
-            <div class="option narrow">
-              <span class="label">Ширина</span>
-              <select name="" class="select-style">
-                <option value="">255</option>
-                <option value="">260</option>
-                <option value="">265</option>
-                <option value="">270</option>
-              </select>
-            </div>
-            <div class="divider">/</div>
-            <div class="option narrow">
-              <span class="label">Профиль</span>
-              <select name="" class="select-style">
-                <option value="">255</option>
-                <option value="">260</option>
-                <option value="">265</option>
-                <option value="">270</option>
-              </select>
-            </div>
-            <div class="option narrow diameter">
-              <span class="label">Диаметр</span>
-              <select name="" class="select-style">
-                <option value="">255</option>
-                <option value="">260</option>
-                <option value="">265</option>
-                <option value="">270</option>
-              </select>
-            </div>
-            <div class="option seasonality">
-              <span class="label">Сезонность</span>
-              <div class="clear"></div>
-              <input class="radio-style check" type="radio" id="radio1" name="seasonality">
-              <label class="summery" for="radio1">Летние</label>
-              <input class="radio-style check" type="radio" id="radio2" name="seasonality">
-              <label for="radio2">Летние</label>
-              <div class="clear"></div>
-            </div>
-            <button class="orange-btn">Подобрать</button>
-          </div>
-        </form>
       </div>
       <div class="clear"></div>
       <aside class="sidebar">

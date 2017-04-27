@@ -59,7 +59,7 @@ $this->SetViewTarget('LEFT_SIDE_FILTER');
             <? 
                 switch ($arItem["DISPLAY_TYPE"]):
                     case "A": 
-           ?>
+            ?>
                 <div class="range">
                     <span class="label">
                         <?=GetMessage("CT_BCSF_FILTER_FROM")?>

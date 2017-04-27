@@ -4,13 +4,13 @@ $APPLICATION->SetTitle("Каталог");
 ?>
 <?
     if (!empty($_REQUEST["by"])) {
-        $by = $_REQUEST["by"];
+        $by = htmlspecialchars($_REQUEST["by"]);
     } else {
         $by = "NAME";
     }
     
     if (!empty($_REQUEST["order"])) {
-        $order = $_REQUEST["order"];
+        $order = htmlspecialchars($_REQUEST["order"]);
     } else {
         $order = "asc";
     }
@@ -30,7 +30,7 @@ $APPLICATION->SetTitle("Каталог");
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"SEF_MODE" => "Y",
-		"SEF_FOLDER" => "/catalog/",
+		"SEF_FOLDER" => CATALOG_URL,
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_JUMP" => "N",
 		"AJAX_OPTION_STYLE" => "Y",
@@ -46,7 +46,7 @@ $APPLICATION->SetTitle("Каталог");
 		"DETAIL_DISPLAY_NAME" => "N",
 		"USE_ELEMENT_COUNTER" => "Y",
 		"USE_FILTER" => "Y",
-		"FILTER_NAME" => "arrFilterCatalog",
+		"FILTER_NAME" => FILTER_NAME_FOR_CATALOG,
 		"FILTER_VIEW_MODE" => "VERTICAL",
 		"FILTER_FIELD_CODE" => array(
 			0 => "ID",
@@ -574,7 +574,7 @@ $APPLICATION->SetTitle("Каталог");
 			"section" => "#SECTION_CODE#/",
 			"element" => "#SECTION_CODE#/#ELEMENT_CODE#/",
 			"compare" => "compare/",
-			"smart_filter" => "#SECTION_CODE#/filter/#SMART_FILTER_PATH#/",
+			"smart_filter" => SMART_FILTER_PATH,
 		)
 	),
 	false

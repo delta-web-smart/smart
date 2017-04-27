@@ -1,5 +1,37 @@
 $(function() {
 
+    //Переключение разделов в подборе по размеру и параметрам
+    $(document).on("click", "#catalog_top_filter a", function(e) {
+        e.preventDefault();
+        $("#catalog_top_filter li").removeClass("active");
+        var selector = $(this).closest("li");
+        selector.addClass("active");
+        var url = $(this).closest("#catalog_top_filter").data("url");
+        var section_id = selector.data("id");
+        var properties = selector.data("properties");
+        var filter_url = $(".header_filter").attr("action");
+        BX.showWait();
+        $.post(
+            url,
+            {
+                section_id: section_id,
+                properties: properties,
+                filter_url: filter_url
+            },
+            function(data) {
+                BX.closeWait();
+                $("#filter_top").html(data);
+                $(".select-style").styler();
+            }
+        );
+    });
+
+    //Событие по клику на кнопку в блоке "Подбор по размеру и параметрам"
+    $(document).on("click", "form.header_filter button", function(e) {
+        e.preventDefault();
+        smartFilterTop.reload(this);
+    });
+
     //Сортировка по полям для левого фильтра
     $(document).on("click", ".filter .sort button", function(e) {
         e.preventDefault();

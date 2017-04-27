@@ -169,8 +169,8 @@
             }
             
             if (!empty($newOffers)) {
-                $minPrice = $offers[0]["MIN_PRICE"]["DISCOUNT_VALUE"];
-                $offerId = $offers[0]["ID"];
+                $minPrice = $newOffers[0]["MIN_PRICE"]["DISCOUNT_VALUE"];
+                $offerId = $newOffers[0]["ID"];
                 foreach($newOffers as $i=>$arOffer) {
                     if ($minPrice > $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]) {
                         $minPrice = $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"];
@@ -188,5 +188,28 @@
             "OFFER_ID" => $offerId,
             "CAN_BUY" => $canBuy
         );
+        
+        return $res;
+    }
+    
+    //Получить преобразованные ЧПУ у каталога
+    function GetSefRules() {
+        $engine = new CComponentEngine();
+        $arUrlTemplates = array(
+            "section" => SECTION_PATH,
+            "smart_filter" => SMART_FILTER_PATH,
+        );
+        if (\Bitrix\Main\Loader::includeModule('iblock'))
+        {
+            $engine->addGreedyPart("#SECTION_CODE_PATH#");
+            $engine->addGreedyPart("#SMART_FILTER_PATH#");
+            $engine->setResolveCallback(array("CIBlockFindTools", "resolveComponentEngine"));
+        }
+        $componentPage = $engine->guessComponentPath(
+            CATALOG_URL,
+            $arUrlTemplates,
+            $arVariables
+        );
+        $res = $arVariables;
         return $res;
     }
