@@ -79,13 +79,15 @@ $this->SetViewTarget('LEFT_SIDE_FILTER');
                         "SLICE_COLUMNS" => $arItem["COUNT_VALUES_IN_COLUMN_PART_1"]
                     ));
                 ?>
-                <?
-                    $APPLICATION->IncludeFile($templateFolder ."/default_values.php", array(
-                        "ITEMS" => $arItem["VALUES"],
-                        "SLICE_COLUMNS" => $arItem["COUNT_VALUES_IN_COLUMN"],
-                        "HIDE" => true
-                    ));
-                ?>
+                <? if (!empty($arItem["VALUES_2"])):?>
+                    <?
+                        $APPLICATION->IncludeFile($templateFolder ."/default_values.php", array(
+                            "ITEMS" => $arItem["VALUES"],
+                            "SLICE_COLUMNS" => $arItem["COUNT_VALUES_IN_COLUMN"],
+                            "HIDE" => true
+                        ));
+                    ?>
+                <? endif;?>
             <? endswitch;?>
             <? if (!empty($arItem["VALUES_2"])):?>
                 <a href="#" class="select-all"><?=GetMessage("ALL_PROPERTY_TITLE", array("PLURAL_WORD" => $arItem["PLURAL_WORD"]));?></a>
