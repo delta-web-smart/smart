@@ -160,7 +160,7 @@
     function FindMinPriceByOffers($offers) {
         if (!empty($offers)) {
             $minPrice = $offers[0]["MIN_PRICE"]["DISCOUNT_VALUE"];
-            $offerId = 0;
+            $offerId = $offers[0]["ID"];
             foreach($offers as $arOffer) {
                 if ($minPrice > $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]) {
                     $minPrice = $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"];
