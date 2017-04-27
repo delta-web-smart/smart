@@ -159,9 +159,16 @@
     
     function FindMinPriceByOffers($offers) {
         if (!empty($offers)) {
+            $count = 0;
+            foreach($offers as $i => $arOffer) {
+                if ($arOffer["CAN_BUY"]) {
+                    $offers[$count] = $arOffer;
+                    $count++;
+                }
+            }
             $minPrice = $offers[0]["MIN_PRICE"]["DISCOUNT_VALUE"];
             $offerId = $offers[0]["ID"];
-            foreach($offers as $arOffer) {
+            foreach($offers as $i=>$arOffer) {
                 if ($minPrice > $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]) {
                     $minPrice = $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"];
                     $offerId = $arOffer["ID"];

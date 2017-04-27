@@ -454,14 +454,15 @@ if (!empty($arResult['ITEMS']))
         //Кастомизация
         $arItem["SMALL_PICTURE"] = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>150, 'height'=>150), BX_RESIZE_IMAGE_PROPORTIONAL, true);
         $arItem["BIG_PICTURE"] = CFile::GetPath($arItem["PREVIEW_PICTURE"]["ID"]);
-        if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE'])) {
-            $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
-        }
         
         $minPriceByOffers = FindMinPriceByOffers($arItem["OFFERS"]);
         $arItem["CURRENT_OFFER_ID"] = $minPriceByOffers["OFFER_ID"];
         $minPrice = $minPriceByOffers["MIN_PRICE"];
+
         if (empty($arItem["CURRENT_OFFER_ID"])) {
+            if (isset($arItem['MIN_PRICE']) || isset($arItem['RATIO_PRICE'])) {
+                $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
+            }
             $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice["DISCOUNT_VALUE"]);
         } else {
              $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice);
