@@ -28,17 +28,7 @@
         <? if (!empty($arItem["PROPERTIES"]["CML2_ARTICLE"]["VALUE"])):?>
             <span class="article"><?=GetMessage("CML2_ARTICLE_TITLE");?> <?=$arItem["PROPERTIES"]["CML2_ARTICLE"]["VALUE"]?></span>
         <? endif;?>
-        <? if (!isset($arItem['OFFERS']) || empty($arItem['OFFERS'])):?>
-            <? if ($arItem["CAN_BUY"]):?>
-                <?
-                    $APPLICATION->IncludeFile(SITE_DIR. "include/catalog/block_with_buy_button.php", array(
-                        "addBasketId" => $addBasketId,
-                        "PARAMS" => $PARAMS,
-                        "arItem" => $arItem
-                    ));
-                ?>
-            <? endif;?>
-         <? else:?>
+        <? if ($arItem["CAN_BUY"]):?>
             <?
                 $APPLICATION->IncludeFile(SITE_DIR. "include/catalog/block_with_buy_button.php", array(
                     "addBasketId" => $addBasketId,

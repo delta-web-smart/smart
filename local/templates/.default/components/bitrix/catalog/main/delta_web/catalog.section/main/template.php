@@ -57,16 +57,7 @@ $this->setFrameMode(true);
                 </div>
                 <div class="clear"></div>
                 <div class="controls">
-                     <? if (!isset($arItem['OFFERS']) || empty($arItem['OFFERS'])):?>                        <? if ($arItem["CAN_BUY"]):?>
-                            <?
-                                $APPLICATION->IncludeFile($templateFolder. "/block_with_buy_button.php", array(
-                                    "addBasketId" => $addBasketId,
-                                    "PARAMS" => $arParams,
-                                    "arItem" => $arItem
-                                ));
-                            ?>
-                        <? endif;?>
-                     <? else:?>
+                    <? if ($arItem["CAN_BUY"]):?>
                         <?
                             $APPLICATION->IncludeFile($templateFolder. "/block_with_buy_button.php", array(
                                 "addBasketId" => $addBasketId,

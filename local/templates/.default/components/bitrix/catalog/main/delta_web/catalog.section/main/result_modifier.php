@@ -465,7 +465,8 @@ if (!empty($arResult['ITEMS']))
             }
             $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice["DISCOUNT_VALUE"]);
         } else {
-             $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice);
+            $arItem["CAN_BUY"] = $minPriceByOffers["CAN_BUY"];
+            $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice);
         }
        
         if (empty($arItem["PREVIEW_PICTURE"]["ID"])) {

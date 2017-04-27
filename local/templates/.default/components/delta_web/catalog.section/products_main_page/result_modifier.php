@@ -463,7 +463,8 @@ if (!empty($arResult['ITEMS']))
                 $minPrice = (isset($arItem['RATIO_PRICE']) ? $arItem['RATIO_PRICE'] : $arItem['MIN_PRICE']);
             }
             $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice["DISCOUNT_VALUE"]);
-        } else {
+        } else {       
+             $arItem["CAN_BUY"] = $minPriceByOffers["CAN_BUY"];
              $arItem["PRICE_DISCOUNT_VALUE"] = FormatNumber($minPrice);
         }
         

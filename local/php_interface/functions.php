@@ -175,9 +175,14 @@
                 }
             }
         }
+        $canBuy = false;
+        if (!empty($minPrice)) {
+            $canBuy = true;
+        }
         $res = array(
             "MIN_PRICE" => $minPrice,
-            "OFFER_ID" => $offerId
+            "OFFER_ID" => $offerId,
+            "CAN_BUY" => $canBuy
         );
         return $res;
     }
