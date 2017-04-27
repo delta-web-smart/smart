@@ -160,18 +160,22 @@
     function FindMinPriceByOffers($offers) {
         if (!empty($offers)) {
             $count = 0;
+            $newOffers = array();
             foreach($offers as $i => $arOffer) {
                 if ($arOffer["CAN_BUY"]) {
-                    $offers[$count] = $arOffer;
+                    $newOffers[$count] = $arOffer;
                     $count++;
                 }
             }
-            $minPrice = $offers[0]["MIN_PRICE"]["DISCOUNT_VALUE"];
-            $offerId = $offers[0]["ID"];
-            foreach($offers as $i=>$arOffer) {
-                if ($minPrice > $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]) {
-                    $minPrice = $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"];
-                    $offerId = $arOffer["ID"];
+            
+            if (!empty($newOffers)) {
+                $minPrice = $offers[0]["MIN_PRICE"]["DISCOUNT_VALUE"];
+                $offerId = $offers[0]["ID"];
+                foreach($newOffers as $i=>$arOffer) {
+                    if ($minPrice > $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]) {
+                        $minPrice = $arOffer["MIN_PRICE"]["DISCOUNT_VALUE"];
+                        $offerId = $arOffer["ID"];
+                    }
                 }
             }
         }
