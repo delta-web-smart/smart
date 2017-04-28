@@ -114,3 +114,80 @@ function BeforeIndexHandler($arFields)
     }
     return $arFields;
 }
+
+AddEventHandler("main", "OnAdminTabControlBegin", "ChangeUserPropsForFilter");
+function ChangeUserPropsForFilter(&$form) {
+    if(($GLOBALS["APPLICATION"]->GetCurPage() == "/bitrix/admin/iblock_section_edit.php" || $GLOBALS["APPLICATION"]->GetCurPage() == '/bitrix/admin/cat_section_edit.php') && $_REQUEST['IBLOCK_ID'] == IBLOCK_ID_CATALOG) {
+		CUtil::InitJSCore();
+		CJSCore::Init(array("jquery"));
+		?>
+			<script>
+				$(function() {
+					$('#table_<?=SECTION_UF_PROPERTY_CATALOG?>').closest('tr').detach();
+                    $('#table_<?=SECTION_UF_PROPERTY_OFFER?>').closest('tr').detach();
+				});
+			</script>
+		<?
+        $titleCatalogProperty = "";
+        $titleOfferProperty = "";
+        $selectedCatalogProps = array();
+        $selectedOffersProps = array();
+        foreach($form->tabs as $arTab) {
+            if ($arTab["DIV"] == "user_fields_tab") {
+            
+                $titleCatalogProperty = $arTab["FIELDS"][SECTION_UF_PROPERTY_CATALOG]["content"];
+                
+                $titleOfferProperty = $arTab["FIELDS"][SECTION_UF_PROPERTY_OFFER]["content"];
+                
+                preg_match_all("!value=\"(\d+)\"!", $arTab["FIELDS"][SECTION_UF_PROPERTY_CATALOG]["hidden"], $selectedCatalogProps);
+                $selectedCatalogProps = $selectedCatalogProps[1];
+                
+                preg_match_all("!value=\"(\d+)\"!", $arTab["FIELDS"][SECTION_UF_PROPERTY_OFFER]["hidden"], $selectedOffersProps);
+                $selectedOffersProps = $selectedOffersProps[1];
+            }
+        }
+
+		$props = GetListPropertiesForSection(IBLOCK_ID_CATALOG, $_REQUEST["ID"]);
+        $htmlPropertyCatalog = '<tr valign="top"><td>'.$titleCatalogProperty.'</td><td>';
+        if (!empty($props)) {
+            $htmlPropertyCatalog .= '<select name="'.SECTION_UF_PROPERTY_CATALOG.'[]" multiple="multiple">';
+            foreach($props as $arProp) {
+                $selected = "";
+                if (in_array($arProp['ID'], $selectedCatalogProps)) {
+                    $selected = "selected";
+                }
+                $htmlPropertyCatalog .= '<option '.$selected.' value="'.$arProp['ID'].'">['.$arProp["ID"].'] '.$arProp['NAME'].'</option>';
+            }
+            $htmlPropertyCatalog .= '</select>';
+        } else {
+            $htmlPropertyCatalog = 'Не найдено свойств каталога, привязанных к разделу';
+        }
+        $htmlPropertyCatalog .= '</td></tr>';
+        
+        $props = GetListPropertiesForSection(IBLOCK_ID_CATALOG_OFFERS, $_REQUEST["ID"]);
+        $htmlPropertyOffer = '<tr valign="top"><td>'.$titleOfferProperty.'</td><td>';
+        if (!empty($props)) {
+            $htmlPropertyOffer .= '<select name="'.SECTION_UF_PROPERTY_OFFER.'[]" multiple="multiple">';
+            foreach($props as $arProp) {
+                $selected = "";
+                if (in_array($arProp['ID'], $selectedOffersProps)) {
+                    $selected = "selected";
+                }
+                $htmlPropertyOffer .= '<option '.$selected.' value="'.$arProp['ID'].'">['.$arProp["ID"].'] '.$arProp['NAME'].'</option>';
+            }
+            $htmlPropertyOffer .= '</select>';
+        } else {
+            $htmlPropertyOffer = 'Не найдено свойств торговых предложений, привязанных к разделу';
+        }
+        $htmlPropertyOffer .= '</td></tr>';
+        
+		
+		$form->tabs[] = array(
+			"DIV" => "picker_filter_by_sizes_and_parametres",
+			"TAB" => "Подбор по размерам и параметрам",
+			"ICON" => "main_user_edit",
+			"TITLE" => "Подбор по размерам и параметрам",
+			"CONTENT" => $htmlPropertyCatalog ."<br/>". $htmlPropertyOffer
+		);
+	}
+}

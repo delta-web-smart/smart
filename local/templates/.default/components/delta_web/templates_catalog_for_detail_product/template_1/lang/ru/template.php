@@ -22,6 +22,6 @@ $MESS["OFFER_PRICE_TITLE"] = "Цена, руб.";
 $MESS["PREORDER_TITLE"] = "под заказ";
 $MESS["PREFIX_DIAMETER_TITLE"] = "R";
 
-$MESS["SEZON_ID_TITLE_30"] = "summer";
-$MESS["SEZON_ID_TITLE_31"] = "winter";
+$MESS["SEZON_ID_TITLE_".SEZON_SUMMER_VALUE_ENUM_ID] = "summer";
+$MESS["SEZON_ID_TITLE_".SEZON_WINTER_VALUE_ENUM_ID] = "winter";
 ?>

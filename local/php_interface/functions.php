@@ -213,3 +213,33 @@
         $res = $arVariables;
         return $res;
     }
+    
+    //Получить список свойств, привязанных к разделу для умного фильтра
+    function GetListPropertiesForSection($iblockId, $sectionId) {
+        $res = array();
+        $props = CIBlockSectionPropertyLink::GetArray($iblockId, $sectionId);
+        foreach($props as $PID => $arLink) {
+            if($arLink["SMART_FILTER"] !== "Y") {
+				continue;
+            }
+            $rsProperty = CIBlockProperty::GetByID($PID);
+            $arProperty = $rsProperty->Fetch();
+            if($arProperty)
+            {
+                $res[$arProperty["ID"]] = array(
+                    "ID" => $arProperty["ID"],
+                    "IBLOCK_ID" => $arProperty["IBLOCK_ID"],
+                    "CODE" => $arProperty["CODE"],
+                    "NAME" => $arProperty["NAME"],
+                    "PROPERTY_TYPE" => $arProperty["PROPERTY_TYPE"],
+                    "USER_TYPE" => $arProperty["USER_TYPE"],
+                    "USER_TYPE_SETTINGS" => $arProperty["USER_TYPE_SETTINGS"],
+                    "DISPLAY_TYPE" => $arLink["DISPLAY_TYPE"],
+                    "DISPLAY_EXPANDED" => $arLink["DISPLAY_EXPANDED"],
+                    "FILTER_HINT" => $arLink["FILTER_HINT"],
+                    "VALUES" => array(),
+                );
+            }
+        }
+        return $res;
+    }

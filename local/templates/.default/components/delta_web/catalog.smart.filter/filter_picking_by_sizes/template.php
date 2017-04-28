@@ -41,21 +41,47 @@ $this->setFrameMode(true);
                 )
                     continue; 
             ?>
-            <div class="option narrow">
-            <span class="label"><?=$arItem["NAME"]?></span>
-                <select name="" class="select-style" onchange="smartFilterTop.change(this)">
-                    <option value=""><?=GetMessage("CHOOSE_TITLE")?></option>
+            <? 
+                $isBlockClear = false;
+                if ($arItem["CODE"] == SEZON_PROPERTY_CODE) {
+                    $class = "seasonality";
+                    $isBlockClear = true;
+                } else {
+                    $class = "narrow";
+                }
+            ?>
+            <div class="option <?=$class?>">
+                <span class="label"><?=$arItem["NAME"]?></span>
+                <? if ($isBlockClear):?>
+                    <div class="clear"></div>
+                <? endif;?>
+                <? if ($arItem["CODE"] == SEZON_PROPERTY_CODE):?>
                     <? foreach($arItem["VALUES"] as $ar):?>
                         <? 
+                            $checked = "";
                             if ($ar["CHECKED"]) {
-                                $selected = 'selected="selected"';
-                            } else {
-                                $selected = "";
+                                $checked = "checked";
                             }
                         ?>
-                        <option data-name="<?=$ar["CONTROL_NAME"]?>" <?=$selected?> value="<? echo $ar["HTML_VALUE"] ?>"><? echo $ar["VALUE"] ?></option>
+                        <input <?=$checked?> class="radio-style check" type="radio" id="<?=$ar["CONTROL_ID"]?>" value="<? echo $ar["HTML_VALUE"] ?>" name="<?=$ar["CONTROL_NAME"]?>"></input>
+                        <label class="<? if ($ar["PROP_ENUM"]["ID"] == SEZON_SUMMER_VALUE_ENUM_ID):?>summery<?endif;?>" for="<?=$ar["CONTROL_ID"]?>"><?=$ar["VALUE"]?></label>
                     <? endforeach;?>
-                </select>
+                    <div class="clear"></div>
+                 <? else:?>
+                    <select name="" class="select-style" onchange="smartFilterTop.change(this)">
+                        <option value=""><?=GetMessage("CHOOSE_TITLE")?></option>
+                        <? foreach($arItem["VALUES"] as $ar):?>
+                            <? 
+                                if ($ar["CHECKED"]) {
+                                    $selected = 'selected="selected"';
+                                } else {
+                                    $selected = "";
+                                }
+                            ?>
+                            <option data-name="<?=$ar["CONTROL_NAME"]?>" <?=$selected?> value="<? echo $ar["HTML_VALUE"] ?>"><? echo $ar["VALUE"] ?></option>
+                        <? endforeach;?>
+                    </select>
+                 <? endif;?>
             </div>
         <? endforeach;?>
             

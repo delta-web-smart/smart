@@ -45,10 +45,10 @@
                                         : $arProp['DISPLAY_VALUE']
                                     );
                                 ?>
-                                <? if ($arProp["ID"] == 56):?>
-                                    <? if ($arProp["VALUE_ENUM_ID"] == 32):?>
-                                        <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_30")?>"></i>
-                                        <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_31")?>"></i>
+                                <? if ($arProp["CODE"] == SEZON_PROPERTY_CODE):?>
+                                    <? if ($arProp["VALUE_ENUM_ID"] == SEZON_ALL_WEATHER_VALUE_ENUM_ID):?>
+                                        <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_".SEZON_SUMMER_VALUE_ENUM_ID)?>"></i>
+                                        <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_".SEZON_WINTER_VALUE_ENUM_ID)?>"></i>
                                     <? else:?>
                                         <i class="season-ico <?=GetMessage("SEZON_ID_TITLE_".$arProp["VALUE_ENUM_ID"])?>"></i>
                                     <? endif;?>

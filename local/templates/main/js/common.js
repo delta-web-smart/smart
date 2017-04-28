@@ -21,7 +21,7 @@ $(function() {
             function(data) {
                 BX.closeWait();
                 $("#filter_top").html(data);
-                $(".select-style").styler();
+                $(".select-style, .radio-style").styler();
             }
         );
     });

@@ -7,7 +7,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 CBitrixComponent::includeComponentClass("bitrix::news.base");
 class CBitrixCatalogSmartFilter extends CBitrixNewsBase
 */
-class CBitrixCatalogSmartFilter extends CBitrixComponent
+class CBitrixCatalogSmartFilterCustom extends CBitrixComponent
 {
 	public $IBLOCK_ID = 0;
 	public $SKU_IBLOCK_ID = 0;
