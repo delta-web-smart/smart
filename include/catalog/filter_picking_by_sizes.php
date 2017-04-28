@@ -15,7 +15,7 @@
         $filter_url = htmlspecialchars($_REQUEST["filter_url"]);
     }
     $APPLICATION->IncludeComponent(
-        "bitrix:catalog.smart.filter", 
+        "delta_web:catalog.smart.filter", 
         "filter_picking_by_sizes", 
         array(
             "FORM_ACTION" => $filter_url,
