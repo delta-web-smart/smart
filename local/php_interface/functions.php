@@ -79,67 +79,32 @@
         return $res;
     }
     
-    //Сохраняем в кэш название шаблона вывода товаров в зависимости от раздела каталога
-    function SaveCacheForParentAndChildSections($iblockId, $sectionCode = "", $sectionId = "") {
-        global $USER_FIELD_MANAGER;
-        $obCache = new CPHPCache;
-        $life_time = 36000;
-        $cache_id = "template-name-for-sections-" .$iblockId;
+    //Получение описание для раздела каталога
+    function GetDescriptionForSection($iblockId, $sectionCode = "", $sectionId = "") {
+    
+        $res = "";
         if (!empty($sectionCode)) {
-            $cache_id .= "-" . $sectionCode;
+            $section = CIBlockSection::GetList(array(), array("CODE" => $sectionCode, "IBLOCK_ID" => $iblockId), false, array("DESCRIPTION", "ID"))->Fetch();
+            $res = $section["DESCRIPTION"];
+            if (empty($res)) {
+                $section = CIBlockSection::GetNavChain($iblockId, $section["ID"])->Fetch();
+                $res = $section["DESCRIPTION"];
+            }
         }
+        
         if (!empty($sectionId)) {
-            $cache_id .= "-" . $sectionId;
+            $section = CIBlockSection::GetList(array(), array("ID" => $sectionId, "IBLOCK_ID" => $iblockId), false, array("DESCRIPTION"))->Fetch();
+            $res = $section["DESCRIPTION"];
+            if (empty($res)) {
+                $section = CIBlockSection::GetNavChain($iblockId, $sectionId)->Fetch();
+                $res = $section["DESCRIPTION"];
+            }
         }
-        $cacheData = $obCache->InitCache($life_time, $cache_id, "/");
-        if($cacheData):
-            $vars = $obCache->GetVars();
-            $res = $vars["SECTIONS"];
-        else:
-            if (!empty($sectionId)) {
-                $childSection = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>$iblockId, "ID"=>$sectionId), false, array("UF_*"))->Fetch()->Fetch();
-                $sectionId = $sectionId;
-            } elseif (!empty($sectionCode)) {
-                $childSection = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>$iblockId, "CODE"=>$sectionCode), false, array("UF_*"))->Fetch();
-                $sectionId = $childSection["ID"];                
-            } else {
-                $sectionId = 0;
-            }
-            $parent = CIBlockSection::GetNavChain($iblockId, $sectionId)->Fetch();
-            $parentSection = CIBlockSection::GetList(array(), array(
-                "IBLOCK_ID" => $iblockId,
-                "ID" => $parent["ID"]
-            ), false, array("UF_*"))->Fetch();
-            
-            $obEnum = new CUserFieldEnum;
-            
-            if (!empty($parentSection["UF_TEMPLATE_NAME"])) {
-                $arEnum = $obEnum->GetList(array(), array("ID" => $parentSection["UF_TEMPLATE_NAME"]))->Fetch();
-                $parentSection["UF_TEMPLATE_NAME"] = $arEnum["XML_ID"];
-            }
-            
-            if (!empty($childSection["UF_TEMPLATE_NAME"])) {
-                $arEnum = $obEnum->GetList(array(), array("ID" => $childSection["UF_TEMPLATE_NAME"]))->Fetch();
-                $childSection["UF_TEMPLATE_NAME"] = $arEnum["XML_ID"];
-            }
-
-            $iblock = CIBlock::GetByID($iblockId)->Fetch();
-            
-            if (!empty($childSection["UF_TEMPLATE_NAME"])) {
-                $templateName = $childSection["UF_TEMPLATE_NAME"];
-            } else {
-                $templateName = $parentSection["UF_TEMPLATE_NAME"];
-            }
-            $res = array(
-                "PARENT" => $parentSection,
-                "CHILD" => $childSection,
-                "IBLOCK" => $iblock,
-                "TEMPLATE_NAME" => $templateName
-            );
-        endif;
-        if($obCache->StartDataCache()):
-          $obCache->EndDataCache(array("SECTIONS" => $res));
-        endif;
+        
+        if (empty($res)) {
+            $iblock = CIBlock::GetById($iblockId)->Fetch();
+            $res = $iblock["DESCRIPTION"];
+        }
         return $res;
     }
 

@@ -160,7 +160,7 @@
                         <tr id="product" class="offer_block" data-page="<?=$count?>">
                             <td class="size">
                                 <a href="<?=$arOffer["DETAIL_PAGE_URL"]?>">
-                                    <?=$arOffer["FULL_TEXT_FOR_NAME"]?>
+                                    <?=$arOffer["NAME"]?>
                                 </a>
                             </td>
                             <td class="article">

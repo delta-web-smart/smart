@@ -388,9 +388,8 @@ $APPLICATION->SetTitle("Каталог");
 		"DETAIL_META_DESCRIPTION" => "-",
 		"DETAIL_BROWSER_TITLE" => "-",
 		"DETAIL_OFFERS_FIELD_CODE" => array(
-			0 => "",
-			1 => "",
-		),
+            "NAME"
+        ),
 		"DETAIL_OFFERS_PROPERTY_CODE" => array(
 			0 => "ET",
 			1 => "SEZON",
