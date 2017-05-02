@@ -133,53 +133,9 @@
         );
       ?>
       <div class="sort-main clearfix">
-        <form class="sort-item left">
-          <div class="title">
-            <div class="img-wrap"><img src="<?=SITE_TEMPLATE_PATH?>/img/sort-type-img.png" alt=""></div>
-            <h3>ПОДБОР ПО АВТОМОБИЛЮ</h3>
-          </div>
-          <div class="options-wrap clearfix">
-            <div class="option">
-              <span>Марка</span>
-              <select name="" class="select-style">
-                <option value="">Chevrolet</option>
-                <option value="">Chevrolet</option>
-                <option value="">Chevrolet</option>
-                <option value="">Chevrolet</option>
-              </select>
-            </div>
-            <div class="option">
-              <span>Модель</span>
-              <select name="" class="select-style">
-                <option value="">Trailblazer</option>
-                <option value="">Trailblazer</option>
-                <option value="">Trailblazer</option>
-                <option value="">Trailblazer</option>
-              </select>
-            </div>
-          </div>
-          <div class="options-wrap clearfix">
-            <div class="option year">
-              <span>Год выпуска</span>
-              <select name="" class="select-style">
-                <option value="">2007</option>
-                <option value="">2008</option>
-                <option value="">2009</option>
-                <option value="">2010</option>
-                <option value="">2011</option>
-                <option value="">2012</option>
-                <option value="">2013</option>
-              </select>
-            </div>
-            <div class="option mod disable">
-              <span>Модификация</span>
-              <select name="" disabled="disabled" class="select-style">
-                <option value=""></option>
-              </select>
-            </div>
-            <button class="orange-btn">Подобрать</button>
-          </div>
-        </form>        
+        <?
+            $APPLICATION->IncludeFile(SITE_DIR."include/picking_auto_for_tyres_and_disks.php");
+        ?>
         <?
             global $arFilterPickingSizes;
             $arFilterPickingSizes = array("UF_SHOW_IN_FILTER"=>1);
@@ -222,4 +178,3 @@
         );?>
       </aside>
       <div class="content">
-		
