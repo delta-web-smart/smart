@@ -808,7 +808,11 @@ nav.product-nav ul li .sub-nav img {
 	padding: 0 17px 0 5px;
 	font-size: 14px;
 	line-height: 17px;
-	background: url(../img/wintery-ico.png) no-repeat right center;
+}
+
+.sort-main .sort-item.right .options-wrap .option label.wintery {
+    margin-right: 13px;
+    background: url(../img/wintery-ico.png) no-repeat right center;
 }
 
 .sort-main .sort-item.right .options-wrap .option label.summery {

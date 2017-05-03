@@ -31,6 +31,19 @@ $(function() {
         e.preventDefault();
         smartFilterTop.reload(this);
     });
+    
+    $(document).on("change", ".header_filter input:radio", function() {
+        var radio = $(this);
+        radio.closest(".option").find("input:radio").each(function() {
+            $(this).prop("checked", false).trigger('refresh');
+        });
+        radio.prop("checked", true).trigger('refresh');
+    });
+    
+    $(document).on("click", "form.header_filter button", function(e) {
+        e.preventDefault();
+        smartFilterTop.reload(this);
+    });
 
     //Сортировка по полям для левого фильтра
     $(document).on("click", ".filter .sort button", function(e) {

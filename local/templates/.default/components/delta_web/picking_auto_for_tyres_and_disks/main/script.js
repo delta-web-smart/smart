@@ -93,6 +93,7 @@ $(function() {
     
     $(document).on("click", "#picking_auto_button", function(e) {
         e.preventDefault();
+        
     });
  
 });

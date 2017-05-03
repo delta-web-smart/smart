@@ -64,7 +64,7 @@ $this->setFrameMode(true);
                             }
                         ?>
                         <input <?=$checked?> class="radio-style check" type="radio" id="<?=$ar["CONTROL_ID"]?>" value="<? echo $ar["HTML_VALUE"] ?>" name="<?=$ar["CONTROL_NAME"]?>"></input>
-                        <label class="<? if ($ar["PROP_ENUM"]["ID"] == SEZON_SUMMER_VALUE_ENUM_ID):?>summery<?endif;?>" for="<?=$ar["CONTROL_ID"]?>"><?=$ar["VALUE"]?></label>
+                        <label class="<? if ($ar["PROP_ENUM"]["ID"] == SEZON_SUMMER_VALUE_ENUM_ID):?>summery<?elseif($ar["PROP_ENUM"]["ID"] == SEZON_WINTER_VALUE_ENUM_ID):?>wintery<?endif;?>" for="<?=$ar["CONTROL_ID"]?>"><?=$ar["VALUE"]?></label>
                     <? endforeach;?>
                     <div class="clear"></div>
                  <? else:?>

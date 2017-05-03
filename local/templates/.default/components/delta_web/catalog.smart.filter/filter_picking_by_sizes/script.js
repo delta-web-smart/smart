@@ -18,10 +18,10 @@ function JCSmartFilterTop(ajaxURL, viewMode, params)
 	}
 }
 
-JCSmartFilterTop.prototype.change = function(select)
-{
-    var name = $(select).find("option:selected").data("name");
-    $(select).attr("name", name);
+JCSmartFilterTop.prototype.change = function(input)
+{    
+    var name = $(input).find("option:selected").data("name");
+    $(input).attr("name", name);
 }
 
 JCSmartFilterTop.prototype.reload = function(input)
