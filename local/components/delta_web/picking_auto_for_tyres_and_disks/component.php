@@ -25,23 +25,59 @@
       $obCache->EndDataCache(array("VENDOR" => $res));
     endif;
     $arResult["VENDOR"] = $res;
-    
     if (!empty($_POST)) {
         $values = array();
         foreach($_POST as $name => $value) {
             $values[$name] = htmlspecialchars(stripslashes($value));
         }
-        if (!empty($values["VENDOR"]) && !empty($values["CAR"]) && !empty($values["YEAR"])) {
-            $arResult["ITEMS"] = $pickingAutoForTyresAndDisks->GetModifications($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"], $values["YEAR"]);
-            $arResult["PROPERTY"] = "MODIFICATION";
-        } elseif(!empty($values["VENDOR"]) && !empty($values["CAR"])) {
-            $arResult["ITEMS"] = $pickingAutoForTyresAndDisks->GetYears($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"]);
-            $arResult["PROPERTY"] = "YEAR";
-        } elseif(!empty($values["VENDOR"])) {
-            $arResult["ITEMS"] = $pickingAutoForTyresAndDisks->GetCars($arParams["IBLOCK_ID"], $values["VENDOR"]);
-            $arResult["PROPERTY"] = "CAR";
+        $arResult["VALUES"] = $values;
+        if (isset($values["RESULT_PODBOR"])) {
+            $arResult["ERRORS"] = array();
+            $arResult["DATA"] = array();
+            if (empty($values["VENDOR"])) {
+                $arResult["ERRORS"]["VENDOR"] = GetMessage("VENDOR_CHOOSE_EMPTY");
+            }
+            if (empty($values["CAR"])) {
+                $arResult["ERRORS"]["CAR"] = GetMessage("CAR_CHOOSE_EMPTY");
+            }
+            if (empty($values["YEAR"])) {
+                $arResult["ERRORS"]["YEAR"] = GetMessage("YEAR_CHOOSE_EMPTY");
+            }
+            if (empty($values["MODIFICATION"])) {
+                $arResult["ERRORS"]["MODIFICATION"] = GetMessage("MODIFICATION_CHOOSE_EMPTY");
+            }
+            
+            if(!empty($values["VENDOR"])) {
+                $arResult["CAR"] = $pickingAutoForTyresAndDisks->GetCars($arParams["IBLOCK_ID"], $values["VENDOR"]);
+            }
+            
+            if(!empty($values["VENDOR"]) && !empty($values["CAR"])) {
+                $arResult["YEAR"] = $pickingAutoForTyresAndDisks->GetYears($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"]);
+            }
+            
+            if (!empty($values["VENDOR"]) && !empty($values["CAR"]) && !empty($values["YEAR"])) {
+                $arResult["MODIFICATION"] = $pickingAutoForTyresAndDisks->GetModifications($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"], $values["YEAR"]);
+            }
+            
+            if (!empty($values["VENDOR"]) && !empty($values["CAR"]) && !empty($values["YEAR"]) && !empty($values["MODIFICATION"])) {
+                $arResult["DATA"] = $pickingAutoForTyresAndDisks->GetData($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"], $values["YEAR"], $values["MODIFICATION"]);
+            }
+            
+            $this->IncludeComponentTemplate();
+            
+        } else {
+            if (!empty($values["VENDOR"]) && !empty($values["CAR"]) && !empty($values["YEAR"])) {
+                $arResult["ITEMS"] = $pickingAutoForTyresAndDisks->GetModifications($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"], $values["YEAR"]);
+                $arResult["PROPERTY"] = "MODIFICATION";
+            } elseif(!empty($values["VENDOR"]) && !empty($values["CAR"])) {
+                $arResult["ITEMS"] = $pickingAutoForTyresAndDisks->GetYears($arParams["IBLOCK_ID"], $values["VENDOR"], $values["CAR"]);
+                $arResult["PROPERTY"] = "YEAR";
+            } elseif(!empty($values["VENDOR"])) {
+                $arResult["ITEMS"] = $pickingAutoForTyresAndDisks->GetCars($arParams["IBLOCK_ID"], $values["VENDOR"]);
+                $arResult["PROPERTY"] = "CAR";
+            }
+            $this->IncludeComponentTemplate("html_select");
         }
-        $this->IncludeComponentTemplate("html_select");
     } else {
         $this->IncludeComponentTemplate();
     }

@@ -3,6 +3,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Каталог");
 ?>
 <?
+    $smart_filter = SMART_FILTER_PATH;
+    $custom_filter = "N";
+    if (stristr($APPLICATION->GetCurPage(false), FILTER_URL_FOR_PODBOR)) {
+        $custom_filter = "Y";
+        $smart_filter = str_replace("#SECTION_CODE#/", "", SMART_FILTER_PATH);
+    }
     if (!empty($_REQUEST["by"])) {
         $by = htmlspecialchars($_REQUEST["by"]);
     } else {
@@ -16,9 +22,10 @@ $APPLICATION->SetTitle("Каталог");
     }
 ?>
 <?$APPLICATION->IncludeComponent(
-	"bitrix:catalog", 
+	"delta_web:catalog", 
 	"main", 
 	array(
+        "CUSTOM_FILTER" => $custom_filter,
 		"IBLOCK_TYPE" => "1c_catalog",
 		"IBLOCK_ID" => IBLOCK_ID_CATALOG,
 		"TEMPLATE_THEME" => "site",
@@ -571,9 +578,9 @@ $APPLICATION->SetTitle("Каталог");
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE#/",
+            "smart_filter" => $smart_filter,
 			"element" => "#SECTION_CODE#/#ELEMENT_CODE#/",
-			"compare" => "compare/",
-			"smart_filter" => SMART_FILTER_PATH,
+			"compare" => "compare/"
 		)
 	),
 	false

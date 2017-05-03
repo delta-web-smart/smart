@@ -30,6 +30,20 @@ $arComponentParameters = array(
             "DEFAULT" => '={$_REQUEST["ID"]}',
             "REFRESH" => "Y",
         ),
+        "RESULT_URL" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Результирующая ссылка",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "DEFAULT" => "",
+        ),
+        "SEF_RULE" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Адрес генерируемой ссылки",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "DEFAULT" => "",
+        ),
         'AJAX_MODE'=>array(),
         "CACHE_TIME" => array(
             "PARENT" => "BASE",

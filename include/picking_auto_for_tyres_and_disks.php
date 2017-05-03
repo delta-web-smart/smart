@@ -4,13 +4,18 @@
     }
 ?>
 <?
+    if (empty($template)) {
+        $template = "main";
+    }
     $APPLICATION->IncludeComponent(
         "delta_web:picking_auto_for_tyres_and_disks", 
-        "main", 
+        $template, 
         array(
-            "COMPONENT_TEMPLATE" => "main",
+            "COMPONENT_TEMPLATE" => $template,
             "IBLOCK_TYPE" => "auto_picking",
             "IBLOCK_ID" => IBLOCK_ID_PICKING_AUTO_FOR_TYRES_AND_DISKS,
+            "RESULT_URL" => "/podbor/",
+            "SEF_RULE" => FILTER_URL_FOR_PODBOR,
             "AJAX_MODE" => "N",
             "AJAX_OPTION_JUMP" => "N",
             "AJAX_OPTION_STYLE" => "Y",

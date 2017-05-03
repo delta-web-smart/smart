@@ -15,7 +15,6 @@ use Bitrix\Main\ModuleManager;
 
 $this->setFrameMode(true);
 $isFilter = ($arParams['USE_FILTER'] == 'Y');
-
 if ($isFilter)
 {
 	$arFilter = array(
@@ -23,10 +22,15 @@ if ($isFilter)
 		"ACTIVE" => "Y",
 		"GLOBAL_ACTIVE" => "Y",
 	);
-	if (0 < intval($arResult["VARIABLES"]["SECTION_ID"]))
+    $emptySection = true;
+    $SHOW_ALL_WO_SECTION = "N";
+	if (0 < intval($arResult["VARIABLES"]["SECTION_ID"])) {
 		$arFilter["ID"] = $arResult["VARIABLES"]["SECTION_ID"];
-	elseif ('' != $arResult["VARIABLES"]["SECTION_CODE"])
+        $emptySection = false;
+    } elseif ('' != $arResult["VARIABLES"]["SECTION_CODE"]) {
 		$arFilter["=CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
+        $emptySection = false;
+    }
 
 	$obCache = new CPHPCache();
 	if ($obCache->InitCache(36000, serialize($arFilter), "/iblock/catalog"))
@@ -60,6 +64,10 @@ if ($isFilter)
 	}
 	if (!isset($arCurSection))
 		$arCurSection = array();
+}
+if ($emptySection) {
+    $arCurSection = array();
+    $SHOW_ALL_WO_SECTION = "Y";
 }
 ?>
 <?$APPLICATION->IncludeComponent(
@@ -123,6 +131,7 @@ if ($isFilter)
         "delta_web:catalog.section",
         "main",
         array(
+            "SHOW_ALL_WO_SECTION" => $SHOW_ALL_WO_SECTION,
             "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
             "IBLOCK_ID" => $arParams["IBLOCK_ID"],
             "ELEMENT_SORT_FIELD" => $arParams["ELEMENT_SORT_FIELD"],

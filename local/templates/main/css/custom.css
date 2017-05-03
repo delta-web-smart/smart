@@ -3058,3 +3058,7 @@ i.season-ico.summer {
 .content .for-purchaser ul {
 	display: block;
 }
+
+.errors  {
+    color: #f00;
+}

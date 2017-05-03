@@ -18,17 +18,19 @@ $(function() {
         modificationSelector.closest(".option").addClass("disable");
         
         var vendor = $(this).val();
-        var action = $(this).closest("form").attr("action");
-        var dataValues = {
-            "VENDOR" : vendor
-        };
-        BX.showWait();
-        $.post(action, dataValues, function(data) {
-            carSelector.closest(".option").removeClass("disable");
-            carSelector.closest(".option").html(data);
-            $(".select-style").styler();
-            BX.closeWait();
-        });
+        if (vendor != "") {
+            var action = $(this).closest("form").attr("action");
+            var dataValues = {
+                "VENDOR" : vendor
+            };
+            BX.showWait();
+            $.post(action, dataValues, function(data) {
+                carSelector.closest(".option").removeClass("disable");
+                carSelector.closest(".option").html(data);
+                $(".select-style").styler();
+                BX.closeWait();
+            });
+        }
     });
     
     //Событие при выборе модели автомобиля
@@ -52,13 +54,15 @@ $(function() {
             "VENDOR" : vendor,
             "CAR" : car
         };
-        BX.showWait();
-        $.post(action, dataValues, function(data) {
-            yearSelector.closest(".option").removeClass("disable");
-            yearSelector.closest(".option").html(data);
-            $(".select-style").styler();
-            BX.closeWait();
-        });
+        if (vendor != "" && car != "") {
+            BX.showWait();
+            $.post(action, dataValues, function(data) {
+                yearSelector.closest(".option").removeClass("disable");
+                yearSelector.closest(".option").html(data);
+                $(".select-style").styler();
+                BX.closeWait();
+            });
+        }
     });
     
     
@@ -82,18 +86,22 @@ $(function() {
             "CAR" : car,
             "YEAR" : year
         };
-        BX.showWait();
-        $.post(action, dataValues, function(data) {
-            modificationSelector.closest(".option").removeClass("disable");
-            modificationSelector.closest(".option").html(data);
-            $(".select-style").styler();
-            BX.closeWait();
-        });
+        if (vendor != "" && car != "" && year != "") {
+            BX.showWait();
+            $.post(action, dataValues, function(data) {
+                modificationSelector.closest(".option").removeClass("disable");
+                modificationSelector.closest(".option").html(data);
+                $(".select-style").styler();
+                BX.closeWait();
+            });
+        }
     });
     
     $(document).on("click", "#picking_auto_button", function(e) {
         e.preventDefault();
-        
+        var form = $(this).closest("form");
+        form.attr("action", form.data("action_podbor"));
+        form.submit();        
     });
  
 });
