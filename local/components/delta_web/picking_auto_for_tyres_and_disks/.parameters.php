@@ -37,6 +37,27 @@ $arComponentParameters = array(
             "MULTIPLE" => "N",
             "DEFAULT" => "",
         ),
+        "MULTIPLY_PROPERTIES" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Свойства со множественной вставкой",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "Y",
+            "DEFAULT" => "",
+        ),
+        "PROPERTIES_FOR_GENERATE_URL_1" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Свойства для генерации URL 1",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "Y",
+            "DEFAULT" => "",
+        ),
+        "PROPERTIES_FOR_GENERATE_URL_2" => array(
+            "PARENT" => "BASE",
+            "NAME" => "Свойства для генерации URL 2",
+            "TYPE" => "STRING",
+            "MULTIPLE" => "Y",
+            "DEFAULT" => "",
+        ),
         "SEF_RULE" => array(
             "PARENT" => "BASE",
             "NAME" => "Адрес генерируемой ссылки",

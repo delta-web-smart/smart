@@ -16,6 +16,24 @@
             "IBLOCK_ID" => IBLOCK_ID_PICKING_AUTO_FOR_TYRES_AND_DISKS,
             "RESULT_URL" => "/podbor/",
             "SEF_RULE" => FILTER_URL_FOR_PODBOR,
+            "MULTIPLY_PROPERTIES" => array(
+                "ZAVOD_SHINI",
+                "ZAVOD_DISKOV",
+                "ZAMEN_SHINI",
+                "ZAMEN_DISKOV",
+                "TUNING_SHINI",
+                "TUNING_DISKI"
+            ),
+            "PROPERTIES_FOR_GENERATE_URL_1" => array(
+                "SHIRINA",
+                "VYSOTA",
+                "DIAMETR"
+            ),
+            "PROPERTIES_FOR_GENERATE_URL_2" => array(
+                "SHIRINA",
+                "DIAMETR",
+                "ET"
+            ),
             "AJAX_MODE" => "N",
             "AJAX_OPTION_JUMP" => "N",
             "AJAX_OPTION_STYLE" => "Y",

@@ -1,5 +1,7 @@
 <?
     $MESS["RESULT_PODBOR_EMPTY"] = "Результатов для данного подбора автомобилей не найдено!";
+    $MESS["TYRES_TITLE"] = "Шины";
+    $MESS["DISKS_TITLE"] = "Диски";
     $MESS["ZAVOD_SHINI_TITLE"] = "Заводская комплектация шин";
     $MESS["ZAMEN_SHINI_TITLE"] = "Варианты замены шин";
     $MESS["TUNING_SHINI_TITLE"] = "Тюнинг шин";
@@ -11,3 +13,5 @@
     $MESS["ZAVOD_DISKOV_TITLE"] = "Заводская комплектация дисков";
     $MESS["ZAMEN_DISKOV_TITLE"] = "Варианты замены дисков";
     $MESS["TUNING_DISKI_TITLE"] = "Тюнинг дисков";
+    $MESS["MAIN_PARAMETRES_DISKS_TITLE"] = "Общие параметры дисков";
+    $MESS["MAIN_PARAMETRES_TYRES_TITLE"] = "Общие параметры шин";

@@ -2,26 +2,17 @@
     
     class PickingAutoForTyresAndDisks {
         
-        var $multiplyProperties = array(
-            "ZAVOD_SHINI",
-            "ZAMEN_SHINI",
-            "TUNING_SHINI",
-            "ZAVOD_DISKOV",
-            "ZAMEN_DISKOV",
-            "TUNING_DISKI"
-        );
+        public $multiplyProperties;
+        public $filterPropertiesOne;
+        public $filterPropertiesTwo;
         
-        var $filterPropertiesTwo = array(
-            "SHIRINA",
-            "DIAMETR",
-            "ET"
-        );
-        
-        var $filterPropertiesOne = array(
-            "SHIRINA",
-            "VYSOTA",
-            "DIAMETR"
-        );
+        public function __construct($params = array()) {
+            if (!empty($params)) {
+                $this->multiplyProperties = $params["MULTIPLY_PROPERTIES"];
+                $this->filterPropertiesOne = $params["PROPERTIES_FOR_GENERATE_URL_1"];
+                $this->filterPropertiesTwo = $params["PROPERTIES_FOR_GENERATE_URL_2"];
+            }
+        }
         
         public function GetVendors($iblockId)
         {

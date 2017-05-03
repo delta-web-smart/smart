@@ -3062,3 +3062,32 @@ i.season-ico.summer {
 .errors  {
     color: #f00;
 }
+
+.table-info {
+    background: #d3d5d6 none repeat scroll 0 0;
+    margin-bottom: 30px;
+    width: 80%; 
+    margin: 15px auto;
+    border-collapse: separate;
+    border-spacing: 1px;
+    height: 100%;
+}
+.table-info td {
+    background: #fff none repeat scroll 0 0;
+    text-align: center;
+    vertical-align: middle;
+}
+.table-info .head td {
+    background: #e3e6e7 none repeat scroll 0 0;
+    padding: 9px 10px 10px;
+}
+
+.table-info .child {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.table-info .child td {
+    padding: 15px;
+}
