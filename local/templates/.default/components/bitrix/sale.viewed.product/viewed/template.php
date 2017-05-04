@@ -3,7 +3,7 @@
     global $arrFilterProductIds;
     $arrFilterProductIds = array("ID" => $arResult["PRODUCT_IDS"]);
     $APPLICATION->IncludeComponent(
-        "delta_web:catalog.section",
+        "bitrix:catalog.section",
         "products_main_page",
         Array(
             "LABEL_FOR_SALE" => "viewed",

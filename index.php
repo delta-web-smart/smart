@@ -89,7 +89,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
     $arrFilterNew = array("<=DATE_CREATE" => date("d.m.Y 23:59:59", time()), ">=DATE_CREATE" => date("d.m.Y 00:00:00", $offsetTime));
 ?>
 <?$APPLICATION->IncludeComponent(
-    "delta_web:catalog.section",
+    "bitrix:catalog.section",
     "products_main_page",
     Array(
         "LABEL_FOR_SALE" => "new",
@@ -227,7 +227,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
 ?>
 <? if (!empty($arDiscountElementID)):?>
     <?$APPLICATION->IncludeComponent(
-        "delta_web:catalog.section",
+        "bitrix:catalog.section",
         "products_main_page",
         Array(
             "LABEL_FOR_SALE" => "sale",
@@ -366,7 +366,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
 ?>
 <? if (!empty($arHitIds)):?>
     <?$APPLICATION->IncludeComponent(
-        "delta_web:catalog.section",
+        "bitrix:catalog.section",
         "products_main_page",
         Array(
             "LABEL_FOR_SALE" => "hit",

@@ -128,7 +128,7 @@ if ($emptySection) {
 ?>
 <?
     $APPLICATION->IncludeComponent(
-        "delta_web:catalog.section",
+        "bitrix:catalog.section",
         "main",
         array(
             "SHOW_ALL_WO_SECTION" => $SHOW_ALL_WO_SECTION,
