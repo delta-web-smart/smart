@@ -181,27 +181,27 @@ $boolSKU = false;
 $strBaseCurrency = '';
 $boolConvert = isset($arResult['CONVERT_CURRENCY']['CURRENCY_ID']);
 
-if ($arResult['MODULES']['catalog'])
-{
-	if (!$boolConvert)
-		$strBaseCurrency = CCurrency::GetBaseCurrency();
+// if ($arResult['MODULES']['catalog'])
+// {
+	// if (!$boolConvert)
+		// $strBaseCurrency = CCurrency::GetBaseCurrency();
 
-	$arSKU = CCatalogSKU::GetInfoByProductIBlock($arParams['IBLOCK_ID']);
-	$boolSKU = !empty($arSKU) && is_array($arSKU);
+	// $arSKU = CCatalogSKU::GetInfoByProductIBlock($arParams['IBLOCK_ID']);
+	// $boolSKU = !empty($arSKU) && is_array($arSKU);
 
-	if ($boolSKU && !empty($arParams['OFFER_TREE_PROPS']))
-	{
-		$arSKUPropList = CIBlockPriceTools::getTreeProperties(
-			$arSKU,
-			$arParams['OFFER_TREE_PROPS'],
-			array(
-				'PICT' => $arEmptyPreview,
-				'NAME' => '-'
-			)
-		);
-		$arSKUPropIDs = array_keys($arSKUPropList);
-	}
-}
+	// if ($boolSKU && !empty($arParams['OFFER_TREE_PROPS']))
+	// {
+		// $arSKUPropList = CIBlockPriceTools::getTreeProperties(
+			// $arSKU,
+			// $arParams['OFFER_TREE_PROPS'],
+			// array(
+				// 'PICT' => $arEmptyPreview,
+				// 'NAME' => '-'
+			// )
+		// );
+		// $arSKUPropIDs = array_keys($arSKUPropList);
+	// }
+// }
 
 $arResult['CHECK_QUANTITY'] = false;
 if (!isset($arResult['CATALOG_MEASURE_RATIO']))
@@ -217,19 +217,19 @@ $arResult['CATALOG'] = false;
 if (!isset($arResult['CATALOG_SUBSCRIPTION']) || 'Y' != $arResult['CATALOG_SUBSCRIPTION'])
 	$arResult['CATALOG_SUBSCRIPTION'] = 'N';
 
-CIBlockPriceTools::getLabel($arResult, $arParams['LABEL_PROP']);
+//CIBlockPriceTools::getLabel($arResult, $arParams['LABEL_PROP']);
 
-$productSlider = CIBlockPriceTools::getSliderForItem($arResult, $arParams['ADD_PICT_PROP'], 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']);
-if (empty($productSlider))
-{
-	$productSlider = array(
-		0 => $arEmptyPreview
-	);
-}
-$productSliderCount = count($productSlider);
-$arResult['SHOW_SLIDER'] = true;
-$arResult['MORE_PHOTO'] = $productSlider;
-$arResult['MORE_PHOTO_COUNT'] = count($productSlider);
+// $productSlider = CIBlockPriceTools::getSliderForItem($arResult, $arParams['ADD_PICT_PROP'], 'Y' == $arParams['ADD_DETAIL_TO_SLIDER']);
+// if (empty($productSlider))
+// {
+	// $productSlider = array(
+		// 0 => $arEmptyPreview
+	// );
+// }
+// $productSliderCount = count($productSlider);
+// $arResult['SHOW_SLIDER'] = true;
+// $arResult['MORE_PHOTO'] = $productSlider;
+// $arResult['MORE_PHOTO_COUNT'] = count($productSlider);
 
 if ($arResult['MODULES']['catalog'])
 {
@@ -294,9 +294,9 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 	}
 	unset($arOffer);
 
-	CIBlockPriceTools::getTreePropertyValues($arSKUPropList, $arNeedValues);
-	$arSKUPropIDs = array_keys($arSKUPropList);
-	$arSKUPropKeys = array_fill_keys($arSKUPropIDs, false);
+	//CIBlockPriceTools::getTreePropertyValues($arSKUPropList, $arNeedValues);
+	//$arSKUPropIDs = array_keys($arSKUPropList);
+	//$arSKUPropKeys = array_fill_keys($arSKUPropIDs, false);
 
 
 	$arMatrixFields = $arSKUPropKeys;
@@ -349,22 +349,22 @@ if ($arResult['CATALOG'] && isset($arResult['OFFERS']) && !empty($arResult['OFFE
 		}
 		$arMatrix[$keyOffer] = $arRow;
 
-		CIBlockPriceTools::setRatioMinPrice($arOffer, false);
+		//CIBlockPriceTools::setRatioMinPrice($arOffer, false);
 
-		$arOffer['MORE_PHOTO'] = array();
-		$arOffer['MORE_PHOTO_COUNT'] = 0;
-		$offerSlider = CIBlockPriceTools::getSliderForItem($arOffer, $arParams['OFFER_ADD_PICT_PROP'], $arParams['ADD_DETAIL_TO_SLIDER'] == 'Y');
-		if (empty($offerSlider))
-		{
-			$offerSlider = $productSlider;
-		}
-		$arOffer['MORE_PHOTO'] = $offerSlider;
-		$arOffer['MORE_PHOTO_COUNT'] = count($offerSlider);
+		// $arOffer['MORE_PHOTO'] = array();
+		// $arOffer['MORE_PHOTO_COUNT'] = 0;
+		// $offerSlider = CIBlockPriceTools::getSliderForItem($arOffer, $arParams['OFFER_ADD_PICT_PROP'], $arParams['ADD_DETAIL_TO_SLIDER'] == 'Y');
+		// if (empty($offerSlider))
+		// {
+			// $offerSlider = $productSlider;
+		// }
+		// $arOffer['MORE_PHOTO'] = $offerSlider;
+		// $arOffer['MORE_PHOTO_COUNT'] = count($offerSlider);
 
-		if (CIBlockPriceTools::clearProperties($arOffer['DISPLAY_PROPERTIES'], $arParams['OFFER_TREE_PROPS']))
-		{
-			$boolSKUDisplayProps = true;
-		}
+		// if (CIBlockPriceTools::clearProperties($arOffer['DISPLAY_PROPERTIES'], $arParams['OFFER_TREE_PROPS']))
+		// {
+			// $boolSKUDisplayProps = true;
+		// }
 
 		$arDouble[$arOffer['ID']] = true;
 		$arNewOffers[$keyOffer] = $arOffer;
@@ -526,7 +526,7 @@ if ($arResult['MODULES']['catalog'] && $arResult['CATALOG'])
 {
 	if ($arResult['CATALOG_TYPE'] == CCatalogProduct::TYPE_PRODUCT || $arResult['CATALOG_TYPE'] == CCatalogProduct::TYPE_SET)
 	{
-		CIBlockPriceTools::setRatioMinPrice($arResult, false);
+		//CIBlockPriceTools::setRatioMinPrice($arResult, false);
 		$arResult['MIN_BASIS_PRICE'] = $arResult['MIN_PRICE'];
 	}
 	if (
@@ -643,14 +643,6 @@ foreach($offers as $arOffer) {
     
     $arOffer["DETAIL_PAGE_URL"] = PathForOffer($arResult, $arOffer);
     $arOffer["PRICE"] = FormatNumber($arOffer["MIN_PRICE"]["DISCOUNT_VALUE"]);
-    
-    //Список отображаемых свойств для основного каталога      
-    $arResult["SHOW_PROPERTIES"] = array();
-    if (!empty($arParams["SHOW_PROPERTIES"])) {
-        foreach($arParams["SHOW_PROPERTIES"] as $arShowProperty) {
-            $arResult["SHOW_PROPERTIES"][] = $arResult["PROPERTIES"][$arShowProperty];
-        }
-    }
 
     $arResult["CUSTOM_OFFERS"][$arOffer["PROPERTIES"][$propertyForGroup]["VALUE"]][] = $arOffer;
 }

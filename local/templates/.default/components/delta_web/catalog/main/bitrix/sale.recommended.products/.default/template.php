@@ -12,7 +12,7 @@ $this->setFrameMode(true);
             global $arrFilterSaleRecommended;
             $arrFilterSaleRecommended = array("ID" => $arResult["PRODUCT_IDS"]);
             $APPLICATION->IncludeComponent(
-                "delta_web:catalog.section",
+                "bitrix:catalog.section",
                 "products_main_page",
                 Array(
                     "LABEL_FOR_SALE" => "viewed",
@@ -30,7 +30,7 @@ $this->setFrameMode(true);
                     "BASKET_URL" => "/personal/cart/",
                     "BRAND_PROPERTY" => "BRAND_REF",
                     "BROWSER_TITLE" => "-",
-                    "CACHE_FILTER" => "N",
+                    "CACHE_FILTER" => "Y",
                     "CACHE_GROUPS" => "Y",
                     "CACHE_TIME" => "36000000",
                     "CACHE_TYPE" => "A",
