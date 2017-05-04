@@ -21,7 +21,7 @@
             "BASKET_URL" => "/personal/cart/",
             "BRAND_PROPERTY" => "BRAND_REF",
             "BROWSER_TITLE" => "-",
-            "CACHE_FILTER" => "N",
+            "CACHE_FILTER" => "Y",
             "CACHE_GROUPS" => "Y",
             "CACHE_TIME" => "36000000",
             "CACHE_TYPE" => "A",

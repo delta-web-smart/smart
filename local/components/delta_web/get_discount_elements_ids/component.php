@@ -35,7 +35,9 @@
             } else {
                 $parentProductId = $parentProduct["ID"];
             }
-            $arDiscountElementID[] = $parentProductId;
+            if (!empty($parentProductId)) {
+                $arDiscountElementID[] = $parentProductId;
+            }
             if($arProductDiscounts["SECTION_ID"] && !in_array($arProductDiscounts["SECTION_ID"], $arDiscountSectionID)) {
                 $arDiscountSectionID[] = $arProductDiscounts["SECTION_ID"];
             }

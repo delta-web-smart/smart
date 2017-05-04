@@ -54,12 +54,12 @@ if ('' == $arParams['TEMPLATE_THEME'])
 $arResult['NAV_PARAM']['TEMPLATE_THEME'] = $arParams['TEMPLATE_THEME'];
 
 $arResult['NAV_STRING'] = $arResult['NAV_RESULT']->GetPageNavStringEx(
-	$navComponentObject,
-	$arParams['PAGER_TITLE'],
-	$arParams['PAGER_TEMPLATE'],
-	$arParams['PAGER_SHOW_ALWAYS'],
-	$this->__component,
-	$arResult['NAV_PARAM']
+    $navComponentObject,
+    $arParams['PAGER_TITLE'],
+    $arParams['PAGER_TEMPLATE'],
+    $arParams['PAGER_SHOW_ALWAYS'],
+    $this->__component,
+    $arResult['NAV_PARAM']
 );
 
 if ('Y' != $arParams['PRODUCT_DISPLAY_MODE'])

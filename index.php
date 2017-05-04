@@ -34,7 +34,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
             "AJAX_OPTION_HISTORY" => "N",
             "CACHE_TYPE" => "A",
             "CACHE_TIME" => "36000000",
-            "CACHE_FILTER" => "N",
+            "CACHE_FILTER" => "Y",
             "CACHE_GROUPS" => "Y",
             "PREVIEW_TRUNCATE_LEN" => "",
             "ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -86,7 +86,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
 <?
     global $arrFilterNew;
     $offsetTime = time() - COUNT_DAYS_FOR_NEW_PRODUCTS;
-    $arrFilterNew = array("<=DATE_CREATE" => date("d.m.Y H:i:s", time()), ">=DATE_CREATE" => date("d.m.Y H:i:s", $offsetTime));
+    $arrFilterNew = array("<=DATE_CREATE" => date("d.m.Y 23:59:59", time()), ">=DATE_CREATE" => date("d.m.Y 00:00:00", $offsetTime));
 ?>
 <?$APPLICATION->IncludeComponent(
     "delta_web:catalog.section",
@@ -107,7 +107,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
         "BASKET_URL" => "/personal/cart/",
         "BRAND_PROPERTY" => "BRAND_REF",
         "BROWSER_TITLE" => "-",
-        "CACHE_FILTER" => "N",
+        "CACHE_FILTER" => "Y",
         "CACHE_GROUPS" => "Y",
         "CACHE_TIME" => "36000000",
         "CACHE_TYPE" => "A",
@@ -216,6 +216,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
 	"delta_web:get_discount_elements_ids", 
 	"", 
 	array(
+        "IBLOCK_ID" => IBLOCK_ID_CATALOG,
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "3600"
 	),
@@ -244,7 +245,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
             "BASKET_URL" => "/personal/cart/",
             "BRAND_PROPERTY" => "BRAND_REF",
             "BROWSER_TITLE" => "-",
-            "CACHE_FILTER" => "N",
+            "CACHE_FILTER" => "Y",
             "CACHE_GROUPS" => "Y",
             "CACHE_TIME" => "36000000",
             "CACHE_TYPE" => "A",
@@ -383,7 +384,7 @@ $APPLICATION->SetTitle("Смарт Тайер");
             "BASKET_URL" => "/personal/cart/",
             "BRAND_PROPERTY" => "BRAND_REF",
             "BROWSER_TITLE" => "-",
-            "CACHE_FILTER" => "N",
+            "CACHE_FILTER" => "Y",
             "CACHE_GROUPS" => "Y",
             "CACHE_TIME" => "36000000",
             "CACHE_TYPE" => "A",

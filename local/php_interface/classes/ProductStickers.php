@@ -4,6 +4,7 @@
         
         const COUNT_PURCHASE = 20;
         const CACHE_TIME = 3600;
+        const IBLOCK_ID = IBLOCK_ID_CATALOG;
     
         public function IsNewProductByDate($date) {
             $offsetTime = time() - COUNT_DAYS_FOR_NEW_PRODUCTS;
@@ -20,6 +21,7 @@
             "delta_web:get_discount_elements_ids", 
             "", 
                 array(
+                    "IBLOCK_ID" => self::IBLOCK_ID,
                     "CACHE_TYPE" => "A",
                     "CACHE_TIME" => self::CACHE_TIME
                 ),
